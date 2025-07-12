@@ -86,10 +86,7 @@
     description = "Hao Ren";
     extraGroups = [ "networkmanager" "wheel" "docker" ];
     
-    packages = with pkgs; [
-      kdePackages.kate
-    #  thunderbird
-    ];
+    packages = with pkgs; [];
   };
 
   home-manager = {
@@ -99,6 +96,8 @@
     users = {
       "hr" = import ./home.nix;
     };
+
+    sharedModules = [ plasma-manager.homeManagerModules.plasma-manager ];
   };
   
   nix.settings.experimental-features = ["nix-command" "flakes"];
