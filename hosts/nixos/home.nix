@@ -5,7 +5,8 @@
     ../../modules/home-manager/btop.nix
     ../../modules/home-manager/micro.nix
     ../../modules/home-manager/git.nix
-    ../../modules/home-manager/gh.nix    
+    ../../modules/home-manager/gh.nix
+    ./plasma-manager.nix
   ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
