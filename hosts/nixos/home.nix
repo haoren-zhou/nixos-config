@@ -27,6 +27,7 @@
   home.packages = with pkgs; [
     home-manager
     
+    github-desktop
     google-chrome
     discord
     gcc
@@ -34,6 +35,15 @@
     wl-clipboard
     pavucontrol
     dracula-theme
+
+    # cmake
+    # pkg-config
+    # curl
+    # zip
+    # unzip
+    # gnutar
+    # ninja
+
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
