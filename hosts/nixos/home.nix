@@ -35,15 +35,7 @@
     wl-clipboard
     pavucontrol
     dracula-theme
-
-    # cmake
-    # pkg-config
-    # curl
-    # zip
-    # unzip
-    # gnutar
-    # ninja
-
+    croc
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
