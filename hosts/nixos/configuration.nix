@@ -34,19 +34,6 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-
-
-  # home-manager = {
-  #   useGlobalPkgs = true;
-  #   useUserPackages = true;
-  #   extraSpecialArgs = { inherit inputs; };
-  #   users = {
-  #     "hr" = import ./home.nix;
-  #   };
-
-  #   sharedModules = [ inputs.plasma-manager.homeManagerModules.plasma-manager ];
-  # };
-  
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
