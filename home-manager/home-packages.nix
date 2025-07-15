@@ -17,6 +17,8 @@
     croc
 
     kitty
+
+    pciutils
     # # WM stuff
     # libsForQt5.xwaylandvideobridge
     # libnotify

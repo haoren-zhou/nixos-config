@@ -9,6 +9,7 @@
     ./modules/programs/gh.nix
     ./modules/desktop/plasma-manager.nix
     ./modules/desktop/stylix.nix
+    ./modules/programs/zen.nix
   ];
   
 

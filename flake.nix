@@ -19,6 +19,11 @@
       url = "github:danth/stylix/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    zen-browser = {
+      url = "github:maximoffua/zen-browser.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs: let
@@ -26,13 +31,13 @@
     homeStateVersion = "25.05";
     user = "hr";
     hosts = [
-      { hostname = "nixos"; stateVersion = "25.05"; }
+      { hostname = "nixos"; stateVersion = "25.05"; hardwareConfig = "UX430UNR";}
     ];
 
-    makeSystem = { hostname, stateVersion }: nixpkgs.lib.nixosSystem {
+    makeSystem = { hostname, stateVersion, hardwareConfig }: nixpkgs.lib.nixosSystem {
       system = system;
       specialArgs = {
-        inherit inputs stateVersion hostname user;
+        inherit inputs stateVersion hostname hardwareConfig user;
       };
 
       modules = [
@@ -45,7 +50,7 @@
      nixosConfigurations = nixpkgs.lib.foldl' (configs: host:
       configs // {
         "${host.hostname}" = makeSystem {
-          inherit (host) hostname stateVersion;
+          inherit (host) hostname stateVersion hardwareConfig;
         };
       }) {} hosts;
 

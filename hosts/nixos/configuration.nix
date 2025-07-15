@@ -2,16 +2,22 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ pkgs, stateVersion, hostname, ... }:
+{ pkgs, stateVersion, hostname, hardwareConfig, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ../../modules/hardware/${hardwareConfig}.nix
       ../../modules/system
     ];
   
-
+  # fileSystems."/boot" = {
+  #   device = "/dev/disk/by-uuid/4248ffdc-f30f-4ede-aa63-142b00e9b892";
+  #   fsType = "vfat";
+  #   options = [ "fmask=0077" "dmask=0077" ];
+  # };
+  
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
   services.xserver.enable = true;
@@ -42,6 +48,7 @@
   environment.systemPackages = with pkgs; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
+    cowsay # DEBUGGING
     git
     vscode
     neofetch
@@ -60,8 +67,6 @@
   # };
 
   # List services that you want to enable:
-
-  virtualisation.vmware.guest.enable = true;
   virtualisation.docker.enable = true;
   virtualisation.docker.autoPrune.enable = true;
   # Enable the OpenSSH daemon.
