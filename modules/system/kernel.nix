@@ -1,4 +1,3 @@
-{ inputs, ... }: {
-  imports = [ inputs.home-manager.nixosModules.default ];
-  home-manager.backupFileExtension = "backup";
+{ pkgs, ... }: {
+  boot.kernelPackages = pkgs.linuxPackages_zen;
 }

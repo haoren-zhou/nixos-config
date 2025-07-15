@@ -1,6 +1,6 @@
 {
   environment.sessionVariables = rec {
-    TERMINAL = "alacritty";
+    TERMINAL = "kitty";
     EDITOR = "micro";
     XDG_BIN_HOME = "$HOME/.local/bin";
     PATH = [

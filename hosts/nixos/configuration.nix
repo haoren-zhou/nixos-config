@@ -8,15 +8,9 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ../../modules/hardware/${hardwareConfig}.nix
+      # ../../modules/hardware/${hardwareConfig}.nix
       ../../modules/system
     ];
-  
-  # fileSystems."/boot" = {
-  #   device = "/dev/disk/by-uuid/4248ffdc-f30f-4ede-aa63-142b00e9b892";
-  #   fsType = "vfat";
-  #   options = [ "fmask=0077" "dmask=0077" ];
-  # };
   
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
