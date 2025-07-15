@@ -1,12 +1,14 @@
-{ homeStateVersion, user, ... }:
+{ inputs, homeStateVersion, user, ... }:
 
 {
   imports = [
     ./home-packages.nix
-    # ../../modules/home-manager/btop.nix
-    # ../../modules/home-manager/micro.nix
-    # ../../modules/home-manager/git.nix
-    # ../../modules/home-manager/gh.nix
+    ./modules/programs/btop.nix
+    ./modules/programs/micro.nix
+    ./modules/programs/git.nix
+    ./modules/programs/gh.nix
+    ./modules/desktop/plasma-manager.nix
+    ./modules/desktop/stylix.nix
   ];
   
 

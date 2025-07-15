@@ -4,6 +4,8 @@
   nixpkgs.config.allowUnfree = true;
 
   home.packages = with pkgs; [
+    bibata-cursors
+
     github-desktop
     google-chrome
     discord
@@ -14,6 +16,7 @@
     dracula-theme
     croc
 
+    kitty
     # # WM stuff
     # libsForQt5.xwaylandvideobridge
     # libnotify

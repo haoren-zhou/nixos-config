@@ -9,6 +9,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    plasma-manager = {
+      url = "github:nix-community/plasma-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
+
     stylix = {
       url = "github:danth/stylix/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -30,6 +36,7 @@
       };
 
       modules = [
+        inputs.stylix.nixosModules.stylix
         ./hosts/${hostname}/configuration.nix
       ];
     };
@@ -49,6 +56,7 @@
       };
 
       modules = [
+        inputs.plasma-manager.homeManagerModules.plasma-manager
         ./home-manager/home.nix
       ];
     };
