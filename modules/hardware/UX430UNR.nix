@@ -1,68 +1,39 @@
-{ lib, config, pkgs, ... }: let
-  nvidiaDriverChannel = config.boot.kernelPackages.nvidiaPackages.stable; # stable, latest, beta, etc.
-in {
-  nixpkgs.config = {
-    allowUnfree = true;
-    nvidia.acceptLicense = true;
-    # cudaSupport = true;
-    # packageOverrides = pkgs: {
-    #   vaapiIntel = pkgs.vaapiIntel.override {enableHybridCodec = true;};
-    # };
-  };
+{ inputs, pkgs, lib, ... }:
 
-  # boot.kernelParams = [
-  #   "intel_pstate=active"
-  #   "i915.enable_guc=2" # Enable GuC/HuC firmware loading
-  #   "i915.enable_psr=1" # Panel Self Refresh for power savings
-  #   "i915.enable_fbc=1" # Framebuffer compression
-  #   "i915.fastboot=1" # Skip unnecessary mode sets at boot
-  #   "mem_sleep_default=deep" # Allow deepest sleep states
-  #   "i915.enable_dc=2" # Display power saving
-  #   "nvme.noacpi=1" # Helps with NVME power consumption
+{
+  imports = 
+    [
+      inputs.nixos-hardware.nixosModules.common-pc-laptop
+      inputs.nixos-hardware.nixosModules.common-pc-ssd
+      inputs.nixos-hardware.nixosModules.asus-battery
 
-  #   "nvidia-drm.modeset=1"
-  #   "nvidia_drm.fbdev=1"
-  # ];
+      inputs.nixos-hardware.nixosModules.common-cpu-intel-cpu-only
 
-  # Load the driver
-  # services.xserver.videoDrivers = [ "nvidia" "modesetting" ];
-
-  hardware = {
-    nvidia = {
-      open = false;
-      # nvidiaPersistenced = true;
-      # nvidiaSettings = false;
-      # powerManagement.enable = true; # This can cause sleep/suspend to fail.
-      modesetting.enable = true;
-      package = nvidiaDriverChannel;
-      
-      prime = {
-        offload.enable = true;
-        offload.enableOffloadCmd = true;
-
-        intelBusId = "PCI:0:2:0";
-        nvidiaBusId = "PCI:1:0:0";
-      };
+      inputs.nixos-hardware.nixosModules.common-gpu-nvidia
+    ];
+  hardware.asus.battery =
+    {
+      chargeUpto = 80;   # Maximum level of charge for your battery, as a percentage.
+      enableChargeUptoScript = true; # Whether to add charge-upto to environment.systemPackages. `charge-upto 100` temporarily sets the charge limit to 100%, useful if you're going to need the extra battery on a longer journey.
     };
-    graphics = {
-      enable = true;
-      package = nvidiaDriverChannel;
-      enable32Bit = true;
-      # extraPackages = with pkgs; [
-      #   intel-media-driver
-      #   vaapiIntel
-      #   vaapiVdpau
-      #   libvdpau-va-gl
 
-      #   nvidia-vaapi-driver
+  services.xserver.videoDrivers = [ "nvidia" ];
+  
+  # The open source driver does not support Pascal GPUs.
+  hardware.nvidia.open = false;
 
-      #   libva-utils
-      #   mesa-demos
-      # ];
+  hardware.nvidia = {
+    prime = {
+      intelBusId = "PCI:0:2:0";
+      nvidiaBusId = "PCI:1:0:0";
     };
+
+    dynamicBoost.enable = lib.mkForce false; # Dynamic boost is not supported on Pascal architeture
   };
 
   # Thermal and Noise Management
   services.thermald.enable = true;
   services.throttled.enable = true;
+
+  powerManagement.cpuFreqGovernor = "powersave";
 }
