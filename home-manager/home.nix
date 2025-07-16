@@ -10,6 +10,8 @@
     ./modules/desktop/plasma-manager.nix
     ./modules/desktop/stylix.nix
     ./modules/programs/zen.nix
+    ./modules/programs/bat.nix
+    ./modules/programs/zsh.nix
   ];
   
 
