@@ -1,10 +1,15 @@
-{pkgs, inputs, ...}: 
+{pkgs, inputs, ...}:
 
 {
   imports = [ inputs.stylix.homeModules.stylix ];
 
   stylix = {
     enable = true;
+
+    targets = {
+      vscode.enable = false;
+    };
+
     polarity = "dark";
     base16Scheme = "${pkgs.base16-schemes}/share/themes/helios.yaml";
 

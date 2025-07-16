@@ -6,6 +6,8 @@
   home.packages = with pkgs; [
     bibata-cursors
 
+    wget
+
     github-desktop
     google-chrome
     discord
@@ -15,8 +17,6 @@
     pavucontrol
     dracula-theme
     croc
-
-    kitty
 
     pciutils
     # # WM stuff

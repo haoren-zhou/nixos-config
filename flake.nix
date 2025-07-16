@@ -26,9 +26,11 @@
       url = "github:maximoffua/zen-browser.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs: let
+  outputs = { self, nixpkgs, home-manager, nix-vscode-extensions, ... }@inputs: let
     system = "x86_64-linux";
     homeStateVersion = "25.05";
     user = "hr";
@@ -65,6 +67,11 @@
       modules = [
         inputs.plasma-manager.homeManagerModules.plasma-manager
         ./home-manager/home.nix
+        {
+          nixpkgs.overlays = [
+            nix-vscode-extensions.overlays.default
+          ];
+        }
       ];
     };
   };
