@@ -27,6 +27,8 @@
         ms-toolsai.vscode-jupyter-cell-tags
         ms-toolsai.vscode-jupyter-slideshow
 
+        esbenp.prettier-vscode
+
         ibm.output-colorizer
       ];
 
