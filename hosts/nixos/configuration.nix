@@ -11,7 +11,7 @@
       ../../modules/hardware/${hardwareConfig}.nix
       ../../modules/system
     ];
-  
+
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
   services.xserver.enable = true;
@@ -39,7 +39,7 @@
     pkgs.home-manager
   ];
 
-  programs.nix-ld.enable = true;
+  # programs.nix-ld.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
