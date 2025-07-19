@@ -24,6 +24,6 @@
         key = "Ctrl+Alt+T";
         command = "kitty";
       };
-    }
+    };
   };
 }
