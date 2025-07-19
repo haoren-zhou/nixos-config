@@ -1,5 +1,13 @@
 { pkgs, ... }:
 {
+  home.packages = with pkgs; [
+    kara
+    kde-rounded-corners
+    kdePackages.kcalc
+    kdePackages.krohnkite
+    kdotool
+  ];
+
   programs.plasma = {
     enable = true;
 
@@ -10,10 +18,12 @@
       };
     };
 
-    hotkeys.commands."launch-kitty" = {
-      name = "Launch Kitty";
-      key = "Ctrl+Alt+T";
-      command = "kitty";
-    };
+    hotkeys.commands = {
+      "launch-kitty" = {
+        name = "Launch Kitty";
+        key = "Ctrl+Alt+T";
+        command = "kitty";
+      };
+    }
   };
 }
