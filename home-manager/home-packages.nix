@@ -19,5 +19,7 @@
     croc
 
     pciutils
+
+    ulauncher
   ];
 }
