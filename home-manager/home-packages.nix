@@ -19,10 +19,5 @@
     croc
 
     pciutils
-    # # WM stuff
-    # libsForQt5.xwaylandvideobridge
-    # libnotify
-    # xdg-desktop-portal-gtk
-    # xdg-desktop-portal-hyprland
   ];
 }
