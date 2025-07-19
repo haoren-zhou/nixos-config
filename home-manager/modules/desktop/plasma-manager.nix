@@ -11,7 +11,7 @@
   programs.plasma = {
     enable = true;
 
-    # overrideConfig = true;
+    overrideConfig = true;
 
     workspace = {
       enableMiddleClickPaste = false;
@@ -107,8 +107,8 @@
             variant = "pinyin";
           }
         ];
-        repeatDelay = 250;
-        repeatRate = 40;
+        repeatDelay = 400;
+        repeatRate = 30;
       };
       # https://nix-community.github.io/plasma-manager/options.xhtml#opt-programs.plasma.input.mice
       # mice = [
