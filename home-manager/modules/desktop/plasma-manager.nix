@@ -33,6 +33,11 @@
         key = "Ctrl+Space";
         command = "ulauncher-toggle";
       };
+      "launch-zen" = {
+        name = "Launch Zen Browser";
+        key = "Meta+B";
+        command = "zen";
+      };
       "screenshot-region" = {
         name = "Capture a rectangular region of the screen";
         key = "Meta+Shift+S";
@@ -77,6 +82,9 @@
         "Window to Desktop 4" = "Meta+$";
         "Window to Desktop 5" = "Meta+%";
 
+        "Switch to Next Desktop" = "Meta+Tab";
+        "Switch to Previous Desktop" = "Meta+Shift+Tab";
+
         "KrohnkiteFocusUp" = [ "Meta+K" "Meta+Up" ];
         "KrohnkiteFocusDown" = [ "Meta+J" "Meta+Down" ];
         "KrohnkiteFocusLeft" = [ "Meta+H" "Meta+Left" ];
@@ -92,7 +100,8 @@
         "KrohnkiteShrinkHeight" = [ "Meta+Ctrl+K" "Meta+Ctrl+Up" ];
         "KrohnkiteGrowHeight" = [ "Meta+Ctrl+J" "Meta+Ctrl+Down" ];
 
-        "KrohnkiteToggleFloat" = "Meta+Ctrl+F";
+        "KrohnkiteToggleFloat" = "Meta+Shift+F"; # current window only
+        "KrohnkiteFloatAll" = "Meta+Ctrl+F";
       };
 
       plasmashell = {
