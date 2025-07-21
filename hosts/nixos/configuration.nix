@@ -25,11 +25,12 @@
     pkgs.home-manager
   ];
 
-  # programs.nix-ld.enable = true;
+  programs.nix-ld.enable = true;
 
   # List services that you want to enable:
   virtualisation.docker.enable = true;
   virtualisation.docker.autoPrune.enable = true;
+  programs.npm.enable = true;
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;

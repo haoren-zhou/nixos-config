@@ -5,21 +5,19 @@
 
   home.packages = with pkgs; [
     bibata-cursors
-
-    wget
-
-    github-desktop
-    google-chrome
-    discord
-    gcc
-    xclip
-    wl-clipboard
     pavucontrol
-    dracula-theme
-    croc
+    ulauncher
 
     pciutils
+    wget
 
-    ulauncher
+    croc
+    discord
+    github-desktop
+    xclip
+    wl-clipboard
+
+    gcc
+    nodejs_24
   ];
 }
