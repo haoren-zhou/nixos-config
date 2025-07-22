@@ -119,6 +119,9 @@
         "C_Cpp.doxygen.generatedStyle" = "/**";
 
         "[nix].editor.tabSize" = 2;
+
+        # Pylance
+        "python.analysis.typeCheckingMode" = "standard";
       };
     };
   };
