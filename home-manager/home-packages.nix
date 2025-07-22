@@ -6,7 +6,6 @@
   home.packages = with pkgs; [
     bibata-cursors
     pavucontrol
-    ulauncher
 
     pciutils
     wget

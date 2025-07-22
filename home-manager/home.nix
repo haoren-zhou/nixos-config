@@ -7,6 +7,7 @@
     ./modules/desktop/plasma-manager.nix
     ./modules/desktop/stylix.nix
     ./modules/desktop/qt.nix
+    ./modules/desktop/ulauncher
 
     ./modules/programs
   ];
