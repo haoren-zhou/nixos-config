@@ -7,6 +7,8 @@
     enable = true;
 
     targets = {
+      hyprland.enable = false;
+      hyprlock.enable = false;
       vscode.enable = false;
     };
 
@@ -44,6 +46,6 @@
       light = "Papirus-Light";
     };
 
-    image = ../../../wallpapers/wallpaper.png;
+    # image = ../../../wallpapers/wallpaper.png;
   };
 }

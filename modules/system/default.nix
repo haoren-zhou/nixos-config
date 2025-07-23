@@ -11,6 +11,7 @@
     ./nix.nix
     ./timezone_locale.nix
     ./user.nix
-    ./kde.nix
+    ./hyprland.nix
+    ./thunar.nix
   ];
 }
