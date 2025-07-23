@@ -17,6 +17,7 @@
     wl-clipboard
 
     gcc
+    kdePackages.qttools
     nodejs_24
   ];
 }
