@@ -8,6 +8,7 @@
     pavucontrol
 
     pciutils
+    feh # image viewer
     wget
 
     croc
