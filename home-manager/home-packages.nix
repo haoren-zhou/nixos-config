@@ -5,24 +5,20 @@
 
   home.packages = with pkgs; [
     bibata-cursors
-
-    github-desktop
-    google-chrome
-    discord
-    gcc
-    xclip
-    wl-clipboard
     pavucontrol
-    dracula-theme
-    croc
-
-    kitty
 
     pciutils
-    # # WM stuff
-    # libsForQt5.xwaylandvideobridge
-    # libnotify
-    # xdg-desktop-portal-gtk
-    # xdg-desktop-portal-hyprland
+    feh # image viewer
+    wget
+
+    croc
+    discord
+    github-desktop
+    xclip
+    wl-clipboard
+
+    gcc
+    kdePackages.qttools
+    nodejs_24
   ];
 }

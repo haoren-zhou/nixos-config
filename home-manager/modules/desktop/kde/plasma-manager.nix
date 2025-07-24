@@ -1,301 +1,413 @@
 { pkgs, ... }:
 {
-  # # Pointer cursor
-  # home.pointerCursor = {
-  #   gtk.enable = true;
-  #   x11.enable = true;
-  #   package = pkgs.bibata-cursors;
-  #   name = "bibata-modern-ice";
-  #   size = 24;
-  # };
+  home.packages = with pkgs; [
+    kara
+    kde-rounded-corners
+    kdePackages.kcalc
+    kdePackages.krohnkite
+    kdotool
+  ];
+
   programs.plasma = {
     enable = true;
 
+    overrideConfig = true;
+
     workspace = {
+      enableMiddleClickPaste = false;
+      clickItemTo = "select";
       cursor = {
         theme = "Bibata-Modern-Ice";
         size = 24;
       };
     };
+
+    hotkeys.commands = {
+      "launch-kitty" = {
+        name = "Launch Kitty";
+        key = "Ctrl+Alt+T";
+        command = "kitty";
+      };
+      "launch-ulauncher" = {
+        name = "Launch ulauncher";
+        key = "Ctrl+Space";
+        command = "ulauncher-toggle";
+      };
+      "launch-zen" = {
+        name = "Launch Zen Browser";
+        key = "Meta+B";
+        command = "zen";
+      };
+      "screenshot-region" = {
+        name = "Capture a rectangular region of the screen";
+        key = "Meta+Shift+S";
+        command = "spectacle --region --nonotify";
+      };
+      "screenshot-screen" = {
+        name = "Capture the entire desktop";
+        key = "Meta+Ctrl+S";
+        command = "spectacle --fullscreen --nonotify";
+      };
+    };
+
+    shortcuts = {
+      ksmserver = {
+        "Lock Session" = [
+          "Screensaver"
+          "Ctrl+Alt+L"
+        ];
+        "LogOut" = [
+          "Ctrl+Alt+Q"
+        ];
+      };
+
+      "KDE Keyboard Layout Switcher" = {
+        "Switch to Next Keyboard Layout" = "Meta+Space";
+      };
+
+      kwin = {
+        "KrohnkiteMonocleLayout" = [];
+        "Overview" = "Meta+A";
+        "Switch to Desktop 1" = "Meta+1";
+        "Switch to Desktop 2" = "Meta+2";
+        "Switch to Desktop 3" = "Meta+3";
+        "Switch to Desktop 4" = "Meta+4";
+        "Switch to Desktop 5" = "Meta+5";
+        "Window Close" = "Meta+Q";
+        "Window Fullscreen" = "Alt+Return";
+        # "Window Move Center" = "Ctrl+Alt+C";
+        "Window to Desktop 1" = "Meta+!";
+        "Window to Desktop 2" = "Meta+@";
+        "Window to Desktop 3" = "Meta+#";
+        "Window to Desktop 4" = "Meta+$";
+        "Window to Desktop 5" = "Meta+%";
+
+        "Switch to Next Desktop" = "Meta+Tab";
+        "Switch to Previous Desktop" = "Meta+Shift+Tab";
+
+        "KrohnkiteFocusUp" = [ "Meta+K" "Meta+Up" ];
+        "KrohnkiteFocusDown" = [ "Meta+J" "Meta+Down" ];
+        "KrohnkiteFocusLeft" = [ "Meta+H" "Meta+Left" ];
+        "KrohnkiteFocusRight" = [ "Meta+L" "Meta+Right" ];
+
+        "KrohnkiteShiftUp" = [ "Meta+Shift+K" "Meta+Shift+Up" ];
+        "KrohnkiteShiftDown" = [ "Meta+Shift+J" "Meta+Shift+Down" ];
+        "KrohnkiteShiftLeft" = [ "Meta+Shift+H" "Meta+Shift+Left" ];
+        "KrohnkiteShiftRight" = [ "Meta+Shift+L" "Meta+Shift+Right" ];
+
+        "KrohnkiteShrinkWidth" = [ "Meta+Ctrl+H" "Meta+Ctrl+Left" ];
+        "KrohnkitegrowWidth" = [ "Meta+Ctrl+L" "Meta+Ctrl+Right" ];
+        "KrohnkiteShrinkHeight" = [ "Meta+Ctrl+K" "Meta+Ctrl+Up" ];
+        "KrohnkiteGrowHeight" = [ "Meta+Ctrl+J" "Meta+Ctrl+Down" ];
+
+        "KrohnkiteToggleFloat" = "Meta+Shift+F"; # current window only
+        "KrohnkiteFloatAll" = "Meta+Ctrl+F";
+      };
+
+      plasmashell = {
+        "show-on-mouse-pos" = "";
+      };
+
+      "services/org.kde.dolphin.desktop"."_launch" = "Meta+F";
+    };
+
+    spectacle = {
+      shortcuts = {
+        captureEntireDesktop = "";
+        captureRectangularRegion = "";
+        launch = "";
+        recordRegion = "Meta+Shift+R";
+        recordScreen = "Meta+Ctrl+R";
+        recordWindow = "";
+      };
+    };
+
+    input = {
+      keyboard = {
+        layouts = [
+          {
+            layout = "us";
+          }
+          {
+            layout = "cn";
+            variant = "pinyin";
+          }
+        ];
+        repeatDelay = 400;
+        repeatRate = 30;
+      };
+      # https://nix-community.github.io/plasma-manager/options.xhtml#opt-programs.plasma.input.mice
+      # mice = [
+      # ];
+      touchpads = [
+        {
+          enable = true;
+          disableWhileTyping = true;
+          leftHanded = false;
+          middleButtonEmulation = true;
+          name = "ELAN1200:00 04F3:306F Touchpad";
+          naturalScroll = true;
+          pointerSpeed = 0;
+          productId = "306f";
+          tapToClick = true;
+          vendorId = "04f3";
+        }
+      ];
+    };
+
+    krunner.activateWhenTypingOnDesktop = false;
+
+    kscreenlocker = {
+      # appearance.wallpaper = "";
+      autoLock = true;
+      timeout = 1800;
+    };
+
+    kwin = {
+      effects = {
+        blur.enable = false;
+        cube.enable = false;
+        desktopSwitching.animation = "off";
+        dimAdminMode.enable = false;
+        dimInactive.enable = false;
+        fallApart.enable = false;
+        fps.enable = false;
+        minimization.animation = "off";
+        shakeCursor.enable = false;
+        slideBack.enable = false;
+        snapHelper.enable = false;
+        translucency.enable = false;
+        windowOpenClose.animation = "off";
+        wobblyWindows.enable = false;
+      };
+
+      nightLight = {
+        enable = true;
+        temperature.night = 4000;
+        transitionTime = 30; # The time in minutes it takes to transition from day to night.
+        mode = "times";
+        time = {
+          morning = "06:30";
+          evening = "22:30";
+        };
+      };
+
+      virtualDesktops = {
+        number = 5;
+        rows = 1;
+      };
+    };
+
+    panels = [
+      {
+        floating = false;
+        height = 34;
+        lengthMode = "fill";
+        location = "top";
+        opacity = "translucent";
+        widgets = [
+          {
+            name = "org.dhruv8sh.kara";
+            config = {
+              general = {
+                animationDuration = 0;
+                spacing = 3;
+                type = 1;
+              };
+              type1 = {
+                fixedLen = 3;
+                labelSource = 0;
+              };
+            };
+          }
+          "org.kde.plasma.panelspacer"
+          {
+            name = "org.kde.plasma.digitalclock";
+            config = {
+              Appearance = {
+                dateDisplayFormat = "BesideTime";
+                dateFormat = "custom";
+                use24hFormat = 2;
+              };
+            };
+          }
+          "org.kde.plasma.panelspacer"
+          {
+            systemTray = {
+              items = {
+                showAll = false;
+                shown = [
+                  "org.kde.plasma.battery"
+                  "org.kde.plasma.keyboardlayout"
+                  "org.kde.plasma.networkmanagement"
+                  "org.kde.plasma.volume"
+                ];
+                hidden = [
+                  "org.kde.plasma.brightness"
+                  "org.kde.plasma.clipboard"
+                  "org.kde.plasma.devicenotifier"
+                  "plasmashell_microphone"
+                ];
+                configs = {
+                  "org.kde.plasma.notifications".config = {
+                    Shortcuts = {
+                      global = "Meta+N";
+                    };
+                  };
+                  "org.kde.plasma.clipboard".config = {
+                    Shortcuts = {
+                      global = "Meta+V";
+                    };
+                  };
+                };
+              };
+            };
+          }
+        ];
+      }
+    ];
+
+    window-rules = [
+      {
+        apply = {
+          noborder = {
+            value = true;
+            apply = "initially";
+          };
+        };
+        description = "Hide titlebar by default";
+        match = {
+          window-class = {
+            value = ".*";
+            type = "regex";
+          };
+        };
+      }
+      # {
+      #   apply = {
+      #     desktops = "Desktop_2";
+      #     desktopsrule = "3";
+      #   };
+      #   description = "Assign Kitty to Desktop 2";
+      #   match = {
+      #     window-class = {
+      #       value = "kitty";
+      #       type = "substring";
+      #     };
+      #     window-types = ["normal"];
+      #   };
+      # }
+    ];
+
+    powerdevil = {
+      AC = {
+        autoSuspend.action = "sleep";
+        autoSuspend.idleTimeout = 7200; # 2 hours
+
+        dimDisplay.enable = true;
+        dimDisplay.idleTimeout = 600; # 10 minutes
+
+        turnOffDisplay.idleTimeout = 1800; # 30 minutes
+
+        whenLaptopLidClosed = "turnOffScreen";
+        powerButtonAction = "shutDown";
+      };
+      battery = {
+        autoSuspend.action = "sleep";
+        autoSuspend.idleTimeout = 3600; # 1 hour
+
+        dimDisplay.enable = true;
+        dimDisplay.idleTimeout = 600; # 10 minutes
+
+        turnOffDisplay.idleTimeout = 900; # 15 minutes
+
+        whenLaptopLidClosed = "turnOffScreen";
+        powerButtonAction = "shutDown";
+      };
+    };
+
+    configFile = {
+      baloofilerc."Basic Settings"."Indexing-Enabled" = false;
+      kdeglobals = {
+        General = {
+          BrowserApplication = "zen.desktop";
+        };
+        KDE = {
+          AnimationDurationFactor = 0;
+        };
+      };
+      klaunchrc.FeedbackStyle.BusyCursor = false;
+      klipperrc.General.MaxClipItems = 1000;
+      kwinrc = {
+        Effect-overview.BorderActivate = 9;
+        Plugins = {
+          krohnkiteEnabled = true;
+          screenedgeEnabled = false;
+        };
+        "Round-Corners" = {
+          ActiveOutlineAlpha = 255;
+          ActiveOutlineUseCustom = false;
+          ActiveOutlineUsePalette = true;
+          ActiveSecondOutlineUseCustom = false;
+          ActiveSecondOutlineUsePalette = true;
+          DisableOutlineTile = false;
+          DisableRoundTile = false;
+          InactiveCornerRadius = 8;
+          InactiveOutlineAlpha = 0;
+          InactiveOutlineUseCustom = false;
+          InactiveOutlineUsePalette = true;
+          InactiveSecondOutlineAlpha = 0;
+          InactiveSecondOutlineThickness = 0;
+          OutlineThickness = 1;
+          SecondOutlineThickness = 0;
+          Size = 8;
+        };
+        "Script-krohnkite" = {
+          floatingClass = "ulauncher,org.kde.kcalc";
+          screenGapBetween = 3;
+          screenGapBottom = 3;
+          screenGapLeft = 3;
+          screenGapRight = 3;
+          screenGapTop = 3;
+        };
+        Windows = {
+          DelayFocusInterval = 0;
+          FocusPolicy = "FocusFollowsMouse";
+        };
+      };
+      plasmanotifyrc = {
+        DoNotDisturb.WhenScreenSharing = false;
+        Notifications.PopupTimeout = 7000;
+      };
+      plasmarc.OSD.Enabled = false;
+      spectaclerc = {
+        Annotations.annotationToolType = 8;
+        General = {
+          launchAction = "DoNotTakeScreenshot";
+          showCaptureInstructions = false;
+          showMagnifier = "ShowMagnifierAlways";
+          useReleaseToCapture = true;
+        };
+        ImageSave.imageCompressionQuality = 100;
+      };
+    };
+
+    session = {
+      general.askForConfirmationOnLogout = false;
+      sessionRestore.restoreOpenApplicationsOnLogin = "startWithEmptySession";
+    };
+
+    dataFile = {
+      "dolphin/view_properties/global/.directory"."Dolphin"."ViewMode" = 1;
+      "dolphin/view_properties/global/.directory"."Settings"."HiddenFilesShown" = true;
+    };
+
+    startup.startupScript = {
+      ulauncher = {
+        text = "ulauncher --hide-window";
+        priority = 8;
+        runAlways = true;
+      };
+    };
   };
-  #   hotkeys.commands."launch-konsole" = {
-  #     name = "Launch Konsole";
-  #     key = "Meta+Alt+K";
-  #     command = "konsole";
-  #   };
-
-  #   fonts = {
-  #     general = {
-  #       family = "JetBrains Mono";
-  #       pointSize = 12;
-  #     };
-  #   };
-
-  #   # desktop.widgets = [
-  #   #   {
-  #   #     plasmusicToolbar = {
-  #   #       position = {
-  #   #         horizontal = 51;
-  #   #         vertical = 100;
-  #   #       };
-  #   #       size = {
-  #   #         width = 250;
-  #   #         height = 250;
-  #   #       };
-  #   #     };
-  #   #   }
-  #   # ];
-
-  #   panels = [
-  #     # Windows-like panel at the bottom
-  #     {
-  #       location = "bottom";
-  #       widgets = [
-  #         # We can configure the widgets by adding the name and config
-  #         # attributes. For example to add the the kickoff widget and set the
-  #         # icon to "nix-snowflake-white" use the below configuration. This will
-  #         # add the "icon" key to the "General" group for the widget in
-  #         # ~/.config/plasma-org.kde.plasma.desktop-appletsrc.
-  #         {
-  #           name = "org.kde.plasma.kickoff";
-  #           config = {
-  #             General = {
-  #               icon = "nix-snowflake-white";
-  #               alphaSort = true;
-  #             };
-  #           };
-  #         }
-  #         # Or you can configure the widgets by adding the widget-specific options for it.
-  #         # See modules/widgets for supported widgets and options for these widgets.
-  #         # For example:
-  #         # {
-  #         #   kickoff = {
-  #         #     sortAlphabetically = true;
-  #         #     icon = "nix-snowflake-white";
-  #         #   };
-  #         # }
-  #         # Adding configuration to the widgets can also for example be used to
-  #         # pin apps to the task-manager, which this example illustrates by
-  #         # pinning dolphin and konsole to the task-manager by default with widget-specific options.
-  #         {
-  #           iconTasks = {
-  #             launchers = [
-  #               "applications:org.kde.dolphin.desktop"
-  #               "applications:org.kde.konsole.desktop"
-  #             ];
-  #           };
-  #         }
-  #         # Or you can do it manually, for example:
-  #         {
-  #           name = "org.kde.plasma.icontasks";
-  #           config = {
-  #             General = {
-  #               launchers = [
-  #                 "applications:org.kde.dolphin.desktop"
-  #                 "applications:org.kde.konsole.desktop"
-  #               ];
-  #             };
-  #           };
-  #         }
-  #         # If no configuration is needed, specifying only the name of the
-  #         # widget will add them with the default configuration.
-  #         "org.kde.plasma.marginsseparator"
-  #         # If you need configuration for your widget, instead of specifying the
-  #         # the keys and values directly using the config attribute as shown
-  #         # above, plasma-manager also provides some higher-level interfaces for
-  #         # configuring the widgets. See modules/widgets for supported widgets
-  #         # and options for these widgets. The widgets below shows two examples
-  #         # of usage, one where we add a digital clock, setting 12h time and
-  #         # first day of the week to Sunday and another adding a systray with
-  #         # some modifications in which entries to show.
-  #         {
-  #           digitalClock = {
-  #             calendar.firstDayOfWeek = "sunday";
-  #             time.format = "12h";
-  #           };
-  #         }
-  #         {
-  #           systemTray.items = {
-  #             # We explicitly show bluetooth and battery
-  #             shown = [
-  #               "org.kde.plasma.battery"
-  #               "org.kde.plasma.bluetooth"
-  #             ];
-  #             # And explicitly hide networkmanagement and volume
-  #             hidden = [
-  #               "org.kde.plasma.networkmanagement"
-  #               "org.kde.plasma.volume"
-  #             ];
-  #           };
-  #         }
-  #       ];
-  #       hiding = "autohide";
-  #     }
-  #     # Application name, Global menu and Song information and playback controls at the top
-  #     {
-  #       location = "top";
-  #       height = 26;
-  #       widgets = [
-  #         {
-  #           applicationTitleBar = {
-  #             behavior = {
-  #               activeTaskSource = "activeTask";
-  #             };
-  #             layout = {
-  #               elements = [ "windowTitle" ];
-  #               horizontalAlignment = "left";
-  #               showDisabledElements = "deactivated";
-  #               verticalAlignment = "center";
-  #             };
-  #             overrideForMaximized.enable = false;
-  #             titleReplacements = [
-  #               {
-  #                 type = "regexp";
-  #                 originalTitle = "^Brave Web Browser$";
-  #                 newTitle = "Brave";
-  #               }
-  #               {
-  #                 type = "regexp";
-  #                 originalTitle = ''\\bDolphin\\b'';
-  #                 newTitle = "File manager";
-  #               }
-  #             ];
-  #             windowTitle = {
-  #               font = {
-  #                 bold = false;
-  #                 fit = "fixedSize";
-  #                 size = 12;
-  #               };
-  #               hideEmptyTitle = true;
-  #               margins = {
-  #                 bottom = 0;
-  #                 left = 10;
-  #                 right = 5;
-  #                 top = 0;
-  #               };
-  #               source = "appName";
-  #             };
-  #           };
-  #         }
-  #         "org.kde.plasma.appmenu"
-  #         "org.kde.plasma.panelspacer"
-  #         {
-  #           plasmusicToolbar = {
-  #             panelIcon = {
-  #               albumCover = {
-  #                 useAsIcon = false;
-  #                 radius = 8;
-  #               };
-  #               icon = "view-media-track";
-  #             };
-  #             playbackSource = "auto";
-  #             musicControls.showPlaybackControls = true;
-  #             songText = {
-  #               displayInSeparateLines = true;
-  #               maximumWidth = 640;
-  #               scrolling = {
-  #                 behavior = "alwaysScroll";
-  #                 speed = 3;
-  #               };
-  #             };
-  #           };
-  #         }
-  #       ];
-  #     }
-  #   ];
-
-  #   window-rules = [
-  #     {
-  #       description = "Dolphin";
-  #       match = {
-  #         window-class = {
-  #           value = "dolphin";
-  #           type = "substring";
-  #         };
-  #         window-types = [ "normal" ];
-  #       };
-  #       apply = {
-  #         noborder = {
-  #           value = true;
-  #           apply = "force";
-  #         };
-  #         # `apply` defaults to "apply-initially"
-  #         maximizehoriz = true;
-  #         maximizevert = true;
-  #       };
-  #     }
-  #   ];
-
-  #   powerdevil = {
-  #     AC = {
-  #       powerButtonAction = "lockScreen";
-  #       autoSuspend = {
-  #         action = "shutDown";
-  #         idleTimeout = 1000;
-  #       };
-  #       turnOffDisplay = {
-  #         idleTimeout = 1000;
-  #         idleTimeoutWhenLocked = "immediately";
-  #       };
-  #     };
-  #     battery = {
-  #       powerButtonAction = "sleep";
-  #       whenSleepingEnter = "standbyThenHibernate";
-  #     };
-  #     lowBattery = {
-  #       whenLaptopLidClosed = "hibernate";
-  #     };
-  #   };
-
-  #   kwin = {
-  #     edgeBarrier = 0; # Disables the edge-barriers introduced in plasma 6.1
-  #     cornerBarrier = false;
-
-  #     scripts.polonium.enable = true;
-  #   };
-
-  #   kscreenlocker = {
-  #     lockOnResume = true;
-  #     timeout = 10;
-  #   };
-
-  #   #
-  #   # Some mid-level settings:
-  #   #
-  #   shortcuts = {
-  #     ksmserver = {
-  #       "Lock Session" = [
-  #         "Screensaver"
-  #         "Meta+Ctrl+Alt+L"
-  #       ];
-  #     };
-
-  #     kwin = {
-  #       "Expose" = "Meta+,";
-  #       "Switch Window Down" = "Meta+J";
-  #       "Switch Window Left" = "Meta+H";
-  #       "Switch Window Right" = "Meta+L";
-  #       "Switch Window Up" = "Meta+K";
-  #     };
-  #   };
-
-  #   #
-  #   # Some low-level settings:
-  #   #
-  #   configFile = {
-  #     baloofilerc."Basic Settings"."Indexing-Enabled" = false;
-  #     kwinrc."org.kde.kdecoration2".ButtonsOnLeft = "SF";
-  #     kwinrc.Desktops.Number = {
-  #       value = 4;
-  #       # Forces kde to not change this value (even through the settings app).
-  #       immutable = true;
-  #     };
-  #     kscreenlockerrc = {
-  #       Greeter.WallpaperPlugin = "org.kde.potd";
-  #       # To use nested groups use / as a separator. In the below example,
-  #       # Provider will be added to [Greeter][Wallpaper][org.kde.potd][General].
-  #       "Greeter/Wallpaper/org.kde.potd/General".Provider = "bing";
-  #     };
-  #   };
-  # };
 }
