@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ pkgs, stateVersion, hostname, hardwareConfig, ... }:
+{ pkgs, outputs, stateVersion, hostname, hardwareConfig, ... }:
 
 {
   imports =
@@ -15,8 +15,13 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs = {
+    overlays = builtins.attrValues outputs.overlays;
+    config = {
+      allowUnfree = true;
+      # allowUnfreePredicate = _: true;
+    };
+  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget

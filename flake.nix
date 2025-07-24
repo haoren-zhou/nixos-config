@@ -31,6 +31,7 @@
   };
 
   outputs = { self, nixpkgs, home-manager, nix-vscode-extensions, ... }@inputs: let
+    inherit (self) outputs;
     system = "x86_64-linux";
     homeStateVersion = "25.05";
     user = "hr";
@@ -41,7 +42,7 @@
     makeSystem = { hostname, stateVersion, hardwareConfig }: nixpkgs.lib.nixosSystem {
       system = system;
       specialArgs = {
-        inherit inputs stateVersion hostname hardwareConfig user;
+        inherit inputs outputs stateVersion hostname hardwareConfig user;
       };
 
       modules = [
@@ -51,7 +52,8 @@
     };
 
   in {
-     nixosConfigurations = nixpkgs.lib.foldl' (configs: host:
+    overlays = import ./overlays { inherit inputs; };
+    nixosConfigurations = nixpkgs.lib.foldl' (configs: host:
       configs // {
         "${host.hostname}" = makeSystem {
           inherit (host) hostname stateVersion hardwareConfig;
