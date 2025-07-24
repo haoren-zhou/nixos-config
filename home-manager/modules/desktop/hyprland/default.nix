@@ -41,10 +41,6 @@
 
   services.hyprpaper = {
     enable = true;
-    settings = {
-      preload = ["${../../../../wallpapers/ocean-wave-patterns.jxl}"];
-      wallpaper = [",${../../../../wallpapers/ocean-wave-patterns.jxl}"];
-    };
   };
 
   dconf.settings = {

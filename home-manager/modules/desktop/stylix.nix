@@ -46,6 +46,6 @@
       light = "Papirus-Light";
     };
 
-    # image = ../../../wallpapers/wallpaper.png;
+    image = ../../../wallpapers/fractal.jxl;
   };
 }
