@@ -12,13 +12,20 @@
     excludePackages = with pkgs; [xterm];
   };
 
+  # Setup keyring
+  services.gnome.gnome-keyring.enable = true;
+
   security = {
     polkit.enable = true;
     #sudo.wheelNeedsPassword = false;
+    pam.services = {
+      sddm.enableGnomeKeyring = true;
+      login.enableGnomeKeyring = true;
+      sddm-helper.enableGnomeKeyring = true;
+    };
   };
 
-  # Setup keyring
-  services.gnome.gnome-keyring.enable = true;
+  programs.seahorse.enable = true;
 
   systemd.user.services.hyprpolkitagent = {
     description = "Hyprpolkitagent - Polkit authentication agent";
@@ -40,6 +47,8 @@
     enable = true;
     # withUWSM = true;
   };
+
+  environment.variables.XDG_RUNTIME_DIR = "/run/user/$UID";
 
   environment.sessionVariables = {
     # These are the defaults, and xdg.enable does set them, but due to load
