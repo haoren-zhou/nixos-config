@@ -42,8 +42,8 @@
   services.hyprpaper = {
     enable = true;
     settings = {
-      preload = ["${../../../../wallpapers/kurzgesagt.jxl}"];
-      wallpaper = [",${../../../../wallpapers/kurzgesagt.jxl}"];
+      preload = ["${../../../../wallpapers/ocean-wave-patterns.jxl}"];
+      wallpaper = [",${../../../../wallpapers/ocean-wave-patterns.jxl}"];
     };
   };
 
@@ -140,8 +140,8 @@
         gaps_in = 4;
         gaps_out = 9;
         border_size = 2;
-        "col.active_border" = lib.mkForce "rgba(ca9ee6ff) rgba(f2d5cfff) 45deg";
-        "col.inactive_border" = lib.mkForce "rgba(b4befecc) rgba(6c7086cc) 45deg";
+        "col.active_border" = "rgba(5c85d6ff) rgba(4d4dffff) 45deg";
+        "col.inactive_border" = "rgba(b4befecc) rgba(6c7086cc) 45deg";
         resize_on_border = true;
         layout = "dwindle"; # dwindle or master
         # allow_tearing = true; # Allow tearing for games (use immediate window rules for specific games or all titles)
@@ -161,9 +161,9 @@
         };
       };
       group = {
-        "col.border_active" = "rgba(ca9ee6ff) rgba(f2d5cfff) 45deg";
+        "col.border_active" = "rgba(5c85d6ff) rgba(4d4dffff) 45deg";
         "col.border_inactive" = "rgba(b4befecc) rgba(6c7086cc) 45deg";
-        "col.border_locked_active" = "rgba(ca9ee6ff) rgba(f2d5cfff) 45deg";
+        "col.border_locked_active" = "rgba(5c85d6ff) rgba(4d4dffff) 45deg";
         "col.border_locked_inactive" = "rgba(b4befecc) rgba(6c7086cc) 45deg";
       };
       layerrule = [
@@ -373,32 +373,29 @@
           # Applications/Programs
           "$mainMod, Return, exec, $term"
           "$mainMod, T, exec, $term"
-          "$mainMod, F, exec, $fileManager"
+          "$mainMod, F, exec, thunar"
           "$mainMod, C, exec, $editor"
           "$mainMod, B, exec, $browser"
-          # "$mainMod SHIFT, S, exec, spotify"
-          # "$mainMod SHIFT, Y, exec, youtube-music"
           "$CONTROL ALT, DELETE, exec, $term -e '${lib.getExe pkgs.btop}'" # System Monitor
           "$mainMod CTRL, C, exec, hyprpicker --autocopy --format=hex" # Colour Picker
 
           "$mainMod, A, exec, pkill -x rofi || ${./scripts/rofi.sh} drun" # launch desktop applications
-          "CTRL, SPACE, exec, pkill -x rofi || ${./scripts/rofi.sh} drun" # launch desktop applications
+          "$CONTROL, SPACE, exec, pkill -x rofi || ${./scripts/rofi.sh} drun" # launch desktop applications
           "$mainMod, SPACE, exec, pkill -x rofi || ${./scripts/rofi.sh} drun" # launch desktop applications
           "$mainMod, E, exec, pkill -x rofi || ${./scripts/rofi.sh} emoji" # launch emoji picker
           # "$mainMod, tab, exec, pkill -x rofi || ${./scripts/rofi.sh} window" # switch between desktop applications
           # "$mainMod, R, exec, pkill -x rofi || ${./scripts/rofi.sh} file" # brrwse system files
           "$mainMod ALT, K, exec, ${./scripts/keyboardswitch.sh}" # change keyboard layout
           "$mainMod, N, exec, swaync-client -t -sw" # swayNC panel
-          # "$mainMod SHIFT, Q, exec, swaync-client -t -sw" # swayNC panel
           "$mainMod, G, exec, ${./scripts/rofi.sh} games" # game launcher
-          # "$mainMod ALT, G, exec, ${./scripts/gamemode.sh}" # disable hypr effects for gamemode
+          "$mainMod ALT, G, exec, ${./scripts/gamemode.sh}" # disable hypr effects for gamemode
           "$mainMod, V, exec, ${./scripts/ClipManager.sh}" # Clipboard Manager
           "$mainMod, M, exec, pkill -x rofi || ${./scripts/rofimusic.sh}" # online music
 
           # Screenshot/Screencapture
           # "$mainMod, P, exec, ${./scripts/screenshot.sh} s" # drag to snip an area / click on a window to print it
           "$mainMod SHIFT, S, exec, ${./scripts/screenshot.sh} sf" # frozen screen, drag to snip an area / click on a window to print it
-          "$mainMod, CTRL, S, exec, ${./scripts/screenshot.sh} m" # print focused monitor
+          "$mainMod CTRL, S, exec, ${./scripts/screenshot.sh} m" # print focused monitor
           # "$mainMod ALT, P, exec, ${./scripts/screenshot.sh} p" # print all monitor outputs
 
           # Functional keybinds
