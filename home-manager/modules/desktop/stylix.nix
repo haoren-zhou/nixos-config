@@ -1,10 +1,17 @@
-{pkgs, inputs, ...}: 
+{pkgs, inputs, ...}:
 
 {
   imports = [ inputs.stylix.homeModules.stylix ];
 
   stylix = {
     enable = true;
+
+    targets = {
+      hyprland.enable = false;
+      hyprlock.enable = false;
+      vscode.enable = false;
+    };
+
     polarity = "dark";
     base16Scheme = "${pkgs.base16-schemes}/share/themes/helios.yaml";
 
@@ -39,6 +46,6 @@
       light = "Papirus-Light";
     };
 
-    image = ../../../wallpapers/wallpaper.png;
+    image = ../../../wallpapers/fractal.jxl;
   };
 }

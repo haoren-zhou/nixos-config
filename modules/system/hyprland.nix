@@ -1,0 +1,86 @@
+{ pkgs, ... }:
+
+{
+  # Input settings
+  services.libinput.enable = true;
+
+  # Enable the X11 windowing system.
+  services.xserver = {
+    enable = true;
+    xkb.layout = "us";
+    xkb.variant = "";
+    excludePackages = with pkgs; [xterm];
+  };
+
+  security = {
+    polkit.enable = true;
+    #sudo.wheelNeedsPassword = false;
+  };
+
+  # Setup keyring
+  services.gnome.gnome-keyring.enable = true;
+
+  systemd.user.services.hyprpolkitagent = {
+    description = "Hyprpolkitagent - Polkit authentication agent";
+    wantedBy = ["graphical-session.target"];
+    wants = ["graphical-session.target"];
+    after = ["graphical-session.target"];
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = "${pkgs.hyprpolkitagent}/libexec/hyprpolkitagent";
+      Restart = "on-failure";
+      RestartSec = 1;
+      TimeoutStopSec = 10;
+    };
+  };
+
+  # Enable sddm login manager
+  services.displayManager = {
+    sddm = {
+      enable = true;
+      wayland.enable = true;
+      enableHidpi = true;
+      package = pkgs.kdePackages.sddm;
+      settings.Theme.CursorTheme = "Bibata-Modern-Ice";
+      extraPackages = with pkgs; [
+        kdePackages.qtmultimedia
+        kdePackages.qtsvg
+        kdePackages.qtvirtualkeyboard
+      ];
+    };
+  };
+  services.displayManager.defaultSession = "hyprland";
+
+  programs.hyprland = {
+    enable = true;
+    # withUWSM = true;
+  };
+
+  environment.sessionVariables = {
+    # These are the defaults, and xdg.enable does set them, but due to load
+    # order, they're not set before environment.variables are set, which could
+    # cause race conditions.
+    XDG_CACHE_HOME = "$HOME/.cache";
+    XDG_CONFIG_HOME = "$HOME/.config";
+    XDG_DATA_HOME = "$HOME/.local/share";
+    XDG_BIN_HOME = "$HOME/.local/bin";
+
+    # templates = "${self}/dev-shells";
+  };
+
+  fonts.packages = with pkgs.nerd-fonts; [jetbrains-mono];
+
+  environment.systemPackages = with pkgs; [
+    killall
+    lm_sensors
+    jq
+    bibata-cursors
+    pkgs.kdePackages.qtsvg
+    pkgs.kdePackages.qtmultimedia
+    pkgs.kdePackages.qtvirtualkeyboard
+
+    # devenv
+    # devbox
+    # shellify
+  ];
+}
