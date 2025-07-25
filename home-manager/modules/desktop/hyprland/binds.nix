@@ -3,16 +3,16 @@
   wayland.windowManager.hyprland.settings = {
     binde = [
       # Resize windows
-      "$mainMod CTRL, right, resizeactive, 30 0"
-      "$mainMod CTRL, left, resizeactive, -30 0"
-      "$mainMod CTRL, up, resizeactive, 0 -30"
-      "$mainMod CTRL, down, resizeactive, 0 30"
+      "$mainMod ALT, right, resizeactive, 30 0"
+      "$mainMod ALT, left, resizeactive, -30 0"
+      "$mainMod ALT, up, resizeactive, 0 -30"
+      "$mainMod ALT, down, resizeactive, 0 30"
 
       # Resize windows with hjkl keys
-      "$mainMod CTRL, l, resizeactive, 30 0"
-      "$mainMod CTRL, h, resizeactive, -30 0"
-      "$mainMod CTRL, k, resizeactive, 0 -30"
-      "$mainMod CTRL, j, resizeactive, 0 30"
+      "$mainMod ALT, l, resizeactive, 30 0"
+      "$mainMod ALT, h, resizeactive, -30 0"
+      "$mainMod ALT, k, resizeactive, 0 -30"
+      "$mainMod ALT, j, resizeactive, 0 30"
 
       # Functional keybinds
       ",XF86MonBrightnessDown,exec,brightnessctl set 2%-"
@@ -38,7 +38,7 @@
         "$mainMod, W, togglefloating" # toggle the window on focus to float
         "$mainMod SHIFT, G, togglegroup" # toggle the window on focus to float
         "ALT, return, fullscreen" # toggle the window on focus to fullscreen
-        "$mainMod ALT, L, exec, hyprlock" # lock screen
+        "$CONTROL ALT, L, exec, hyprlock" # lock screen
         "$mainMod, backspace, exec, pkill -x wlogout || wlogout -b 4" # logout menu
         "$CONTROL, ESCAPE, exec, pkill waybar || waybar" # toggle waybar
 
@@ -65,9 +65,9 @@
         "$mainMod, M, exec, pkill -x rofi || ${./scripts/rofimusic.sh}" # online music
 
         # Screenshot/Screencapture
-        # "$mainMod, P, exec, ${./scripts/screenshot.sh} s" # drag to snip an area / click on a window to print it
-        "$mainMod SHIFT, S, exec, ${./scripts/screenshot.sh} sf" # frozen screen, drag to snip an area / click on a window to print it
-        "$mainMod CTRL, S, exec, ${./scripts/screenshot.sh} m" # print focused monitor
+        "$mainMod SHIFT, S, exec, ${./scripts/screenshot.sh} s" # drag to snip an area / click on a window to print it
+        "$mainMod CTRL, S, exec, ${./scripts/screenshot.sh} sf" # frozen screen, drag to snip an area / click on a window to print it
+        "$mainMod CTRL, P, exec, ${./scripts/screenshot.sh} m" # print focused monitor
         # "$mainMod ALT, P, exec, ${./scripts/screenshot.sh} p" # print all monitor outputs
 
         # Functional keybinds
@@ -89,11 +89,11 @@
         "ALT, Tab, bringactivetotop"
 
         # Switch workspaces relative to the active workspace with mainMod + CTRL + [←→]
-        "$mainMod, Tab, workspace, r+1"
-        "$mainMod SHIFT, Tab, workspace, r-1"
+        "$mainMod CTRL, right, workspace, r+1"
+        "$mainMod CTRL, left, workspace, r-1"
 
-        # # move to the first empty workspace instantly with mainMod + Tab + [↓]
-        # "$mainMod Tab, down, workspace, empty"
+        # # move to the first empty workspace instantly with mainMod + CTRL + [↓]
+        "$mainMod CTRL, down, workspace, empty"
 
         # Move focus with mainMod + arrow keys
         "$mainMod, left, movefocus, l"
