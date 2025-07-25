@@ -12,6 +12,8 @@
     ./editor/micro
     ./editor/vscode
 
+    ./media/spicetify
+
     ./misc/nix-index
   ];
 }

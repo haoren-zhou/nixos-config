@@ -27,6 +27,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
   };
 
@@ -67,6 +72,7 @@
 
       modules = [
         inputs.plasma-manager.homeManagerModules.plasma-manager
+        inputs.spicetify-nix.homeManagerModules.spicetify
         ./home-manager/home.nix
         {
           nixpkgs.overlays = [
