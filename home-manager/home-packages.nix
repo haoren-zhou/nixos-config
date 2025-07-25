@@ -9,6 +9,7 @@
 
     pciutils
     feh # image viewer
+    fzf
     wget
 
     croc

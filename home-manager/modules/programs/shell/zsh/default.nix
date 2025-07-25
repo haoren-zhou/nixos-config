@@ -1,20 +1,25 @@
 { config, pkgs, user, ... }: {
   xdg.configFile."zsh/.p10k.zsh".source = ./.p10k.zsh;
 
+  programs.zoxide.enable = true;
+
   programs.zsh = {
     enable = true;
     enableCompletion = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
-    
+
     dotDir = ".config/zsh";
-    
+
     oh-my-zsh = {
         enable = true;
         plugins = [
-        "git"
-        "gitignore"
-        "z"
+          "fzf"
+          "git"
+          "gitignore"
+          "history-substring-search"
+          "zoxide"
+          "zsh-interactive-cd"
         ];
     };
 
