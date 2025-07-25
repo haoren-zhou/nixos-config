@@ -13,6 +13,7 @@
     ./editor/vscode
 
     ./media/spicetify
+    ./media/mpv
 
     ./misc/nix-index
   ];
