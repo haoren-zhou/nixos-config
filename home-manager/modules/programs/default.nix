@@ -11,5 +11,7 @@
 
     ./editor/micro
     ./editor/vscode
+
+    ./misc/nix-index
   ];
 }
