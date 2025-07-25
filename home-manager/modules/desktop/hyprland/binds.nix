@@ -57,7 +57,9 @@
         "$mainMod, E, exec, pkill -x rofi || ${./scripts/rofi.sh} emoji" # launch emoji picker
         # "$mainMod, tab, exec, pkill -x rofi || ${./scripts/rofi.sh} window" # switch between desktop applications
         # "$mainMod, R, exec, pkill -x rofi || ${./scripts/rofi.sh} file" # brrwse system files
-        "$mainMod ALT, K, exec, ${./scripts/keyboardswitch.sh}" # change keyboard layout
+        # "$mainMod CTRL, SPACE, exec, ${./scripts/keyboardswitch.sh}" # change keyboard layout
+        "$mainMod CTRL, SPACE, execr, fcitx5-remote -t" # change keyboard layout
+        "$mainMod, I, execr, fcitx5-remote -t" # toggle fcitx5 input method
         "$mainMod, N, exec, swaync-client -t -sw" # swayNC panel
         "$mainMod, G, exec, ${./scripts/rofi.sh} games" # game launcher
         "$mainMod ALT, G, exec, ${./scripts/gamemode.sh}" # disable hypr effects for gamemode

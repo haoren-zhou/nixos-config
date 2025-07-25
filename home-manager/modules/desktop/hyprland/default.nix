@@ -108,9 +108,12 @@
         # "${./scripts/autowaybar.sh}" # uncomment packages at the top
         "polkit-agent-helper-1"
         # "pamixer --set-volume 50"
+        "fcitx5-remote -r"
+        "fcitx5 -d --replace &"
+        "fcitx5-remote -r"
       ];
       input = {
-        kb_layout = "us,";
+        kb_layout = "us,cn";
         kb_variant = "";
         repeat_delay = 400;
         repeat_rate = 30;
@@ -223,6 +226,7 @@
         mfact = 0.5;
       };
       windowrule = [
+        "pseudo,class:fcitx" # Pseudo window for fcitx5
         #"noanim, class:^(Rofi)$
         "tile,title:(.*)(Godot)(.*)$"
         # "workspace 1, class:^(kitty|Alacritty|org.wezfurlong.wezterm)$"
