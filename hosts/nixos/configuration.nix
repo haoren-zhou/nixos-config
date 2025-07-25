@@ -16,15 +16,12 @@
   services.printing.enable = true;
 
   nixpkgs = {
-    overlays = builtins.attrValues outputs.overlays;
     config = {
       allowUnfree = true;
       # allowUnfreePredicate = _: true;
     };
   };
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
     docker-compose
     pkgs.home-manager

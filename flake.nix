@@ -52,7 +52,6 @@
     };
 
   in {
-    overlays = import ./overlays { inherit inputs; };
     nixosConfigurations = nixpkgs.lib.foldl' (configs: host:
       configs // {
         "${host.hostname}" = makeSystem {

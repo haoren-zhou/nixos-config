@@ -1,6 +1,8 @@
-{ pkgs, ... }:
-
-{
+{ pkgs, ... }: let
+  sddm-astronaut = pkgs.sddm-astronaut.override {
+    embeddedTheme = "purple_leaves";
+  };
+in {
   # Enable sddm login manager
   services.displayManager = {
     sddm = {
@@ -14,12 +16,10 @@
         kdePackages.qtmultimedia
         kdePackages.qtsvg
         kdePackages.qtvirtualkeyboard
+        sddm-astronaut
       ];
     };
   };
 
-  environment.systemPackages = with pkgs; [
-    sddm-astronaut # Overlayed
-  ];
-
+  environment.systemPackages = [ sddm-astronaut ];
 }
