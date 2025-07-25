@@ -9,6 +9,7 @@
     targets = {
       hyprland.enable = false;
       hyprlock.enable = false;
+      swaync.enable = false;
       vscode.enable = false;
     };
 
