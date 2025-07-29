@@ -10,6 +10,7 @@
     ./terminal/kitty
 
     ./editor/micro
+    ./editor/nvim
     ./editor/vscode
 
     ./media/spicetify

@@ -17,6 +17,8 @@
     stateVersion = homeStateVersion;
   };
 
+  xdg.mimeApps.defaultApplications."inode/directory" = "thunar.desktop";
+
   home.file = {
   };
 
