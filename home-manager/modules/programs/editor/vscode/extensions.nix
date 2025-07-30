@@ -1,8 +1,7 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   programs.vscode.profiles.default = {
-    extensions = with pkgs.open-vsx; with pkgs.vscode-extensions; [
+    extensions = with pkgs.open-vsx;
+    with pkgs.vscode-extensions; [
       github.vscode-github-actions
       eamodio.gitlens
 

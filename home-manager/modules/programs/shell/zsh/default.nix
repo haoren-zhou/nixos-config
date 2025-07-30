@@ -1,4 +1,9 @@
-{ config, pkgs, user, ... }: {
+{
+  config,
+  pkgs,
+  user,
+  ...
+}: {
   xdg.configFile."zsh/.p10k.zsh".source = ./.p10k.zsh;
 
   programs.zoxide.enable = true;
@@ -12,40 +17,39 @@
     dotDir = ".config/zsh";
 
     oh-my-zsh = {
-        enable = true;
-        plugins = [
-          "fzf"
-          "git"
-          "gitignore"
-          "history-substring-search"
-          "zoxide"
-          "zsh-interactive-cd"
-        ];
+      enable = true;
+      plugins = [
+        "fzf"
+        "git"
+        "gitignore"
+        "history-substring-search"
+        "zoxide"
+        "zsh-interactive-cd"
+      ];
     };
 
-    shellAliases =
-      let
-        flakeDir = "~/nixos";
-      in {
-        # sw = "nh os switch";
-        # upd = "nh os switch --update";
-        # hms = "nh home switch";
+    shellAliases = let
+      flakeDir = "~/nixos";
+    in {
+      # sw = "nh os switch";
+      # upd = "nh os switch --update";
+      # hms = "nh home switch";
 
-        pkgs = "micro ${flakeDir}/home-manager/home-packages.nix";
+      pkgs = "micro ${flakeDir}/home-manager/home-packages.nix";
 
-        # r = "ranger";
-        # v = "nvim";
-        # se = "sudoedit";
-        # microfetch = "microfetch && echo";
+      # r = "ranger";
+      # v = "nvim";
+      # se = "sudoedit";
+      # microfetch = "microfetch && echo";
 
-        gs = "git status";
-        ga = "git add";
-        gc = "git commit";
-        gp = "git push";
+      gs = "git status";
+      ga = "git add";
+      gc = "git commit";
+      gp = "git push";
 
-        ".." = "cd ..";
-        "..." = "cd ../..";
-      };
+      ".." = "cd ..";
+      "..." = "cd ../..";
+    };
 
     history.size = 10000;
     history.path = "${config.xdg.dataHome}/zsh/history";

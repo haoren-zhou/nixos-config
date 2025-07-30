@@ -1,5 +1,8 @@
-{ pkgs, lib, ... }:
 {
+  pkgs,
+  lib,
+  ...
+}: {
   wayland.windowManager.hyprland.settings = {
     binde = [
       # Resize windows

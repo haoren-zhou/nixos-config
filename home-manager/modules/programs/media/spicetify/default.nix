@@ -1,6 +1,8 @@
-{ pkgs, inputs, ... }:
-
-let
+{
+  pkgs,
+  inputs,
+  ...
+}: let
   spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.system};
 in {
   programs.spicetify = {
@@ -11,7 +13,7 @@ in {
       hidePodcasts
       shuffle
     ];
-    enabledCustomApps = with spicePkgs.apps; [ ];
+    enabledCustomApps = with spicePkgs.apps; [];
     # theme = spicePkgs.themes.bloom;
   };
 }

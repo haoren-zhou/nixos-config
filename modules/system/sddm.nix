@@ -1,4 +1,4 @@
-{ pkgs, ... }: let
+{pkgs, ...}: let
   sddm-astronaut = pkgs.sddm-astronaut.override {
     embeddedTheme = "purple_leaves";
   };
@@ -21,5 +21,5 @@ in {
     };
   };
 
-  environment.systemPackages = [ sddm-astronaut ];
+  environment.systemPackages = [sddm-astronaut];
 }

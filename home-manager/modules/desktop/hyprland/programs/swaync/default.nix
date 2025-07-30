@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   services.swaync = {
     enable = true;
     settings = {
@@ -110,7 +109,6 @@
 
         "buttons-grid" = {
           actions = [
-
             {
               label = "󰝟";
               type = "toggle";
@@ -166,7 +164,6 @@
               command = "${../../../hyprland/scripts/TogglePowerMode.sh}";
               update-command = "test -f \"$HOME/.config/hypr/power_mode\" && grep -q \"^powersave$\" \"$HOME/.config/hypr/power_mode\" && echo true || echo false";
             }
-
           ];
         };
       };

@@ -1,6 +1,9 @@
-{ inputs, homeStateVersion, user, ... }:
-
 {
+  inputs,
+  homeStateVersion,
+  user,
+  ...
+}: {
   imports = [
     ./home-packages.nix
 
@@ -9,7 +12,6 @@
 
     ./modules/programs
   ];
-
 
   home = {
     username = user;

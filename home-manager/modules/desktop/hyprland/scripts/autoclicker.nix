@@ -22,13 +22,13 @@ pkgs.writers.writePython3Bin "auto-clicker"
   keys = [uinput.BTN_LEFT]
   with open("/tmp/auto-clicker.pid", "w") as f:
       f.write(str(os.getpid()))
-  
+
   print(f"Starting auto-clicker at {args.cps} clicks per second")
   print(f"PID: {os.getpid()} (saved to /tmp/auto-clicker.pid)")
-  
+
   device = uinput.Device(keys)
   time.sleep(0.2)  # Small delay before starting to click
-  
+
   try:
       while True:
           device.emit(uinput.BTN_LEFT, 1)  # Press

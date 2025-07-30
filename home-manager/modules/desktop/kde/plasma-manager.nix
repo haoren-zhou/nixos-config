@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   home.packages = with pkgs; [
     kara
     kde-rounded-corners
@@ -85,20 +84,20 @@
         "Switch to Next Desktop" = "Meta+Tab";
         "Switch to Previous Desktop" = "Meta+Shift+Tab";
 
-        "KrohnkiteFocusUp" = [ "Meta+K" "Meta+Up" ];
-        "KrohnkiteFocusDown" = [ "Meta+J" "Meta+Down" ];
-        "KrohnkiteFocusLeft" = [ "Meta+H" "Meta+Left" ];
-        "KrohnkiteFocusRight" = [ "Meta+L" "Meta+Right" ];
+        "KrohnkiteFocusUp" = ["Meta+K" "Meta+Up"];
+        "KrohnkiteFocusDown" = ["Meta+J" "Meta+Down"];
+        "KrohnkiteFocusLeft" = ["Meta+H" "Meta+Left"];
+        "KrohnkiteFocusRight" = ["Meta+L" "Meta+Right"];
 
-        "KrohnkiteShiftUp" = [ "Meta+Shift+K" "Meta+Shift+Up" ];
-        "KrohnkiteShiftDown" = [ "Meta+Shift+J" "Meta+Shift+Down" ];
-        "KrohnkiteShiftLeft" = [ "Meta+Shift+H" "Meta+Shift+Left" ];
-        "KrohnkiteShiftRight" = [ "Meta+Shift+L" "Meta+Shift+Right" ];
+        "KrohnkiteShiftUp" = ["Meta+Shift+K" "Meta+Shift+Up"];
+        "KrohnkiteShiftDown" = ["Meta+Shift+J" "Meta+Shift+Down"];
+        "KrohnkiteShiftLeft" = ["Meta+Shift+H" "Meta+Shift+Left"];
+        "KrohnkiteShiftRight" = ["Meta+Shift+L" "Meta+Shift+Right"];
 
-        "KrohnkiteShrinkWidth" = [ "Meta+Ctrl+H" "Meta+Ctrl+Left" ];
-        "KrohnkitegrowWidth" = [ "Meta+Ctrl+L" "Meta+Ctrl+Right" ];
-        "KrohnkiteShrinkHeight" = [ "Meta+Ctrl+K" "Meta+Ctrl+Up" ];
-        "KrohnkiteGrowHeight" = [ "Meta+Ctrl+J" "Meta+Ctrl+Down" ];
+        "KrohnkiteShrinkWidth" = ["Meta+Ctrl+H" "Meta+Ctrl+Left"];
+        "KrohnkitegrowWidth" = ["Meta+Ctrl+L" "Meta+Ctrl+Right"];
+        "KrohnkiteShrinkHeight" = ["Meta+Ctrl+K" "Meta+Ctrl+Up"];
+        "KrohnkiteGrowHeight" = ["Meta+Ctrl+J" "Meta+Ctrl+Down"];
 
         "KrohnkiteToggleFloat" = "Meta+Shift+F"; # current window only
         "KrohnkiteFloatAll" = "Meta+Ctrl+F";
