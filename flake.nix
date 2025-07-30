@@ -46,34 +46,50 @@
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
   };
 
-  outputs = { self, nixpkgs, home-manager, nix-vscode-extensions, ... }@inputs: let
+  outputs = {
+    self,
+    nixpkgs,
+    home-manager,
+    nix-vscode-extensions,
+    ...
+  } @ inputs: let
     inherit (self) outputs;
     system = "x86_64-linux";
     homeStateVersion = "25.05";
     user = "hr";
     hosts = [
-      { hostname = "nixos"; stateVersion = "25.05"; hardwareConfig = "UX430UNR";}
+      {
+        hostname = "nixos";
+        stateVersion = "25.05";
+        hardwareConfig = "UX430UNR";
+      }
     ];
 
-    makeSystem = { hostname, stateVersion, hardwareConfig }: nixpkgs.lib.nixosSystem {
-      system = system;
-      specialArgs = {
-        inherit inputs outputs stateVersion hostname hardwareConfig user;
+    makeSystem = {
+      hostname,
+      stateVersion,
+      hardwareConfig,
+    }:
+      nixpkgs.lib.nixosSystem {
+        system = system;
+        specialArgs = {
+          inherit inputs outputs stateVersion hostname hardwareConfig user;
+        };
+
+        modules = [
+          inputs.stylix.nixosModules.stylix
+          ./hosts/${hostname}/configuration.nix
+        ];
       };
-
-      modules = [
-        inputs.stylix.nixosModules.stylix
-        ./hosts/${hostname}/configuration.nix
-      ];
-    };
-
   in {
     nixosConfigurations = nixpkgs.lib.foldl' (configs: host:
-      configs // {
+      configs
+      // {
         "${host.hostname}" = makeSystem {
           inherit (host) hostname stateVersion hardwareConfig;
         };
-      }) {} hosts;
+      }) {}
+    hosts;
 
     homeConfigurations.${user} = home-manager.lib.homeManagerConfiguration {
       pkgs = nixpkgs.legacyPackages.${system};
