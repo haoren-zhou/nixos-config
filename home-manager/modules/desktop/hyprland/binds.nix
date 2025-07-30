@@ -93,9 +93,12 @@
         # Switch workspaces relative to the active workspace with mainMod + CTRL + [←→]
         "$mainMod CTRL, right, workspace, r+1"
         "$mainMod CTRL, left, workspace, r-1"
+        "$mainMod CTRL, h, workspace, r-1"
+        "$mainMod CTRL, l, workspace, r+1"
 
         # # move to the first empty workspace instantly with mainMod + CTRL + [↓]
         "$mainMod CTRL, down, workspace, empty"
+        "$mainMod CTRL, j, workspace, empty"
 
         # Move focus with mainMod + arrow keys
         "$mainMod, left, movefocus, l"
