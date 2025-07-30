@@ -32,9 +32,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nvchad-starter = {
+      url = "path:home-manager/modules/programs/editor/nvchad/nvchad-starter";
+      flake = false;
+    };
+
     nix4nvchad = {
       url = "github:nix-community/nix4nvchad";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nvchad-starter.follows = "nvchad-starter";
     };
 
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";

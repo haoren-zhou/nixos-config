@@ -219,7 +219,9 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "nvchad-starter": "nvchad-starter"
+        "nvchad-starter": [
+          "nvchad-starter"
+        ]
       },
       "locked": {
         "lastModified": 1753597837,
@@ -312,19 +314,14 @@
     "nvchad-starter": {
       "flake": false,
       "locked": {
-        "lastModified": 1750439787,
-        "narHash": "sha256-+UcDn0rTYKlaPi0ybUhYtsdPGPqKChDIPtafjf/in8g=",
-        "owner": "NvChad",
-        "repo": "starter",
-        "rev": "5c656910f058ecdc6753c6a4f39b64afce89a0e6",
-        "type": "github"
+        "path": "home-manager/modules/programs/editor/nvchad/nvchad-starter",
+        "type": "path"
       },
       "original": {
-        "owner": "NvChad",
-        "ref": "main",
-        "repo": "starter",
-        "type": "github"
-      }
+        "path": "home-manager/modules/programs/editor/nvchad/nvchad-starter",
+        "type": "path"
+      },
+      "parent": []
     },
     "plasma-manager": {
       "inputs": {
@@ -356,6 +353,7 @@
         "nix4nvchad": "nix4nvchad",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_2",
+        "nvchad-starter": "nvchad-starter",
         "plasma-manager": "plasma-manager",
         "spicetify-nix": "spicetify-nix",
         "stylix": "stylix",
