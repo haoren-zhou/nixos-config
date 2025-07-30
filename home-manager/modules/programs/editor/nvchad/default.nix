@@ -12,12 +12,14 @@
     extraPackages = with pkgs; [
       # Language Servers
       docker-compose-language-service
-      dockerfile-language-server-nodejs
+      docker-language-server
       vscode-langservers-extracted
+      typescript-language-server
+      tailwindcss-language-server
       nixd
       pyright
-      typescript-language-server
       marksman
+      cmake-language-server
 
       # Formatters
       alejandra

@@ -11,6 +11,7 @@ local options = {
 
     cpp = { "clang_format" },
     c = { "clang_format" },
+    cmake = { "cmake-format" },
 
     lua = { "stylua" },
 

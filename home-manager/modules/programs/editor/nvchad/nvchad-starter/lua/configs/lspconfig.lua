@@ -1,14 +1,30 @@
 require("nvchad.configs.lspconfig").defaults()
 
 local servers = {
-  "ts_ls",
-  "cssls",
-  "html",
-  "nixd",
-  "clangd",
-  "pyright",
-  "marksman",
+  cssls = {},
+  tailwindcss = {},
+  html = {},
+  jsonls = {},
+  ts_ls = {
+    filetypes = {
+      "typescript",
+      "javascript",
+      "typescriptreact",
+      "javascriptreact",
+    }
+  },
+  nixd = {},
+  docker_compose_language_service = {},
+  dockerls = {},
+  clangd = {},
+  cmake = {},
+  pyright = {},
+  marksman = {},
 }
-vim.lsp.enable(servers)
+
+for name, opts in pairs(servers) do
+  vim.lsp.enable(name)
+  vim.lsp.config(name, opts)
+end
 
 -- read :h vim.lsp.config for changing options of lsp servers
