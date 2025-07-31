@@ -11,7 +11,7 @@ local servers = {
       "javascript",
       "typescriptreact",
       "javascriptreact",
-    }
+    },
   },
   nixd = {},
   docker_compose_language_service = {},

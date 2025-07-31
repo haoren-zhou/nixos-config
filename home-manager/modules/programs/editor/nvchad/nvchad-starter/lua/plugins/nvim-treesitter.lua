@@ -1,0 +1,30 @@
+return {
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+      ensure_installed = {
+        "bash",
+        "c",
+        "cmake",
+        "cpp",
+        "css",
+        "dockerfile",
+        "gitignore",
+        "html",
+        "javascript",
+        "json",
+        "htmldjango",
+        "lua",
+        "nix",
+        "python",
+        "requirements",
+        "scss",
+        "sql",
+        "toml",
+        "vim",
+        "vimdoc",
+        "yaml",
+      },
+    },
+  },
+}
