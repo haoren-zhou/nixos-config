@@ -27,6 +27,7 @@
       nodePackages.prettier
       prettierd
       ruff
+      stylua
 
       # misc
       clang-tools
