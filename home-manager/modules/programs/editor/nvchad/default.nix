@@ -12,7 +12,7 @@
     extraPackages = with pkgs; [
       # Language Servers
       docker-compose-language-service
-      docker-language-server
+      dockerfile-language-server-nodejs
       vscode-langservers-extracted
       typescript-language-server
       tailwindcss-language-server
