@@ -7,7 +7,7 @@ local options = {
     json = { "prettierd", "prettier" },
     markdown = { "prettierd", "prettier" },
 
-    python = { "black", "isort" },
+    python = { "ruff_fix", "ruff_format", "ruff_organize_imports" },
 
     cpp = { "clang_format" },
     c = { "clang_format" },

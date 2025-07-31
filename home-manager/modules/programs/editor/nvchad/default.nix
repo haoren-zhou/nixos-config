@@ -23,11 +23,10 @@
 
       # Formatters
       alejandra
-      black
       cmake-format
-      isort
       nodePackages.prettier
       prettierd
+      ruff
 
       # misc
       clang-tools
