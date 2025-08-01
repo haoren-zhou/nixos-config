@@ -23,6 +23,6 @@ autocmd("BufDelete", {
 autocmd({ "QuitPre" }, {
   desc = "Close NvimTree on quit",
   callback = function()
-    vim.cmd "NvimTreeClose"
+    vim.cmd "silent! NvimTreeClose"
   end,
 })
