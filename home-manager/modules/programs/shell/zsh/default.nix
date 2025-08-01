@@ -1,7 +1,6 @@
 {
   config,
   pkgs,
-  user,
   ...
 }: {
   xdg.configFile."zsh/.p10k.zsh".source = ./.p10k.zsh;
@@ -35,10 +34,12 @@
       # upd = "nh os switch --update";
       # hms = "nh home switch";
 
-      pkgs = "micro ${flakeDir}/home-manager/home-packages.nix";
+      pkgs = "nvim ${flakeDir}/home-manager/home-packages.nix";
 
       # r = "ranger";
-      # v = "nvim";
+      v = "nvim";
+      vi = "nvim";
+      vim = "nvim";
       # se = "sudoedit";
       # microfetch = "microfetch && echo";
 
