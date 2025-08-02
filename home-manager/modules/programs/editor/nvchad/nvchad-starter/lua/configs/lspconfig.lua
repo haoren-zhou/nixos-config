@@ -5,14 +5,8 @@ local servers = {
   tailwindcss = {},
   html = {},
   jsonls = {},
-  ts_ls = {
-    filetypes = {
-      "typescript",
-      "javascript",
-      "typescriptreact",
-      "javascriptreact",
-    },
-  },
+  ts_ls = {},
+  eslint = {},
   nixd = {},
   docker_compose_language_service = {},
   dockerls = {},
