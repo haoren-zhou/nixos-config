@@ -57,6 +57,23 @@
     };
   };
 
+  gtk = {
+    enable = true;
+    theme = {
+      name = lib.mkForce "adw-gtk3-dark";
+      package = lib.mkForce pkgs.adw-gtk3;
+    };
+    gtk2.extraConfig = ''
+      gtk-application-prefer-dark-theme = true
+    '';
+    gtk3.extraConfig = {
+      gtk-application-prefer-dark-theme = true;
+    };
+    gtk4.extraConfig = {
+      gtk-application-prefer-dark-theme = true;
+    };
+  };
+
   xdg.configFile."hypr/icons" = {
     source = ./icons;
     recursive = true;
