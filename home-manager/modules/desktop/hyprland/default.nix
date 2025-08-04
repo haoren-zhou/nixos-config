@@ -43,6 +43,14 @@
     # jq # for and autowaybar.sh
   ];
 
+  xdg.enable = true;
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [xdg-desktop-portal-hyprland xdg-desktop-portal-gtk];
+    xdgOpenUsePortal = true;
+  };
+
+  dconf.enable = true;
   dconf.settings = {
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";

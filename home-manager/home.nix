@@ -17,6 +17,11 @@
     username = user;
     homeDirectory = "/home/${user}";
     stateVersion = homeStateVersion;
+    sessionVariables = {
+      EDITOR = "nvim";
+      BROWSER = "zen";
+      TERMINAL = "kitty";
+    };
   };
 
   xdg.mimeApps.defaultApplications."inode/directory" = "thunar.desktop";
