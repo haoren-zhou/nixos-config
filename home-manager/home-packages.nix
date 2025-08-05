@@ -4,6 +4,12 @@
       scheme-basic
       latexmk
 
+      xkeyval
+      fontaxes
+      # fonts
+      noto
+      fira
+
       enumitem
       marvosym
       mathtools
