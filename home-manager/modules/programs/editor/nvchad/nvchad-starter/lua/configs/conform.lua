@@ -7,15 +7,14 @@ local options = {
     json = { "prettierd", "prettier" },
     markdown = { "prettierd", "prettier" },
 
-    python = { "ruff_fix", "ruff_format", "ruff_organize_imports" },
-
     cpp = { "clang_format" },
     c = { "clang_format" },
     cmake = { "cmake_format" },
 
     lua = { "stylua" },
-
     nix = { "alejandra" },
+    python = { "ruff_fix", "ruff_format", "ruff_organize_imports" },
+    tex = { "tex-fmt" },
   },
 
   -- format_on_save = {

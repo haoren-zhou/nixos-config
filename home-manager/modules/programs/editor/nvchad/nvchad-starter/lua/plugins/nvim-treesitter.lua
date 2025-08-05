@@ -14,6 +14,7 @@ return {
         "javascript",
         "json",
         "htmldjango",
+        "latex",
         "lua",
         "nix",
         "python",

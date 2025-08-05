@@ -8,15 +8,15 @@ local wk = require "which-key"
 -- common --
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
-map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
+map({ "n", "v" }, "<C-s>", "<cmd> w <cr>", { desc = "Save current buffer" })
 map("n", "<C-u>", function()
   vim.cmd "normal! "
   vim.cmd "normal! zz"
-end, { desc = "Scroll up half page and center"})
+end, { desc = "Scroll up half page and center" })
 map("n", "<C-d>", function()
   vim.cmd "normal! "
   vim.cmd "normal! zz"
-end, { desc = "Scroll down half page and center"})
+end, { desc = "Scroll down half page and center" })
 
 -- nvzone/menu --
 -- Keyboard users

@@ -16,6 +16,7 @@
       vscode-langservers-extracted
       typescript-language-server
       tailwindcss-language-server
+      texlab
       nixd
       pyright
       marksman
@@ -27,6 +28,7 @@
       nodePackages.prettier
       prettierd
       ruff
+      tex-fmt
       stylua
 
       # misc

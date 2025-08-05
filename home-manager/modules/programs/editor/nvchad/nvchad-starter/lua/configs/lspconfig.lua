@@ -14,6 +14,7 @@ local servers = {
   cmake = {},
   pyright = {},
   marksman = {},
+  texlab = {},
 }
 
 for name, opts in pairs(servers) do
