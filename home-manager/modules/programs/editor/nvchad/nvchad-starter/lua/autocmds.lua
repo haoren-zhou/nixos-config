@@ -33,8 +33,21 @@ vim.api.nvim_create_autocmd({ "VimEnter" }, {
 })
 
 autocmd({ "QuitPre" }, {
-  desc = "Close NvimTree on quit",
+  desc = "Close any extra buffers on quit",
   callback = function()
-    vim.cmd "silent! NvimTreeClose"
+    vim.cmd [[silent! NvimTreeClose]]
+    vim.cmd [[silent! Trouble qflist close]]
+    vim.cmd [[silent! Trouble loclist close]]
+    vim.cmd [[silent! Trouble lsp close]]
+    vim.cmd [[silent! Trouble symbols close]]
+    vim.cmd [[silent! Trouble diagnostics close]]
+    vim.cmd [[silent! cclose]]
+  end,
+})
+
+autocmd("QuickFixCmdPost", {
+  desc = "Automatically open Trouble quickfix",
+  callback = function()
+    vim.cmd [[Trouble qflist open]]
   end,
 })
