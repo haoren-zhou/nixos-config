@@ -18,7 +18,7 @@
       tailwindcss-language-server
       texlab
       nixd
-      pyright
+      basedpyright
       marksman
       cmake-language-server
 

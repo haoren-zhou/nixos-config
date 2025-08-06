@@ -12,7 +12,15 @@ local servers = {
   dockerls = {},
   clangd = {},
   cmake = {},
-  pyright = {},
+  basedpyright = {
+    settings = {
+      basedpyright = {
+        analysis = {
+          diagnosticMode = "workspace",
+        },
+      },
+    },
+  },
   marksman = {},
   texlab = {},
 }
