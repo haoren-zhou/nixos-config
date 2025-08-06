@@ -4,11 +4,14 @@
       scheme-basic
       latexmk
 
+      # fonts
+      fira
+      fontawesome5
+      noto
+
+      # font deps
       xkeyval
       fontaxes
-      # fonts
-      noto
-      fira
 
       enumitem
       marvosym
