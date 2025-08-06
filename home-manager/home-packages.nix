@@ -44,6 +44,7 @@ in {
 
     gcc
     kdePackages.qttools
+    kdePackages.qtwayland
     mytex
     nodejs_22
   ];
