@@ -314,11 +314,11 @@
     "nvchad-starter": {
       "flake": false,
       "locked": {
-        "path": "home-manager/modules/programs/editor/nvchad/nvchad-starter",
+        "path": "nvim",
         "type": "path"
       },
       "original": {
-        "path": "home-manager/modules/programs/editor/nvchad/nvchad-starter",
+        "path": "nvim",
         "type": "path"
       },
       "parent": []

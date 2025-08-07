@@ -32,8 +32,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    self.submodules = true;
+
     nvchad-starter = {
-      url = "path:home-manager/modules/programs/editor/nvchad/nvchad-starter";
+      url = "path:nvim";
       flake = false;
     };
 
