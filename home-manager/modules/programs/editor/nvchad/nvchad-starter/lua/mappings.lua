@@ -18,14 +18,26 @@ map("n", "<C-d>", function()
   vim.cmd "normal! zz"
 end, { desc = "Scroll down half page and center" })
 
+-- LSP --
+map("n", "<leader>li", function ()
+  local is_enabled = vim.lsp.inlay_hint.is_enabled()
+  vim.lsp.inlay_hint.enable(not is_enabled)
+
+  if is_enabled then
+    vim.notify("LSP Inlay Hints Disabled", vim.log.levels.INFO)
+  else
+    vim.notify("LSP Inlay Hints Enabled", vim.log.levels.INFO)
+  end
+end, { desc = "Toggle LSP Inlay Hints"})
+
 -- nvzone/menu --
 -- Keyboard users
-vim.keymap.set("n", "<C-t>", function()
+map("n", "<C-t>", function()
   require("menu").open "default"
 end, { desc = "menu open" })
 
 -- mouse users + nvimtree users!
-vim.keymap.set({ "n", "v" }, "<RightMouse>", function()
+map({ "n", "v" }, "<RightMouse>", function()
   require("menu.utils").delete_old_menus()
 
   vim.cmd.exec '"normal! \\<RightMouse>"'
