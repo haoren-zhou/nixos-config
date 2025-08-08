@@ -35,7 +35,7 @@
     self.submodules = true;
 
     nvchad-starter = {
-      url = "path:nvim";
+      url = "./nvim";
       flake = false;
     };
 

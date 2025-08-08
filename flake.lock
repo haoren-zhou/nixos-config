@@ -314,11 +314,11 @@
     "nvchad-starter": {
       "flake": false,
       "locked": {
-        "path": "nvim",
+        "path": "./nvim",
         "type": "path"
       },
       "original": {
-        "path": "nvim",
+        "path": "./nvim",
         "type": "path"
       },
       "parent": []
