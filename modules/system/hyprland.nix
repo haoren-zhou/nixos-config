@@ -20,6 +20,7 @@
       sddm.enableGnomeKeyring = true;
       login.enableGnomeKeyring = true;
       sddm-helper.enableGnomeKeyring = true;
+      hyprlock.enableGnomeKeyring = true;
     };
   };
 
