@@ -26,6 +26,7 @@ in {
     bibata-cursors
     pavucontrol
 
+    fastfetch
     feh # image viewer
     fd
     fzf
@@ -43,6 +44,7 @@ in {
     zathura
 
     gcc
+    gnumake
     kdePackages.qttools
     kdePackages.qtwayland
     mytex
