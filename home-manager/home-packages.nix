@@ -14,6 +14,7 @@
       fontaxes
 
       enumitem
+      esdiff
       marvosym
       mathtools
       preprint
@@ -25,22 +26,27 @@ in {
   home.packages = with pkgs; [
     bibata-cursors
     pavucontrol
+    wl-clipboard
+    xclip
 
+    # CLI utils
     fastfetch
-    feh # image viewer
     fd
+    feh # image viewer
+    file
     fzf
     pciutils
     ripgrep
+    unzip
     wget
-    wl-clipboard
-    xclip
+    zip
 
     anki-bin
     croc
     discord
     github-desktop
     obsidian
+    telegram-desktop
     zathura
 
     gcc
@@ -49,5 +55,6 @@ in {
     kdePackages.qtwayland
     mytex
     nodejs_22
+    (python312.withPackages (p: with p; [uv]))
   ];
 }
