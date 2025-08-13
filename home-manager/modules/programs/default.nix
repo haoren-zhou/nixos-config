@@ -13,6 +13,7 @@
     ./editor/nvchad
     ./editor/vscode
 
+    ./media/thunar
     ./media/spicetify
     ./media/mpv
 
