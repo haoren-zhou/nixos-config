@@ -199,16 +199,17 @@
         "network" = {
           # on-click = "nm-connection-editor";
           # "interface" = "wlp2*"; # (Optional) To force the use of this interface
-          format-wifi = "󰤨 Wi-Fi";
+          format-wifi = "󰤨 ";
           # format-wifi = " {bandwidthDownBits}  {bandwidthUpBits}";
           # format-wifi = "󰤨 {essid}";
-          format-ethernet = "󱘖 Wired";
+          format-ethernet = "󱘖 ";
           # format-ethernet = " {bandwidthDownBits}  {bandwidthUpBits}";
           format-linked = "󱘖 {ifname} (No IP)";
-          format-disconnected = "󰤮 Off";
+          format-disconnected = "󰤮 ";
           # format-disconnected = "󰤮 Disconnected";
           format-alt = "󰤨 {signalStrength}%";
           tooltip-format = "󱘖 {ipaddr}  {bandwidthUpBytes}  {bandwidthDownBytes}";
+          tooltip-format-wifi = "󰤨 {essid}  {bandwidthUpBytes}  {bandwidthDownBytes}";
         };
 
         "bluetooth" = {

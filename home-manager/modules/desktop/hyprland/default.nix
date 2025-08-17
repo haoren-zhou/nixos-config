@@ -132,6 +132,7 @@
         "${./scripts/batterynotify.sh}" # battery notification
         # "${./scripts/autowaybar.sh}" # uncomment packages at the top
         "polkit-agent-helper-1"
+        "gnome-keyring-daemon --start --foreground --components=secrets" # HACK: manual start
         # "pamixer --set-volume 50"
         "fcitx5-remote -r"
         "fcitx5 -d --replace &"
@@ -235,6 +236,8 @@
         enable_swallow = false;
         vfr = true; # always keep on
         vrr = 1; # enable variable refresh rate (0=off, 1=on, 2=fullscreen only)
+        mouse_move_enables_dpms = true;
+        key_press_enables_dpms = true;
       };
       xwayland.force_zero_scaling = false;
       gestures = {
