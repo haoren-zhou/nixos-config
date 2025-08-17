@@ -9,10 +9,8 @@
     ./hyprland.nix
     ./kernel.nix
     ./networking.nix
-    ./nh.nix
     ./nix.nix
     ./sddm.nix
-    ./thunar.nix
     ./timezone_locale.nix
     ./user.nix
   ];

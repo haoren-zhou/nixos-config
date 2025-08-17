@@ -14,6 +14,7 @@
     ./hardware-configuration.nix
     ../../modules/hardware/${hardwareConfig}.nix
     ../../modules/system
+    ../../modules/programs
   ];
 
   # Enable CUPS to print documents.
@@ -25,18 +26,6 @@
       # allowUnfreePredicate = _: true;
     };
   };
-
-  environment.systemPackages = with pkgs; [
-    docker-compose
-    pkgs.home-manager
-  ];
-
-  programs.nix-ld.enable = true;
-
-  # List services that you want to enable:
-  virtualisation.docker.enable = true;
-  virtualisation.docker.autoPrune.enable = true;
-  programs.npm.enable = true;
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
