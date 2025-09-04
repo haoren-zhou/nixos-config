@@ -21,6 +21,7 @@
       basedpyright
       marksman
       cmake-language-server
+      ocamlPackages.ocaml-lsp
 
       # Formatters
       alejandra
@@ -30,10 +31,11 @@
       ruff
       tex-fmt
       stylua
+      ocamlPackages.ocamlformat
 
       # misc
       clang-tools
-      gdb
+      # gdb
     ];
     hm-activation = true;
     backup = false;

@@ -26,6 +26,8 @@
       xorg.libxcb
       xorg.libxkbfile
       zlib
+      fuse
+      alsa-lib
     ];
   };
 }

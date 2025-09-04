@@ -1,4 +1,11 @@
-{
+{pkgs, ...}: {
+  # boot.kernelModules = ["snd-aloop"];
+
+  # hardware.pulseaudio.enable = true;
+  # hardware.pulseaudio.support32Bit = true;
+  # services.pipewire.enable = false;
+  # environment.systemPackages = [pkgs.pulseaudio];
+
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
