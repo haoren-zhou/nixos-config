@@ -65,6 +65,11 @@
         stateVersion = "25.05";
         hardwareConfig = "UX430UNR";
       }
+      {
+        hostname = "omen";
+        stateVersion = "25.05";
+        hardwareConfig = "16-ah0002tx";
+      }
     ];
 
     makeSystem = {

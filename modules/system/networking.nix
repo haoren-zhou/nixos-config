@@ -1,8 +1,11 @@
 {hostname, ...}: {
   # Enable networking
   networking.networkmanager.enable = true;
+  networking.networkmanager.wifi.backend = "iwd";
 
   networking.hostName = hostname; # Define your hostname.
+
+  hardware.enableRedistributableFirmware = true;
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary

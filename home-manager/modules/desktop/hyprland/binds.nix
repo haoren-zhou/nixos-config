@@ -43,6 +43,7 @@
         "ALT, return, fullscreen" # toggle the window on focus to fullscreen
         "$CONTROL ALT, L, exec, hyprlock" # lock screen
         "$mainMod, backspace, exec, pkill -x wlogout || wlogout -b 4" # logout menu
+        "$mainMod, ESCAPE, exec, pkill -x wlogout || wlogout -b 4" # logout menu
         "$CONTROL, ESCAPE, exec, pkill waybar || waybar" # toggle waybar
 
         # Applications/Programs
