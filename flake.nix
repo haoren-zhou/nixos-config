@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/7ced9122cff2163c6a0212b8d1ec8c33a1660806";
 
@@ -81,6 +82,12 @@
         system = system;
         specialArgs = {
           inherit inputs outputs stateVersion hostname hardwareConfig user;
+          pkgs-unstable = import inputs.nixpkgs-unstable {
+            system = system;
+            config = {
+              allowUnfree = true;
+            };
+          };
         };
 
         modules = [
