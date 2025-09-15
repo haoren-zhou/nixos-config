@@ -1,5 +1,6 @@
 {
   inputs,
+  config,
   pkgs,
   lib,
   ...
@@ -14,18 +15,27 @@
   ];
 
   boot.kernelModules = ["hp-wmi"];
-  boot.kernelParams = ["acpi_backlight=nvidia_wmi_ec"];
+  boot.kernelParams = ["acpi_backlight=native"];
 
-  services.xserver.videoDrivers = ["nvidia"];
+  services.xserver.videoDrivers = [
+    "modesetting"
+    "nvidia"
+  ];
 
   hardware.nvidia.open = true;
 
   hardware.nvidia = {
+    package = config.boot.kernelPackages.nvidiaPackages.latest;
     prime = {
+      offload = {
+        enable = true;
+        enableOffloadCmd = true;
+      };
       intelBusId = "PCI:0:2:0";
       nvidiaBusId = "PCI:2:0:0";
     };
     modesetting.enable = true;
+    powerManagement.enable = true;
   };
 
   # Thermal and Noise Management
