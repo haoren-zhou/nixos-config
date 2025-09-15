@@ -51,6 +51,7 @@ in {
 
     gcc
     gnumake
+    jdk
     kdePackages.qttools
     kdePackages.qtwayland
     mytex

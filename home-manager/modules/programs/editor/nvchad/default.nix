@@ -26,6 +26,7 @@
       # Formatters
       alejandra
       cmake-format
+      google-java-format
       nodePackages.prettier
       prettierd
       ruff
