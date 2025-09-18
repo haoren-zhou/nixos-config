@@ -19,6 +19,7 @@
       mathtools
       preprint
       titlesec
+      xcolor
     ]);
 in {
   nixpkgs.config.allowUnfree = true;
@@ -35,6 +36,7 @@ in {
     feh # image viewer
     file
     fzf
+    pandoc
     pciutils
     ripgrep
     unzip
