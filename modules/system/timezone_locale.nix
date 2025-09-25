@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   # Set your time zone.
-  time.timeZone = "Asia/Singapore";
+  # time.timeZone = "Asia/Singapore";
+  services.automatic-timezoned.enable = true;
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_SG.UTF-8";
