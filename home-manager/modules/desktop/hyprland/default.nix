@@ -353,7 +353,7 @@
       }
 
       # Easily plug in any monitor
-      monitor=,preferred,auto,1
+      monitor=,preferred,auto,auto
     '';
   };
 }

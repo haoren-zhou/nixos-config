@@ -11,7 +11,7 @@
         layer = "top";
         position = "top";
         mode = "dock"; # Fixes fullscreen issues
-        height = 32; # 35
+        height = 24; # 35
         exclusive = true;
         passthrough = false;
         gtk-layer-shell = true;
@@ -278,10 +278,11 @@
     style = ''
       * {
         font-family: "JetBrainsMono Nerd Font";
-        font-size: 14px;
+        font-size: 12px;
         font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
         margin: 0px;
         padding: 0px;
+        min-height: 0;
       }
 
       @define-color base   #1e1e2e;
@@ -506,8 +507,8 @@
         text-shadow: none;
           padding: 0px;
           border-radius: 9px;
-          padding-left: 4px;
-          padding-right: 4px;
+          padding-left: 2px;
+          padding-right: 2px;
           animation: gradient_f 20s ease-in infinite;
           transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
       }
@@ -530,8 +531,8 @@
       #workspaces button.active {
         color: @peach;
           border-radius: 10px;
-          padding-left: 8px;
-          padding-right: 8px;
+          padding-left: 4px;
+          padding-right: 4px;
           animation: gradient_f 20s ease-in infinite;
           transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
       }
