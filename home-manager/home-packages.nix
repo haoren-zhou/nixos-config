@@ -13,10 +13,13 @@
       xkeyval
       fontaxes
 
+      booktabs
       enumitem
       esdiff
+      float
       marvosym
       mathtools
+      mdwtools
       preprint
       titlesec
       xcolor
