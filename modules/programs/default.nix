@@ -3,6 +3,7 @@
     ./docker.nix
     ./nh.nix
     ./nix-ld.nix
+    ./tailscale.nix
     ./thunar.nix
   ];
 
