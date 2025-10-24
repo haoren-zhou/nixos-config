@@ -17,6 +17,7 @@
       enumitem
       esdiff
       float
+      lastpage
       marvosym
       mathtools
       mdwtools
@@ -61,6 +62,9 @@ in {
     kdePackages.qtwayland
     mytex
     nodejs_22
+    ocamlPackages.odoc
+    ocamlPackages.utop
+    opam
     (python312.withPackages (p: with p; [uv]))
   ];
 }
