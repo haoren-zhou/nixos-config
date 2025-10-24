@@ -36,6 +36,8 @@
 
       # misc
       clang-tools
+      librsvg
+      python313Packages.pylatexenc
       # gdb
     ];
     hm-activation = true;
