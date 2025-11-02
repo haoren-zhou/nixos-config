@@ -1,7 +1,7 @@
 {pkgs, ...}: let
   mytex = pkgs.texlive.withPackages (ps:
     with ps; [
-      scheme-basic
+      scheme-full
       latexmk
 
       # fonts
@@ -14,15 +14,20 @@
       fontaxes
 
       booktabs
+      circuitikz
       enumitem
       esdiff
       float
+      karnaugh
       lastpage
       marvosym
       mathtools
       mdwtools
       preprint
+      preview
+      standalone
       titlesec
+      varwidth
       xcolor
     ]);
 in {
@@ -53,6 +58,7 @@ in {
     github-desktop
     obsidian
     telegram-desktop
+    thunderbird
     zathura
 
     gcc

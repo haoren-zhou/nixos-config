@@ -36,8 +36,10 @@
 
       # misc
       clang-tools
+      ghostscriptX
+      imagemagick
       librsvg
-      python313Packages.pylatexenc
+      # python313Packages.pylatexenc
       # gdb
     ];
     hm-activation = true;
