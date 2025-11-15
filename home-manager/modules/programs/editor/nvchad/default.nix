@@ -22,6 +22,7 @@
       marksman
       cmake-language-server
       ocamlPackages.ocaml-lsp
+      jdt-language-server
 
       # Formatters
       alejandra
