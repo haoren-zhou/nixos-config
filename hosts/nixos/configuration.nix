@@ -11,8 +11,6 @@
 }: {
   imports = [
     # Include the results of the hardware scan.
-    ./hardware-configuration.nix
-    ../../modules/hardware/${hardwareConfig}.nix
     ../../modules/system
     ../../modules/programs
   ];
@@ -25,6 +23,11 @@
       allowUnfree = true;
       # allowUnfreePredicate = _: true;
     };
+  };
+
+  wsl = {
+    enable = true;
+    defaultUser = "nixos";
   };
 
   # Enable the OpenSSH daemon.
