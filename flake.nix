@@ -36,13 +36,13 @@
     self.submodules = true;
 
     nvchad-starter = {
-      url = "path:./nvim";
+      url = ./nvim;
       flake = false;
     };
 
     nix4nvchad = {
       url = "github:nix-community/nix4nvchad";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
       inputs.nvchad-starter.follows = "nvchad-starter";
     };
 
@@ -109,6 +109,12 @@
       pkgs = nixpkgs.legacyPackages.${system};
       extraSpecialArgs = {
         inherit inputs homeStateVersion user;
+        pkgs-unstable = import inputs.nixpkgs-unstable {
+          system = system;
+          config = {
+            allowUnfree = true;
+          };
+        };
       };
 
       modules = [

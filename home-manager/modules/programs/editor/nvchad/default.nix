@@ -1,6 +1,7 @@
 {
   inputs,
   pkgs,
+  pkgs-unstable,
   ...
 }: {
   imports = [
@@ -9,6 +10,7 @@
 
   programs.nvchad = {
     enable = true;
+    neovim = pkgs-unstable.neovim;
     extraPackages = with pkgs; [
       # Language Servers
       docker-compose-language-service

@@ -58,7 +58,6 @@ in {
     github-desktop
     obsidian
     telegram-desktop
-    thunderbird
     zathura
 
     gcc
