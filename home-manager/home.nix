@@ -6,6 +6,10 @@
 }: {
   imports = [
     ./home-packages.nix
+
+    ./modules/desktop/hyprland
+    # ./modules.desktop/kde
+
     ./modules/programs
   ];
 

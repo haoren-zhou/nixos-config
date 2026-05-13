@@ -4,6 +4,7 @@
     ./nh.nix
     ./nix-ld.nix
     ./tailscale.nix
+    ./thunar.nix
   ];
 
   # List services that you want to enable:

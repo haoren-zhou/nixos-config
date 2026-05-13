@@ -3,11 +3,33 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
-    nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    
+
+    nixos-hardware.url = "github:NixOS/nixos-hardware/7ced9122cff2163c6a0212b8d1ec8c33a1660806";
+
     home-manager = {
       url = "github:nix-community/home-manager/release-25.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    plasma-manager = {
+      url = "github:nix-community/plasma-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
+
+    stylix = {
+      url = "github:danth/stylix/release-25.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    zen-browser = {
+      url = "github:maximoffua/zen-browser.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -23,23 +45,31 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
       inputs.nvchad-starter.follows = "nvchad-starter";
     };
+
+    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
   };
 
   outputs = {
     self,
     nixpkgs,
-    nixos-wsl,
     home-manager,
+    nix-vscode-extensions,
     ...
   } @ inputs: let
     inherit (self) outputs;
     system = "x86_64-linux";
     homeStateVersion = "25.05";
-    user = "nixos";
+    user = "hr";
     hosts = [
       {
         hostname = "nixos";
         stateVersion = "25.05";
+        hardwareConfig = "UX430UNR";
+      }
+      {
+        hostname = "omen";
+        stateVersion = "25.05";
+        hardwareConfig = "16-ah0002tx";
       }
     ];
 
@@ -61,7 +91,7 @@
         };
 
         modules = [
-	  nixos-wsl.nixosModules.default
+          inputs.stylix.nixosModules.stylix
           ./hosts/${hostname}/configuration.nix
         ];
       };
@@ -88,7 +118,14 @@
       };
 
       modules = [
+        inputs.plasma-manager.homeManagerModules.plasma-manager
+        inputs.spicetify-nix.homeManagerModules.spicetify
         ./home-manager/home.nix
+        {
+          nixpkgs.overlays = [
+            nix-vscode-extensions.overlays.default
+          ];
+        }
       ];
     };
   };
