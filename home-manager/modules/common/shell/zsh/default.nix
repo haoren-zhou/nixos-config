@@ -36,7 +36,8 @@
 
       pkgs = "nvim ${flakeDir}/home-manager/packages/";
 
-      # r = "ranger";
+      y = "yy"; # yazi
+
       v = "nvim";
       vi = "nvim";
       vim = "nvim";

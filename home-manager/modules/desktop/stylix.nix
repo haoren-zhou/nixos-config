@@ -13,6 +13,7 @@
       hyprlock.enable = false;
       swaync.enable = false;
       vscode.enable = false;
+      yazi.enable = false;
     };
 
     polarity = "dark";

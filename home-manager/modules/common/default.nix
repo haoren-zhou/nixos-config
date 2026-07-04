@@ -4,6 +4,7 @@
     ./btop.nix
     ./gh.nix
     ./git.nix
+    ./yazi.nix
 
     ./editor/micro
     ./editor/nvchad
