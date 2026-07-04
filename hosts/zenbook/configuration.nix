@@ -12,16 +12,5 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  services.openssh = {
-    enable = true;
-    ports = [39182];
-    settings = {
-      PasswordAuthentication = false;
-      AllowUsers = null;
-      PermitRootLogin = "prohibit-password";
-    };
-  };
-  networking.firewall.allowedTCPPorts = [39182];
-
   system.stateVersion = stateVersion;
 }

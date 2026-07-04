@@ -1,12 +1,16 @@
-{pkgs, ...}: {
+{
   imports = [
     ./docker.nix
+    ./home-manager.nix
+    ./kernel.nix
+    ./networking.nix
     ./nh.nix
+    ./nix.nix
     ./nix-ld.nix
     ./tailscale.nix
-    ./thunar.nix
+    ./timezone_locale.nix
+    ./user.nix
   ];
 
-  # List services that you want to enable:
   programs.npm.enable = true;
 }
