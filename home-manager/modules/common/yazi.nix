@@ -1,7 +1,12 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  pkgs-unstable,
+  ...
+}: {
   programs.yazi = {
     enable = true;
     enableZshIntegration = true;
+    package = pkgs-unstable.yazi;
 
     settings = {
       mgr = {
@@ -15,13 +20,13 @@
 
       plugin.prepend_fetchers = [
         {
-          id = "git";
-          name = "*";
+          group = "git";
+          url = "*";
           run = "git";
         }
         {
-          id = "git";
-          name = "*/";
+          group = "git";
+          url = "*/";
           run = "git";
         }
       ];
@@ -60,8 +65,8 @@
     '';
 
     plugins = {
-      full-border = pkgs.yaziPlugins.full-border;
-      git = pkgs.yaziPlugins.git;
+      full-border = pkgs-unstable.yaziPlugins.full-border;
+      git = pkgs-unstable.yaziPlugins.git;
     };
 
     flavors = {
