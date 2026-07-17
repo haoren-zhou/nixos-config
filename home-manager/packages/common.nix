@@ -62,6 +62,8 @@ in {
       ocamlPackages.utop
       opam
       (python312.withPackages (p: with p; [uv]))
+
+      zathura
     ]
     ++ [
       pkgs-unstable.claude-code

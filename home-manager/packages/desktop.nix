@@ -13,7 +13,6 @@
     obsidian
     telegram-desktop
     thunderbird
-    zathura
 
     kdePackages.qttools
     kdePackages.qtwayland
