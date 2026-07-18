@@ -7,6 +7,8 @@
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/7ced9122cff2163c6a0212b8d1ec8c33a1660806";
 
+    nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
+
     home-manager = {
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -54,79 +56,84 @@
     nixpkgs,
     home-manager,
     nix-vscode-extensions,
+    nixos-wsl,
     ...
   } @ inputs: let
     inherit (self) outputs;
     system = "x86_64-linux";
     homeStateVersion = "25.05";
     user = "hr";
+
     hosts = [
       {
-        hostname = "nixos";
+        hostname = "zenbook";
+        profile = "desktop";
         stateVersion = "25.05";
-        hardwareConfig = "UX430UNR";
+        hardware = "UX430UNR";
       }
       {
         hostname = "omen";
+        profile = "desktop";
         stateVersion = "25.05";
-        hardwareConfig = "16-ah0002tx";
+        hardware = "16-ah0002tx";
+      }
+      {
+        hostname = "wsl";
+        profile = "wsl";
+        stateVersion = "25.05";
+        hardware = null;
       }
     ];
 
-    makeSystem = {
-      hostname,
-      stateVersion,
-      hardwareConfig,
-    }:
-      nixpkgs.lib.nixosSystem {
-        system = system;
-        specialArgs = {
-          inherit inputs outputs stateVersion hostname hardwareConfig user;
-          pkgs-unstable = import inputs.nixpkgs-unstable {
-            system = system;
-            config = {
-              allowUnfree = true;
-            };
-          };
-        };
-
-        modules = [
-          inputs.stylix.nixosModules.stylix
-          ./hosts/${hostname}/configuration.nix
-        ];
-      };
-  in {
-    nixosConfigurations = nixpkgs.lib.foldl' (configs: host:
-      configs
-      // {
-        "${host.hostname}" = makeSystem {
-          inherit (host) hostname stateVersion hardwareConfig;
-        };
-      }) {}
-    hosts;
-
-    homeConfigurations.${user} = home-manager.lib.homeManagerConfiguration {
-      pkgs = nixpkgs.legacyPackages.${system};
-      extraSpecialArgs = {
-        inherit inputs homeStateVersion user;
-        pkgs-unstable = import inputs.nixpkgs-unstable {
-          system = system;
-          config = {
-            allowUnfree = true;
-          };
-        };
-      };
-
-      modules = [
-        inputs.plasma-manager.homeManagerModules.plasma-manager
-        inputs.spicetify-nix.homeManagerModules.spicetify
-        ./home-manager/home.nix
-        {
-          nixpkgs.overlays = [
-            nix-vscode-extensions.overlays.default
-          ];
-        }
-      ];
+    pkgs-unstable = import inputs.nixpkgs-unstable {
+      inherit system;
+      config.allowUnfree = true;
     };
+
+    makeSystem = host:
+      nixpkgs.lib.nixosSystem {
+        inherit system;
+        specialArgs = {
+          inherit inputs outputs pkgs-unstable user;
+          inherit (host) hostname stateVersion hardware profile;
+        };
+        modules =
+          [./hosts/${host.hostname}/configuration.nix]
+          ++ nixpkgs.lib.optional (host.profile == "desktop") inputs.stylix.nixosModules.stylix
+          ++ nixpkgs.lib.optional (host.profile == "wsl") nixos-wsl.nixosModules.default;
+      };
+
+    makeHome = host:
+      home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.${system};
+        extraSpecialArgs = {
+          inherit inputs pkgs-unstable user homeStateVersion;
+          inherit (host) profile;
+        };
+        modules =
+          [
+            ./home-manager/profiles/common.nix
+            {nixpkgs.overlays = [nix-vscode-extensions.overlays.default];}
+          ]
+          ++ nixpkgs.lib.optionals (host.profile == "desktop") [
+            ./home-manager/profiles/desktop.nix
+            inputs.plasma-manager.homeModules.plasma-manager
+            inputs.spicetify-nix.homeManagerModules.spicetify
+          ];
+      };
+
+    byHost = f:
+      builtins.listToAttrs (map (h: {
+          name = h.hostname;
+          value = f h;
+        })
+        hosts);
+  in {
+    nixosConfigurations = byHost makeSystem;
+    homeConfigurations = builtins.listToAttrs (map (h: {
+        name = "${user}@${h.hostname}";
+        value = makeHome h;
+      })
+      hosts);
   };
 }

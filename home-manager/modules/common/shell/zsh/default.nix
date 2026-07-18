@@ -34,9 +34,10 @@
       # upd = "nh os switch --update";
       # hms = "nh home switch";
 
-      pkgs = "nvim ${flakeDir}/home-manager/home-packages.nix";
+      pkgs = "nvim ${flakeDir}/home-manager/packages/";
 
-      # r = "ranger";
+      y = "yy"; # yazi
+
       v = "nvim";
       vi = "nvim";
       vim = "nvim";
