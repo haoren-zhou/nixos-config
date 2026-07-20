@@ -78,6 +78,12 @@
         hardware = "16-ah0002tx";
       }
       {
+        hostname = "kilat";
+        profile = "desktop";
+        stateVersion = "26.05";
+        hardware = "kilat";
+      }
+      {
         hostname = "wsl";
         profile = "wsl";
         stateVersion = "25.05";
