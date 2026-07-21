@@ -13,7 +13,7 @@
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
 
-    dotDir = ".config/zsh";
+    dotDir = "${config.xdg.configHome}/zsh";
 
     oh-my-zsh = {
       enable = true;
@@ -35,8 +35,6 @@
       # hms = "nh home switch";
 
       pkgs = "nvim ${flakeDir}/home-manager/packages/";
-
-      y = "yy"; # yazi
 
       v = "nvim";
       vi = "nvim";

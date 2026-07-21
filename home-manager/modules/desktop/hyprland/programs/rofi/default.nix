@@ -7,10 +7,10 @@
     inherit (lib) getExe;
   in {
     enable = true;
-    package = pkgs.rofi-wayland;
+    package = pkgs.rofi;
     terminal = "${getExe pkgs.kitty}";
     plugins = with pkgs; [
-      rofi-emoji-wayland # https://github.com/Mange/rofi-emoji 🤯
+      rofi-emoji # https://github.com/Mange/rofi-emoji 🤯
       rofi-games # https://github.com/Rolv-Apneseth/rofi-games 🎮
     ];
   };

@@ -3,6 +3,12 @@
 
   programs.ssh = {
     enable = true;
-    matchBlocks."*".extraOptions.AddKeysToAgent = "yes";
+    enableDefaultConfig = false;
+
+    settings = {
+      "*" = {
+        AddKeysToAgent = "yes";
+      };
+    };
   };
 }

@@ -7,10 +7,5 @@
       thunar-media-tags-plugin # Tagging & renaming feature for media files
     ];
   };
-  # Archive manager
-  programs.file-roller = {
-    enable = true;
-    package = pkgs.file-roller;
-  };
   services.tumbler.enable = true; # Thumbnail support for images
 }
