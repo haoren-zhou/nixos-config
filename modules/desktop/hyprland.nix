@@ -2,6 +2,10 @@
   # Input settings
   services.libinput.enable = true;
 
+  services.dbus.packages = [ pkgs.swayosd ];
+  systemd.packages = [ pkgs.swayosd ];
+  systemd.services.swayosd-libinput-backend.wantedBy = [ "graphical.target" ];
+
   # Enable the X11 windowing system.
   services.xserver = {
     enable = true;

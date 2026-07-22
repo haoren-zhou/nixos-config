@@ -25,10 +25,10 @@ for _, entry in ipairs({
 	)
 end
 
-exec("XF86MonBrightnessDown", "brightnessctl set 2%-", repeating)
-exec("XF86MonBrightnessUp", "brightnessctl set +2%", repeating)
-exec("XF86AudioLowerVolume", "pamixer -d 2", repeating)
-exec("XF86AudioRaiseVolume", "pamixer -i 2", repeating)
+exec("XF86MonBrightnessDown", swayosd .. " --brightness -2", repeating)
+exec("XF86MonBrightnessUp", swayosd .. " --brightness +2", repeating)
+exec("XF86AudioLowerVolume", swayosd .. " --output-volume -2", repeating)
+exec("XF86AudioRaiseVolume", swayosd .. " --output-volume +2", repeating)
 
 exec(main_mod .. " + F9", hyprsunset .. " --temperature 3500")
 exec(main_mod .. " + F10", "pkill hyprsunset")

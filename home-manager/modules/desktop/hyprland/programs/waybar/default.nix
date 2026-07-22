@@ -215,8 +215,8 @@
         "backlight" = {
           format = "{icon} {percent}%";
           format-icons = ["" "" "" "" "" "" "" "" ""];
-          on-scroll-up = "${pkgs.brightnessctl}/bin/brightnessctl set 2%+";
-          on-scroll-down = "${pkgs.brightnessctl}/bin/brightnessctl set 2%-";
+          on-scroll-up = "${pkgs.swayosd}/bin/swayosd-client --brightness +2";
+          on-scroll-down = "${pkgs.swayosd}/bin/swayosd-client --brightness -2";
         };
 
         "network" = {
@@ -251,6 +251,8 @@
           on-click = "pavucontrol -t 3";
           tooltip-format = "{icon} {desc} // {volume}%";
           scroll-step = 4;
+          on-scroll-up = "${pkgs.swayosd}/bin/swayosd-client --output-volume +4";
+          on-scroll-down = "${pkgs.swayosd}/bin/swayosd-client --output-volume -4";
           format-icons = {
             headphone = "";
             hands-free = "";

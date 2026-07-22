@@ -45,6 +45,17 @@
   dconf.enable = true;
   dconf.settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
 
+  services.swayosd = {
+    enable = true;
+    stylePath = ./programs/swayosd/style.css;
+    topMargin = 0.85;
+  };
+
+  xdg.configFile."swayosd/config.toml".text = ''
+    [server]
+    show_percentage = true
+  '';
+
   gtk = {
     enable = true;
     theme = {
@@ -71,6 +82,7 @@
     extraConfig = ''
       local scripts = "${./scripts}"
       local hyprsunset = "${lib.getExe pkgs.hyprsunset}"
+      local swayosd = "${lib.getExe' pkgs.swayosd "swayosd-client"}"
 
       ${builtins.readFile ./config.lua}
     '';
