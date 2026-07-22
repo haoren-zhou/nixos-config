@@ -11,7 +11,7 @@
         layer = "top";
         position = "top";
         mode = "dock"; # Fixes fullscreen issues
-        height = 24; # 35
+        height = 30;
         exclusive = true;
         passthrough = false;
         gtk-layer-shell = true;
@@ -25,7 +25,7 @@
         modules-left = ["hyprland/workspaces"];
         # modules-center = ["clock" "custom/notification"];
         modules-center = ["idle_inhibitor" "clock"];
-        modules-right = ["group/hardware" "backlight" "pulseaudio" "bluetooth" "network" "tray" "battery"];
+        modules-right = ["group/hardware" "backlight" "pulseaudio" "bluetooth" "network" "tray" "battery" "custom/power"];
 
         "custom/notification" = {
           tooltip = false;
@@ -70,7 +70,7 @@
         "custom/gpuinfo" = {
           exec = "${../../scripts/gpuinfo.sh}";
           return-type = "json";
-          format = "󰢮 {text}";
+          format = "󰢮  {text}";
           hide-empty-text = true;
           interval = 5; # once every 5 seconds
           tooltip = true;
@@ -198,14 +198,14 @@
 
         "cpu" = {
           interval = 10;
-          format = "󰍛 {usage}%";
+          format = "󰍛  {usage}%";
           format-alt = "{icon0}{icon1}{icon2}{icon3}";
           format-icons = ["▁" "▂" "▃" "▄" "▅" "▆" "▇" "█"];
         };
 
         "memory" = {
           interval = 30;
-          format = "󰾆 {percentage}%";
+          format = "󰾆  {percentage}%";
           format-alt = "󰾅 {used}GB";
           max-length = 10;
           tooltip = true;
@@ -213,7 +213,7 @@
         };
 
         "backlight" = {
-          format = "{icon} {percent}%";
+          format = "{icon}  {percent}%";
           format-icons = ["" "" "" "" "" "" "" "" ""];
           on-scroll-up = "${pkgs.swayosd}/bin/swayosd-client --brightness +2";
           on-scroll-down = "${pkgs.swayosd}/bin/swayosd-client --brightness -2";
@@ -246,7 +246,7 @@
         };
 
         "pulseaudio" = {
-          format = "{icon} {volume}";
+          format = "{icon}  {volume}";
           format-muted = " ";
           on-click = "pavucontrol -t 3";
           tooltip-format = "{icon} {desc} // {volume}%";
@@ -293,33 +293,35 @@
         };
 
         "custom/power" = {
-          format = "{}";
-          on-click = "wlogout -b 4";
+          format = "";
+          on-click = "pkill -x wlogout || wlogout -b 4";
           interval = 86400; # once every day
           tooltip = true;
+          tooltip-format = "Power menu";
         };
       }
     ];
     style = ''
       * {
-        font-family: "JetBrainsMono Nerd Font";
+        font-family: "Noto Sans", "JetBrainsMono Nerd Font";
         font-size: 12px;
+        font-weight: 500;
         font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
         margin: 0;
         padding: 0;
         min-height: 0;
       }
 
-      @define-color background #161a1f;
-      @define-color surface #20262e;
-      @define-color surface-raised #2a323c;
-      @define-color border #3a4654;
-      @define-color text #d8dee9;
-      @define-color text-muted #8c98a5;
-      @define-color accent #5b8db8;
-      @define-color accent-strong #72a5d4;
-      @define-color warning #c79a5b;
-      @define-color critical #c66b6b;
+      @define-color background #111318;
+      @define-color surface #1d2026;
+      @define-color surface-raised #252a32;
+      @define-color border #3d4550;
+      @define-color text #e2e7ee;
+      @define-color text-muted #a4abb5;
+      @define-color accent #77a8d5;
+      @define-color accent-strong #a5c8ed;
+      @define-color warning #d5a15e;
+      @define-color critical #d67b7b;
 
       window#waybar {
         background: transparent;
@@ -331,9 +333,9 @@
       }
 
       tooltip {
-        background: @background;
+        background: @surface-raised;
         border: 1px solid @border;
-        border-radius: 8px;
+        border-radius: 10px;
       }
 
       tooltip label {
@@ -349,7 +351,7 @@
       .modules-right {
         background: @surface;
         border: 1px solid @border;
-        border-radius: 10px;
+        border-radius: 12px;
       }
 
       .modules-center {
@@ -357,7 +359,27 @@
       }
 
       .modules-right {
-        padding: 0 8px 0 0;
+        padding: 0 8px 0 8px;
+      }
+
+      #clock {
+        font-family: "Inter";
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.15px;
+        font-feature-settings: '"tnum", "ss01"';
+        padding: 3px 10px;
+      }
+
+      #backlight,
+      #battery,
+      #cpu,
+      #memory,
+      #pulseaudio,
+      #custom-gpuinfo {
+        font-family: "Inter", "JetBrainsMono Nerd Font";
+        font-feature-settings: '"tnum", "ss01"';
+        letter-spacing: 0;
       }
 
       #backlight,
@@ -429,12 +451,13 @@
       #hardware {
         background: transparent;
         border-radius: 8px;
-        padding: 0;
+        margin-left: -8px;
+        padding-left: 8px;
       }
 
       #hardware:hover {
         background: @surface-raised;
-        border-radius: 9px 8px 8px 9px;
+        border-radius: 11px 8px 8px 11px;
       }
 
       #hardware #custom-hardware {

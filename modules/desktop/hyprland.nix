@@ -66,6 +66,7 @@
   };
 
   fonts.packages = [
+    pkgs.inter
     pkgs.nerd-fonts.jetbrains-mono
     pkgs.noto-fonts-cjk-sans
   ];
