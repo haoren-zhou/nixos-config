@@ -50,6 +50,6 @@
       light = "Papirus-Light";
     };
 
-    image = ../../../wallpapers/fractal.jxl;
+    image = ../../../wallpapers/kurzgesagt.jxl;
   };
 }

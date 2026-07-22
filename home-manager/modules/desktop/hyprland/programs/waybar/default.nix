@@ -236,12 +236,12 @@
         };
 
         "bluetooth" = {
-          format = "";
+          format = "";
           # format-disabled = ""; # an empty format will hide the module
-          format-connected = " {num_connections}";
-          tooltip-format = " {device_alias}";
+          format-connected = " {num_connections}";
+          tooltip-format = " {device_alias}";
           tooltip-format-connected = "{device_enumerate}";
-          tooltip-format-enumerate-connected = " {device_alias}";
+          tooltip-format-enumerate-connected = " {device_alias}";
           on-click = "blueman-manager";
         };
 
@@ -494,7 +494,7 @@
         color: @text-muted;
         margin: 0 2px;
         min-width: 0;
-        padding: 3px 7px;
+        padding: 3px 6px 3px 8px;
         text-shadow: none;
         transition: background-color 0.18s linear, color 0.18s linear, padding 0.18s ease-in-out;
       }
@@ -502,7 +502,7 @@
       #workspaces button:not(.empty) {
         background: @surface;
         color: @text;
-        padding: 3px 8px;
+        padding: 3px 10px 3px 8px;
       }
 
       #workspaces button:hover {
@@ -515,12 +515,12 @@
         border: 0;
         box-shadow: none;
         color: @background;
-        padding: 3px 12px;
+        padding: 3px 16px 3px 14px;
       }
 
       /* Active empty pills retain the same horizontal expansion delta. */
       #workspaces button.empty.active {
-        padding: 3px 8px;
+        padding: 3px 12px 3px 14px;
       }
 
       /* Neutralize the base theme's bottom border for every workspace state. */

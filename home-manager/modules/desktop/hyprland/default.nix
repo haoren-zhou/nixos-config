@@ -14,6 +14,7 @@
     ./programs/hypridle
     ./programs/hyprlock
     ./programs/swaync
+    ./programs/swayosd
   ];
 
   home.packages = with pkgs; [
@@ -44,17 +45,6 @@
 
   dconf.enable = true;
   dconf.settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
-
-  services.swayosd = {
-    enable = true;
-    stylePath = ./programs/swayosd/style.css;
-    topMargin = 0.85;
-  };
-
-  xdg.configFile."swayosd/config.toml".text = ''
-    [server]
-    show_percentage = true
-  '';
 
   gtk = {
     enable = true;
