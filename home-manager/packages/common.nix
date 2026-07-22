@@ -59,7 +59,6 @@ in {
     gnumake
     jdk
     mytex
-    nodejs_22
     ocamlPackages.odoc
     ocamlPackages.utop
     opam
