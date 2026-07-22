@@ -25,7 +25,7 @@
         modules-left = ["hyprland/workspaces"];
         # modules-center = ["clock" "custom/notification"];
         modules-center = ["idle_inhibitor" "clock"];
-        modules-right = ["custom/gpuinfo" "cpu" "memory" "backlight" "pulseaudio" "bluetooth" "network" "tray" "battery"];
+        modules-right = ["group/hardware" "backlight" "pulseaudio" "bluetooth" "network" "tray" "battery"];
 
         "custom/notification" = {
           tooltip = false;
@@ -54,10 +54,24 @@
           on-scroll-up = "busctl --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateTemperature n +100";
           on-scroll-down = "busctl --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateTemperature n -100";
         };
+        "group/hardware" = {
+          orientation = "inherit";
+          drawer = {
+            click-to-reveal = true;
+            transition-duration = 180;
+            transition-left-to-right = false;
+          };
+          modules = ["custom/hardware" "cpu" "memory" "custom/gpuinfo"];
+        };
+        "custom/hardware" = {
+          format = "󰍛 ";
+          tooltip = false;
+        };
         "custom/gpuinfo" = {
           exec = "${../../scripts/gpuinfo.sh}";
           return-type = "json";
-          format = " {}";
+          format = "󰢮 {text}";
+          hide-empty-text = true;
           interval = 5; # once every 5 seconds
           tooltip = true;
           max-length = 1000;
@@ -100,10 +114,11 @@
         };
         "hyprland/workspaces" = {
           format = "{name} {windows}";
-          disable-scroll = true;
+          disable-scroll = false;
           all-outputs = true;
           active-only = false;
-          on-click = "activate";
+          on-scroll-up = "hyprctl dispatch workspace e+1";
+          on-scroll-down = "hyprctl dispatch workspace e-1";
           sort-by = "number";
           unique-icons = false;
           max-windows = 4;
@@ -340,7 +355,7 @@
       }
 
       .modules-right {
-        padding: 0 8px;
+        padding: 0 8px 0 0;
       }
 
       #backlight,
@@ -364,6 +379,7 @@
       #workspaces,
       #custom-backlight,
       #custom-gpuinfo,
+      #custom-hardware,
       #custom-icon,
       #custom-keybinds,
       #custom-keyboard,
@@ -408,6 +424,35 @@
         -gtk-icon-effect: highlight;
       }
 
+      #hardware {
+        background: transparent;
+        border-radius: 8px;
+        padding: 0;
+      }
+
+      #hardware:hover {
+        background: @surface-raised;
+        border-radius: 9px 8px 8px 9px;
+      }
+
+      #hardware #custom-hardware {
+        background: transparent;
+        border-radius: 8px;
+        transition: background-color 0.18s linear, color 0.18s linear;
+      }
+
+      #hardware:hover #custom-hardware {
+        background: @accent;
+        border-radius: 0 8px 8px 0;
+        border-left: 1px solid @border;
+        color: @background;
+      }
+
+      #hardware .drawer-child {
+        background: transparent;
+        border-radius: 0;
+      }
+
       /* Compact empty pills expand only as windows or focus demand more room. */
       #workspaces {
         background: transparent;
@@ -445,7 +490,7 @@
         border: 0;
         box-shadow: none;
         color: @background;
-        padding: 3px 14px;
+        padding: 3px 12px;
       }
 
       /* Active empty pills retain the same horizontal expansion delta. */
