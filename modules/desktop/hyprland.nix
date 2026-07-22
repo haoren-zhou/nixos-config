@@ -61,7 +61,10 @@
     # templates = "${self}/dev-shells";
   };
 
-  fonts.packages = with pkgs.nerd-fonts; [jetbrains-mono];
+  fonts.packages = [
+    pkgs.nerd-fonts.jetbrains-mono
+    pkgs.noto-fonts-cjk-sans
+  ];
 
   environment.systemPackages = with pkgs; [
     killall

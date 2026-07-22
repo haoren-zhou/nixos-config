@@ -137,13 +137,6 @@
             }
 
             {
-              label = "🎮";
-              type = "toggle";
-              command = "${../../../hyprland/scripts/gamemode.sh}";
-              update-command = "hyprctl getoption animations:enabled | grep -q 'int: 1' && echo false || echo true";
-            }
-
-            {
               label = "󰤄";
               type = "toggle";
               command = "sh -c '${pkgs.procps}/bin/pgrep -x hyprsunset >/dev/null && ${pkgs.procps}/bin/pkill hyprsunset || nohup ${pkgs.hyprsunset}/bin/hyprsunset --temperature 3500 > /tmp/hyprsunset_output.log 2>&1 &'";
@@ -162,7 +155,7 @@
               type = "toggle";
 
               command = "${../../../hyprland/scripts/TogglePowerMode.sh}";
-              update-command = "test -f \"$HOME/.config/hypr/power_mode\" && grep -q \"^powersave$\" \"$HOME/.config/hypr/power_mode\" && echo true || echo false";
+              update-command = "powerprofilesctl get | grep -qx power-saver && echo true || echo false";
             }
           ];
         };

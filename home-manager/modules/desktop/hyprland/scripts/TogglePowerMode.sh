@@ -1,23 +1,13 @@
 #!/usr/bin/env bash
 
-MODE_FILE="$HOME/.config/hypr/power_mode"
+set -eu
 
-if [[ ! -s "$MODE_FILE" ]]; then
-    echo "performance" > "$MODE_FILE"
-fi
+command -v powerprofilesctl >/dev/null
 
-CURRENT=$(cat "$MODE_FILE")
-
-if [[ "$CURRENT" == "performance" ]]; then
-    NEW_MODE="powersave"
-    CMD="pkexec tlp bat"
+if [[ "$(powerprofilesctl get)" == "power-saver" ]]; then
+    # Not every device exposes a performance profile. Balanced is the
+    # universally available fallback when leaving power-saver mode.
+    powerprofilesctl set performance || powerprofilesctl set balanced
 else
-    NEW_MODE="performance"
-    CMD="pkexec tlp ac"
+    powerprofilesctl set power-saver
 fi
-
-if $CMD > /dev/null 2>&1; then
-    echo "$NEW_MODE" > "$MODE_FILE"
-fi
-
-exit 0
