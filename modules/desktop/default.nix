@@ -7,6 +7,7 @@
     ./env.nix
     ./hyprland.nix
     # ./kde.nix
+    ./power.nix
     ./sddm.nix
     ./thunar.nix
   ];
