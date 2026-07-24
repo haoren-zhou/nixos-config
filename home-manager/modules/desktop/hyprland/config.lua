@@ -81,6 +81,7 @@ hl.config({
   misc = {
     disable_hyprland_logo = true,
     mouse_move_focuses_monitor = true,
+    initial_workspace_tracking = 0,
     swallow_regex = "^(Alacritty|kitty)$",
     enable_swallow = false,
     vrr = 1,
