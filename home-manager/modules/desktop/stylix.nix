@@ -43,13 +43,13 @@
       };
     };
 
-    iconTheme = {
+    icons = {
       enable = true;
       package = pkgs.papirus-icon-theme;
       dark = "Papirus-Dark";
       light = "Papirus-Light";
     };
 
-    image = ../../../wallpapers/fractal.jxl;
+    image = ../../../wallpapers/kurzgesagt.jxl;
   };
 }

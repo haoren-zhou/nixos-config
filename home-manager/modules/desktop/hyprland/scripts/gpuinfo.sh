@@ -3,6 +3,10 @@
 # Check for NVIDIA GPU using nvidia-smi
 nvidia_gpu=$(nvidia-smi --query-gpu=gpu_name --format=csv,noheader,nounits 2>/dev/null | head -n 1)
 
+emit_empty() {
+  printf '%s\n' '{"text":""}'
+}
+
 # Function to define emoji based on temperature
 get_temperature_emoji() {
   local temperature="$1"
@@ -114,7 +118,7 @@ get_amd_gpu_metrics() {
 # Check if primary GPU is NVIDIA
 if [ -n "$nvidia_gpu" ]; then
   if [[ $nvidia_gpu == *"NVIDIA-SMI has failed"* ]]; then
-    echo "{\"text\":\"N/A\", \"tooltip\":\"Primary GPU: Not found\"}"
+    emit_empty
     exit 0
   fi
 
@@ -126,6 +130,12 @@ if [ -n "$nvidia_gpu" ]; then
   max_clock_speed="${gpu_data[3]// /}"
   power_usage="${gpu_data[4]// /}"
   power_limit="${gpu_data[5]// /}"
+
+  if [ -z "$temperature" ] || [ "$temperature" = "N/A" ]; then
+    emit_empty
+    exit 0
+  fi
+
   emoji=$(get_temperature_emoji "$temperature")
 
   echo "{\"text\":\"$temperature°C\", \"tooltip\":\"Primary GPU: NVIDIA GPU\n$emoji Temperature: $temperature°C\n󰾆 Utilization: $utilization%\n Clock Speed: $current_clock_speed/$max_clock_speed MHz\n Power Usage: $power_usage/$power_limit W\"}"
@@ -173,7 +183,7 @@ done
 
 # If AMD GPU was found but no temperature, show limited info
 if [ "$amd_found" = true ]; then
-  echo "{\"text\":\"N/A\", \"tooltip\":\"Primary GPU: AMD GPU\nTemperature: Not available\"}"
+  emit_empty
   exit 0
 fi
 
@@ -188,10 +198,10 @@ if [ -n "$intel_gpu" ]; then
     echo "{\"text\":\"$temperature°C\", \"tooltip\":\"Primary GPU: $primary_gpu\n$emoji Temperature: $temperature°C\"}"
     exit 0
   else
-    echo "{\"text\":\"N/A\", \"tooltip\":\"Primary GPU: $primary_gpu\nTemperature: Not available\"}"
+    emit_empty
     exit 0
   fi
 fi
 
 # If no GPU is found
-echo "{\"text\":\"N/A\", \"tooltip\":\"Primary GPU: Not found\"}"
+emit_empty

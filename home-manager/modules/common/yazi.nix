@@ -8,6 +8,8 @@
     enableZshIntegration = true;
     package = pkgs-unstable.yazi;
 
+    shellWrapperName = "y";
+
     settings = {
       mgr = {
         show_hidden = true;

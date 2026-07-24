@@ -1,5 +1,6 @@
 {
   config,
+  lib,
   pkgs,
   ...
 }: {
@@ -13,7 +14,7 @@
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
 
-    dotDir = ".config/zsh";
+    dotDir = "${config.xdg.configHome}/zsh";
 
     oh-my-zsh = {
       enable = true;
@@ -22,7 +23,6 @@
         "git"
         "gitignore"
         "history-substring-search"
-        "zoxide"
         "zsh-interactive-cd"
       ];
     };
@@ -35,8 +35,6 @@
       # hms = "nh home switch";
 
       pkgs = "nvim ${flakeDir}/home-manager/packages/";
-
-      y = "yy"; # yazi
 
       v = "nvim";
       vi = "nvim";
@@ -56,10 +54,17 @@
     history.size = 10000;
     history.path = "${config.xdg.dataHome}/zsh/history";
 
-    initContent = ''
-      source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
-      test -f ~/.config/zsh/.p10k.zsh && source ~/.config/zsh/.p10k.zsh
-    '';
+    initContent = lib.mkMerge [
+      (lib.mkOrder 500 ''
+        if [[ -r "${config.xdg.cacheHome}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
+          source "${config.xdg.cacheHome}/p10k-instant-prompt-''${(%):-%n}.zsh"
+        fi
+      '')
+      (lib.mkOrder 1000 ''
+        source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
+        test -f ~/.config/zsh/.p10k.zsh && source ~/.config/zsh/.p10k.zsh
+      '')
+    ];
     # initExtra = ''
     #   # Start Tmux automatically if not already running. No Tmux in TTY
     #   if [ -z "$TMUX" ] && [ -n "$DISPLAY" ]; then

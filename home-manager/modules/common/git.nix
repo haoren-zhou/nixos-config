@@ -8,8 +8,6 @@
 in {
   programs.git = {
     enable = true;
-    userName = userName;
-    userEmail = userEmail;
 
     signing = {
       format = "ssh";
@@ -17,7 +15,11 @@ in {
       signByDefault = true;
     };
 
-    extraConfig = {
+    settings = {
+      user = {
+        name = userName;
+        email = userEmail;
+      };
       init.defaultBranch = "main";
       url."git@github.com:".insteadOf = "https://github.com/";
       gpg.ssh.allowedSignersFile = "${config.xdg.configHome}/git/allowed_signers";

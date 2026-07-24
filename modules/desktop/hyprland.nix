@@ -2,6 +2,10 @@
   # Input settings
   services.libinput.enable = true;
 
+  services.dbus.packages = [ pkgs.swayosd ];
+  systemd.packages = [ pkgs.swayosd ];
+  systemd.services.swayosd-libinput-backend.wantedBy = [ "graphical.target" ];
+
   # Enable the X11 windowing system.
   services.xserver = {
     enable = true;
@@ -61,7 +65,11 @@
     # templates = "${self}/dev-shells";
   };
 
-  fonts.packages = with pkgs.nerd-fonts; [jetbrains-mono];
+  fonts.packages = [
+    pkgs.inter
+    pkgs.nerd-fonts.jetbrains-mono
+    pkgs.noto-fonts-cjk-sans
+  ];
 
   environment.systemPackages = with pkgs; [
     killall

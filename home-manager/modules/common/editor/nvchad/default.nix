@@ -15,7 +15,7 @@
       [
         # Language Servers
         docker-compose-language-service
-        dockerfile-language-server-nodejs
+        dockerfile-language-server
         vscode-langservers-extracted
         typescript-language-server
         tailwindcss-language-server
@@ -31,7 +31,7 @@
         alejandra
         cmake-format
         google-java-format
-        nodePackages.prettier
+        prettier
         prettierd
         ruff
         tex-fmt

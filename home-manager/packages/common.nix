@@ -1,8 +1,11 @@
 {
   pkgs,
   pkgs-unstable,
+  inputs,
   ...
 }: let
+  llm-agents = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system};
+
   mytex = pkgs.texlive.withPackages (ps:
     with ps; [
       scheme-full
@@ -37,36 +40,34 @@
 in {
   nixpkgs.config.allowUnfree = true;
 
-  home.packages = with pkgs;
-    [
-      # CLI utils
-      croc
-      fastfetch
-      fd
-      file
-      fzf
-      pandoc
-      pciutils
-      ripgrep
-      unzip
-      wget
-      zip
+  home.packages = with pkgs; [
+    # CLI utils
+    croc
+    fastfetch
+    fd
+    file
+    fzf
+    pandoc
+    pciutils
+    ripgrep
+    unzip
+    wget
+    zip
 
-      # dev toolchains
-      gcc
-      gnumake
-      jdk
-      mytex
-      nodejs_22
-      ocamlPackages.odoc
-      ocamlPackages.utop
-      opam
-      (python312.withPackages (p: with p; [uv]))
+    # dev toolchains
+    gcc
+    gnumake
+    jdk
+    mytex
+    ocamlPackages.odoc
+    ocamlPackages.utop
+    opam
+    (python312.withPackages (p: with p; [uv]))
 
-      zathura
-    ]
-    ++ [
-      pkgs-unstable.claude-code
-      pkgs-unstable.antigravity-cli
-    ];
+    zathura
+
+    llm-agents.claude-code
+    llm-agents.codex
+    llm-agents.antigravity-cli
+  ];
 }

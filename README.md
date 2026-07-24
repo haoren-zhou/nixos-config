@@ -8,6 +8,7 @@ NixOS + home-manager flake, for desktop or WSL.
 | --------- | ------- | -------------------------- |
 | `zenbook` | desktop | Asus UX430UNR              |
 | `omen`    | desktop | HP Omen Max 16 (ah0002tx)  |
+| `kilat`   | desktop | Home Desktop               |
 | `wsl`     | wsl     | WSL2 on Windows (cli only) |
 
 ## Structure
