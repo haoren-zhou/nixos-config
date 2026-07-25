@@ -11,6 +11,7 @@
     targets = {
       hyprland.enable = false;
       hyprlock.enable = false;
+      rofi.enable = false;
       swaync.enable = false;
       vscode.enable = false;
       yazi.enable = false;

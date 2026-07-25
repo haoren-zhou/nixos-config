@@ -16,4 +16,14 @@
     lib.concatMapStrings
     (name: "@define-color ${name} ${colors.${name}};\n")
     (lib.attrNames colors);
+
+  # Names are prefixed because rasi has no separate variable namespace, and
+  # `border`, `text` and `background` are real rofi properties.
+  rasiColors =
+    "* {\n"
+    + lib.concatMapStrings
+    (name: "  c-${name}: ${colors.${name}};\n")
+    (lib.attrNames colors)
+    + "  c-background-blur: ${colors.background}cc;\n"
+    + "}\n";
 }

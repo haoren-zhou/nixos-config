@@ -58,7 +58,7 @@ exec(main_mod .. " + E", "pkill -x rofi || " .. scripts .. "/rofi.sh emoji")
 exec(main_mod .. " + CTRL + Space", "fcitx5-remote -t")
 exec(main_mod .. " + I", "fcitx5-remote -t")
 exec(main_mod .. " + N", "swaync-client -t -sw")
-exec(main_mod .. " + V", scripts .. "/ClipManager.sh")
+exec(main_mod .. " + V", "pkill -x rofi || " .. scripts .. "/ClipManager.sh")
 exec(main_mod .. " + M", "pkill -x rofi || " .. scripts .. "/rofimusic.sh")
 
 exec(main_mod .. " + SHIFT + S", scripts .. "/screenshot.sh s")
