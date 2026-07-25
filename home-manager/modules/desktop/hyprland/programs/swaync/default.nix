@@ -17,7 +17,7 @@ in {
       layer-shell-cover-screen = true;
       ignore-gtk-theme = true;
       cssPriority = "user";
-      control-center-margin-top = 22;
+      control-center-margin-top = 8;
       control-center-margin-bottom = 2;
       control-center-margin-right = 1;
       control-center-margin-left = 0;
@@ -29,11 +29,11 @@ in {
       timeout-critical = 0;
       fit-to-screen = false;
       control-center-width = 400;
-      control-center-height = 720;
+      control-center-height = 800;
       notification-window-width = 375;
       keyboard-shortcuts = true;
       image-visibility = "when-available";
-      transition-time = 200;
+      transition-time = 100;
       hide-on-clear = false;
       hide-on-action = true;
       script-fail-notify = true;
@@ -70,7 +70,7 @@ in {
           text = " Do Not Disturb";
         };
         mpris = {
-          image-size = 96;
+          autohide = true;
         };
         "buttons-grid" = {
           buttons-per-row = 4;

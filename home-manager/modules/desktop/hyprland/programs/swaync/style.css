@@ -36,9 +36,11 @@ blankwindow,
   padding: 0 6px;
   color: @text;
   background: var(--cc-bg);
-  border: 1px solid alpha(@border, 0.85);
+  border: none;
   border-radius: 14px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+  box-shadow:
+    inset 0 0 0 1px alpha(@border, 0.85),
+    0 8px 24px rgba(0, 0, 0, 0.28);
 }
 
 .control-center .control-center-list {
@@ -46,7 +48,7 @@ blankwindow,
 }
 
 .widget-notifications {
-  min-height: 112px;
+  min-height: 80px;
   padding: 3px;
   background: alpha(@surface, 0.72);
   border: 1px solid alpha(@border, 0.68);
@@ -456,7 +458,8 @@ blankwindow,
 }
 
 .widget-buttons-grid {
-  padding: 3px;
+  margin: 3px 4px 10px;
+  padding: 0;
   background: transparent;
 }
 

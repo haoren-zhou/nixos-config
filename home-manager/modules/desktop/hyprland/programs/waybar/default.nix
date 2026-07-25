@@ -476,16 +476,26 @@ in {
 
       /* Compact empty pills expand only as windows or focus demand more room. */
       #workspaces {
+        font-size: 14px;
         background: transparent;
         border: 0;
         box-shadow: none;
+        padding: 1px 0;
+      }
+
+      #workspaces button:first-child {
+        margin-left: 0;
+      }
+
+      #workspaces button:last-child {
+        margin-right: 0;
       }
 
       #workspaces button {
         background: transparent;
         border: 0;
         border-bottom: 0;
-        border-radius: 8px;
+        border-radius: 10px;
         box-shadow: none;
         color: @text-muted;
         margin: 0 2px;
