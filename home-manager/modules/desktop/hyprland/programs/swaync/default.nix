@@ -1,4 +1,10 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: let
+  palette = import ../../palette.nix {inherit lib;};
+in {
   services.swaync = {
     enable = true;
     settings = {
@@ -15,7 +21,7 @@
       control-center-margin-bottom = 2;
       control-center-margin-right = 1;
       control-center-margin-left = 0;
-      notification-icon-size = 64;
+      notification-icon-size = 52;
       notification-body-image-height = 128;
       notification-body-image-width = 200;
       timeout = 6;
@@ -65,14 +71,7 @@
         };
         mpris = {
           image-size = 96;
-          image-radius = 4;
         };
-        label = {
-          text = "Notifications";
-          clear-all-button = true;
-          button-text = "";
-        };
-
         "buttons-grid" = {
           buttons-per-row = 4;
           actions = [
@@ -86,7 +85,7 @@
             {
               label = "";
               type = "toggle";
-              command = "blueman-manager";
+              command = "sh -c '[ \"$SWAYNC_TOGGLE_STATE\" = true ] && bluetoothctl power on || bluetoothctl power off'";
               update-command = "sh -c 'bluetoothctl show | grep -q \\\"Powered: yes\\\" && echo true || echo false'";
             }
 
@@ -129,12 +128,6 @@
           ];
         };
       };
-      scripts = {
-        example-script = {
-          exec = "echo 'Do something...'";
-          urgency = "Normal";
-        };
-      };
       notification-visibility = {
         spotify = {
           state = "enabled";
@@ -148,6 +141,6 @@
         };
       };
     };
-    style = builtins.readFile ./style.css;
+    style = palette.defineColors + builtins.readFile ./style.css;
   };
 }

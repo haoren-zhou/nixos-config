@@ -1,40 +1,21 @@
 :root {
-  --cc-bg: rgba(17, 19, 24, 0.92);
-  --noti-bg: 29, 32, 38;
-  --noti-bg-alpha: 0.96;
-  --noti-bg-darker: rgb(17, 19, 24);
+  --cc-bg: rgba(17, 19, 24, 0.8);
+  --noti-bg-alpha: 0.78;
   --noti-bg-hover: rgb(37, 42, 50);
   --noti-bg-focus: rgba(119, 168, 213, 0.12);
   --noti-close-bg: rgba(164, 171, 181, 0.1);
   --noti-close-bg-hover: rgba(164, 171, 181, 0.2);
   --noti-border-color: rgba(61, 69, 80, 0.88);
-  --text-color: rgb(226, 231, 238);
-  --text-color-disabled: rgb(111, 118, 128);
-  --bg-selected: rgb(119, 168, 213);
   --notification-icon-size: 52px;
   --notification-app-icon-size: 18px;
   --notification-group-icon-size: 24px;
   --border: 1px solid var(--noti-border-color);
-  --border-radius: 12px;
-  --font-size-body: 13px;
-  --font-size-summary: 13px;
   --hover-transition: background-color 120ms ease;
   --group-collapse-transition: opacity 200ms ease;
   --mpris-album-art-overlay: rgba(17, 19, 24, 0.76);
   --mpris-button-hover: rgba(226, 231, 238, 0.1);
   --mpris-album-art-icon-size: 72px;
 }
-
-@define-color background #111318;
-@define-color surface #1d2026;
-@define-color surface-raised #252a32;
-@define-color border #3d4550;
-@define-color text #e2e7ee;
-@define-color text-muted #a4abb5;
-@define-color accent #77a8d5;
-@define-color accent-strong #a5c8ed;
-@define-color warning #d5a15e;
-@define-color critical #d67b7b;
 
 * {
   font-family: "Inter", "JetBrainsMono Nerd Font";
@@ -98,8 +79,8 @@ blankwindow,
 .notification-row .notification-background .notification {
   padding: 0;
   color: @text;
-  background: rgba(var(--noti-bg), var(--noti-bg-alpha));
-  border: var(--border);
+  background: alpha(@surface-raised, var(--noti-bg-alpha));
+  border: 1px solid @border;
   border-radius: 12px;
   transition: var(--hover-transition);
 }
@@ -499,6 +480,7 @@ blankwindow,
   border-radius: 10px;
   font-family: "JetBrainsMono Nerd Font";
   font-size: 16px;
+  transition: var(--hover-transition);
 }
 
 .widget-buttons-grid flowboxchild > button:hover {

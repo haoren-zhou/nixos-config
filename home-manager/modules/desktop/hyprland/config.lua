@@ -118,6 +118,7 @@ hl.animation({ leaf = "specialWorkspace", enabled = true, speed = 3, bezier = "m
 hl.layer_rule({ match = { namespace = "rofi" }, blur = true, ignore_alpha = 0.7 })
 hl.layer_rule({ match = { namespace = "swaync-control-center" }, blur = true, ignore_alpha = 0.7 })
 hl.layer_rule({ match = { namespace = "swaync-notification-window" }, blur = true, ignore_alpha = 0.7 })
+hl.layer_rule({ match = { namespace = "swayosd" }, blur = true, ignore_alpha = 0.7 })
 
 local function opacity(match, value)
   hl.window_rule({ match = match, opacity = value })
@@ -126,7 +127,7 @@ end
 hl.window_rule({ match = { class = "fcitx" }, pseudo = true })
 hl.window_rule({ match = { title = ".*(Godot).*" }, tile = true })
 
-opacity({ class = "^(kitty|alacritty|Alacritty|org.wezfurlong.wezterm)$" }, "0.80 0.80")
+opacity({ class = "^(kitty|alacritty|Alacritty|org.wezfurlong.wezterm)$" }, "0.90 0.90")
 opacity({ class = "^(gcr-prompter)$" }, "0.90 0.90")
 opacity({ title = "^(Hyprland Polkit Agent)$" }, "0.90 0.90")
 opacity({ class = "^(firefox)$" }, "1.00 1.00")

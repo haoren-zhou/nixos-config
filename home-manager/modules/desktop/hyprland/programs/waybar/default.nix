@@ -1,4 +1,10 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: let
+  palette = import ../../palette.nix {inherit lib;};
+in {
   # fonts.packages = with pkgs.nerd-fonts; [jetbrains-mono];
   programs.waybar = {
     enable = true;
@@ -25,19 +31,19 @@
         modules-left = ["hyprland/workspaces"];
         # modules-center = ["clock" "custom/notification"];
         modules-center = ["idle_inhibitor" "clock"];
-        modules-right = ["group/hardware" "backlight" "pulseaudio" "bluetooth" "network" "tray" "battery" "custom/power"];
+        modules-right = ["group/hardware" "backlight" "pulseaudio" "bluetooth" "network" "custom/notification" "tray" "battery" "custom/power"];
 
         "custom/notification" = {
           tooltip = false;
           format = "{icon}";
           format-icons = {
-            notification = "<span foreground='red'><sup></sup></span>";
+            notification = "<span foreground='#d67b7b'><sup></sup></span>";
             none = "";
-            dnd-notification = "<span foreground='red'><sup></sup></span>";
+            dnd-notification = "<span foreground='#d67b7b'><sup></sup></span>";
             dnd-none = "";
-            inhibited-notification = "<span foreground='red'><sup></sup></span>";
+            inhibited-notification = "<span foreground='#d67b7b'><sup></sup></span>";
             inhibited-none = "";
-            dnd-inhibited-notification = "<span foreground='red'><sup></sup></span>";
+            dnd-inhibited-notification = "<span foreground='#d67b7b'><sup></sup></span>";
             dnd-inhibited-none = "";
           };
           return-type = "json";
@@ -312,17 +318,7 @@
         min-height: 0;
       }
 
-      @define-color background #111318;
-      @define-color surface #1d2026;
-      @define-color surface-raised #252a32;
-      @define-color border #3d4550;
-      @define-color text #e2e7ee;
-      @define-color text-muted #a4abb5;
-      @define-color accent #77a8d5;
-      @define-color accent-strong #a5c8ed;
-      @define-color warning #d5a15e;
-      @define-color critical #d67b7b;
-
+      ${palette.defineColors}
       window#waybar {
         background: transparent;
         transition: background-color 0.2s ease;
