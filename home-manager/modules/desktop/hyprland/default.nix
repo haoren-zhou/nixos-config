@@ -20,8 +20,10 @@
   home.packages = with pkgs; [
     hyprpaper
     hyprpicker
+    hyprsunset
     cliphist
     grimblast
+    wf-recorder
     swappy
     libnotify
     brightnessctl

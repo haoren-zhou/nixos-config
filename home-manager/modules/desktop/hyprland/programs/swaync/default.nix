@@ -76,38 +76,24 @@ in {
           buttons-per-row = 4;
           actions = [
             {
-              label = "󰍭";
-              type = "toggle";
-              command = "pamixer --default-source -t";
-              update-command = "sh -c 'pamixer --get-mute --default-source | grep true && echo true || echo false'";
-            }
-
-            {
-              label = "";
-              type = "toggle";
-              command = "sh -c '[ \"$SWAYNC_TOGGLE_STATE\" = true ] && bluetoothctl power on || bluetoothctl power off'";
-              update-command = "sh -c 'bluetoothctl show | grep -q \\\"Powered: yes\\\" && echo true || echo false'";
-            }
-
-            {
-              label = "󰤨";
+              label = "󰖩";
               type = "toggle";
               command = "sh -c '[ \"$SWAYNC_TOGGLE_STATE\" = true ] && nmcli radio wifi on || nmcli radio wifi off'";
               update-command = "sh -c 'nmcli radio wifi | grep -q enabled && echo true || echo false'";
             }
 
             {
-              label = "󰤄";
+              label = "󰂯";
               type = "toggle";
-              command = "sh -c '${pkgs.procps}/bin/pgrep -x hyprsunset >/dev/null && ${pkgs.procps}/bin/pkill hyprsunset || nohup ${pkgs.hyprsunset}/bin/hyprsunset --temperature 3500 > /tmp/hyprsunset_output.log 2>&1 &'";
-              update-command = "sh -c 'pgrep -x hyprsunset >/dev/null && echo true || echo false'";
+              command = "sh -c '[ \"$SWAYNC_TOGGLE_STATE\" = true ] && bluetoothctl power on || bluetoothctl power off'";
+              update-command = "sh -c 'bluetoothctl show | grep -q Powered:.yes && echo true || echo false'";
             }
 
             {
-              label = "☕";
-              command = "systemctl --user is-active --quiet hypridle.service && systemctl --user stop hypridle.service || systemctl --user start hypridle.service";
+              label = "󰀝";
               type = "toggle";
-              update-command = "pgrep -x hypridle > /dev/null && echo false || echo true";
+              command = "sh -c '[ \"$SWAYNC_TOGGLE_STATE\" = true ] && rfkill block all || rfkill unblock all'";
+              update-command = "sh -c 'rfkill -n -o SOFT list | grep -q unblocked && echo false || echo true'";
             }
 
             {
@@ -117,13 +103,33 @@ in {
               command = "${../../../hyprland/scripts/TogglePowerMode.sh}";
               update-command = "powerprofilesctl get | grep -qx power-saver && echo true || echo false";
             }
+
             {
-              label = "󰄀";
-              command = "sh -c 'swaync-client -cp; ${../../../hyprland/scripts/screenshot.sh} sf'";
+              label = "󰤄";
+              type = "toggle";
+              command = "sh -c 'pgrep -x hyprsunset >/dev/null && pkill hyprsunset || setsid -f hyprsunset --temperature 3500 >/tmp/hyprsunset.log 2>&1'";
+              update-command = "sh -c 'pgrep -x hyprsunset >/dev/null && echo true || echo false'";
             }
+
             {
-              label = "";
-              command = "sh -c 'swaync-client -cp; pkill -x wlogout || wlogout -b 4'";
+              label = "󰍭";
+              type = "toggle";
+              command = "pamixer --default-source -t";
+              update-command = "sh -c 'pamixer --get-mute --default-source | grep true && echo true || echo false'";
+            }
+
+            {
+              label = "󰒳";
+              command = "systemctl --user is-active --quiet hypridle.service && systemctl --user stop hypridle.service || systemctl --user start hypridle.service";
+              type = "toggle";
+              update-command = "pgrep -x hypridle > /dev/null && echo false || echo true";
+            }
+
+            {
+              label = "󰑋";
+              type = "toggle";
+              command = "${../../../hyprland/scripts/screenrecord.sh}";
+              update-command = "pgrep -x wf-recorder >/dev/null && echo true || echo false";
             }
           ];
         };

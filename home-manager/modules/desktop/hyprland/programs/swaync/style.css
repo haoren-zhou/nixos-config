@@ -481,9 +481,35 @@ blankwindow,
   background: transparent;
   border: none;
   border-radius: 10px;
+  transition: var(--hover-transition);
+}
+
+.widget-buttons-grid flowboxchild > button label {
   font-family: "JetBrainsMono Nerd Font";
   font-size: 16px;
-  transition: var(--hover-transition);
+}
+
+/* HACK: manual adjust font-size for airplane and record buttons */
+.widget-buttons-grid flowboxchild:nth-child(3) > button label {
+  font-size: 18px;
+}
+.widget-buttons-grid flowboxchild:nth-child(8) > button label {
+  font-size: 20px;
+}
+
+/* These glyphs have a 1-cell advance but wider ink (negative right side
+   bearing), so they render right of centre. padding-right shifts the label
+   content left by half its value. Indices: 1 wifi, 3 airplane, 4 leaf,
+   6 mic-off, 7 idle. */
+.widget-buttons-grid flowboxchild:nth-child(1) > button label,
+.widget-buttons-grid flowboxchild:nth-child(4) > button label,
+.widget-buttons-grid flowboxchild:nth-child(7) > button label {
+  padding-right: 5px;
+}
+
+.widget-buttons-grid flowboxchild:nth-child(3) > button label,
+.widget-buttons-grid flowboxchild:nth-child(6) > button label {
+  padding-right: 2px;
 }
 
 .widget-buttons-grid flowboxchild > button:hover {
