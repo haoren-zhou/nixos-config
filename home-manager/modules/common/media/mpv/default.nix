@@ -117,4 +117,8 @@
       input-default-bindings = false;
     };
   };
+
+  xdg.mimeApps.defaultApplicationPackages = [
+    config.programs.mpv.package
+  ];
 }
