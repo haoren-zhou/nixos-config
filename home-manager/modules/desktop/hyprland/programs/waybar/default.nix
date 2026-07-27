@@ -142,6 +142,11 @@ in {
             "class<(github-desktop|GitHub Desktop|GitHubDesktop)>" = "";
             "class<(org.telegram.desktop|Telegram|telegram)>" = "";
             "class<(org.pwmt.zathura|zathura)>" = "";
+            "class<mpv>" = "";
+            "class<swayimg>" = "";
+            "class<(pavucontrol|org.pulseaudio.pavucontrol|.pavucontrol-wrapped)>" = "";
+            "class<(blueman-manager|.blueman-manager-wrapped)>" = "";
+            "class<(nm-connection-editor|.nm-connection-editor-wrapped)>" = "󱚾";
           };
           tooltips = {
             default = "{name}: {windows}";
