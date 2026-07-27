@@ -15,6 +15,7 @@
     ./programs/hyprlock
     ./programs/swaync
     ./programs/swayosd
+    ./programs/swayimg
   ];
 
   home.packages = with pkgs; [

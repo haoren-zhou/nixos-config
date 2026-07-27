@@ -5,7 +5,6 @@
     wl-clipboard
     xclip
 
-    feh # image viewer
     file-roller
 
     anki-bin
