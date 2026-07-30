@@ -4,6 +4,8 @@
     surface = "#1d2026";
     surface-raised = "#252a32";
     border = "#3d4550";
+    border-active = "#6e92db";
+    border-active-alt = "#7878ff";
     text = "#e2e7ee";
     text-muted = "#a4abb5";
     accent = "#77a8d5";

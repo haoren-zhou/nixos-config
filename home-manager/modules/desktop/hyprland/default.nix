@@ -64,10 +64,19 @@
       enable = true;
       variables = ["--all"];
     };
-    extraConfig = ''
+    extraConfig = let
+      inherit (import ./palette.nix {inherit lib;}) colors;
+      rgba = hex: alpha: "rgba(${lib.removePrefix "#" hex}${alpha})";
+    in ''
       local scripts = "${./scripts}"
       local hyprsunset = "${lib.getExe pkgs.hyprsunset}"
       local swayosd = "${lib.getExe' pkgs.swayosd "swayosd-client"}"
+
+      local border_active = {
+        colors = { "${rgba colors.border-active "ff"}", "${rgba colors.border-active-alt "ff"}" },
+        angle = 45,
+      }
+      local border_inactive = { colors = { "${rgba colors.border "ff"}" } }
 
       ${builtins.readFile ./config.lua}
     '';

@@ -128,5 +128,8 @@ for workspace = 1, 10 do
 	bind(main_mod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = workspace, follow = false }))
 end
 
+bind(main_mod .. " + grave", hl.dsp.workspace.toggle_special("magic"))
+bind(main_mod .. " + SHIFT + grave", hl.dsp.window.move({ workspace = "special:magic", follow = false }))
+
 bind(main_mod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
 bind(main_mod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })

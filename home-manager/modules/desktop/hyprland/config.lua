@@ -48,8 +48,8 @@ hl.config({
 		gaps_out = 9,
 		border_size = 2,
 		col = {
-			active_border = { colors = { "rgba(6e92dbff)", "rgba(7878ffff)" }, angle = 45 },
-			inactive_border = { colors = { "rgba(ccd3fecc)", "rgba(8d90a3cc)" }, angle = 45 },
+			active_border = border_active,
+			inactive_border = border_inactive,
 		},
 		resize_on_border = true,
 		layout = "dwindle",
@@ -57,6 +57,8 @@ hl.config({
 	decoration = {
 		shadow = { enabled = false },
 		rounding = 10,
+		active_opacity = 0.90,
+		inactive_opacity = 0.80,
 		dim_special = 0.3,
 		blur = {
 			enabled = true,
@@ -70,10 +72,10 @@ hl.config({
 	},
 	group = {
 		col = {
-			border_active = { colors = { "rgba(6e92dbff)", "rgba(7878ffff)" }, angle = 45 },
-			border_inactive = { colors = { "rgba(ccd3fecc)", "rgba(8d90a3cc)" }, angle = 45 },
-			border_locked_active = { colors = { "rgba(6e92dbff)", "rgba(7878ffff)" }, angle = 45 },
-			border_locked_inactive = { colors = { "rgba(ccd3fecc)", "rgba(8d90a3cc)" }, angle = 45 },
+			border_active = border_active,
+			border_inactive = border_inactive,
+			border_locked_active = border_active,
+			border_locked_inactive = border_inactive,
 		},
 	},
 	render = { direct_scanout = 2 },
@@ -109,12 +111,14 @@ for name, points in pairs({
 	hl.curve(name, { type = "bezier", points = points })
 end
 
-hl.animation({ leaf = "windows", enabled = true, speed = 3, bezier = "md3_decel", style = "popin 60%" })
-hl.animation({ leaf = "border", enabled = true, speed = 10, bezier = "default" })
-hl.animation({ leaf = "fade", enabled = true, speed = 2.5, bezier = "md3_decel" })
-hl.animation({ leaf = "workspaces", enabled = true, speed = 3.5, bezier = "easeOutExpo", style = "slide" })
-hl.animation({ leaf = "specialWorkspace", enabled = true, speed = 3, bezier = "md3_decel", style = "slidevert" })
-hl.animation({ leaf = "layers", enabled = true, speed = 1.5, bezier = "md3_decel" })
+hl.animation({ leaf = "windows", enabled = true, speed = 2.2, bezier = "md3_decel", style = "popin 60%" })
+hl.animation({ leaf = "border", enabled = true, speed = 3, bezier = "md3_decel" })
+hl.animation({ leaf = "fade", enabled = true, speed = 2, bezier = "md3_decel" })
+hl.animation({ leaf = "workspaces", enabled = true, speed = 2.6, bezier = "easeOutExpo", style = "slide" })
+hl.animation({ leaf = "specialWorkspace", enabled = true, speed = 2.2, bezier = "md3_decel", style = "slidevert" })
+hl.animation({ leaf = "layers", enabled = true, speed = 1.2, bezier = "md3_decel" })
+
+hl.gesture({ fingers = 3, direction = "horizontal", action = "workspace" })
 
 hl.layer_rule({ match = { namespace = "rofi" }, blur = true, ignore_alpha = 0.7 })
 hl.layer_rule({ match = { namespace = "swaync-control-center" }, blur = true, ignore_alpha = 0.7 })
@@ -128,22 +132,9 @@ end
 hl.window_rule({ match = { class = "fcitx" }, pseudo = true })
 hl.window_rule({ match = { title = ".*(Godot).*" }, tile = true })
 
-opacity({ class = "^(kitty|alacritty|Alacritty|org.wezfurlong.wezterm)$" }, "0.90 0.90")
-opacity({ class = "^(gcr-prompter)$" }, "0.90 0.90")
-opacity({ title = "^(Hyprland Polkit Agent)$" }, "0.90 0.90")
-opacity({ class = "^(firefox)$" }, "1.00 1.00")
-opacity({ class = "^(Brave-browser)$" }, "0.90 0.90")
-opacity({
-	class = "^(thunar|Steam|steam|steamwebhelper|Spotify|VSCodium|codium-url-handler|code|code-url-handler|terminalFileManager|org.kde.dolphin|org.kde.ark|nwg-look|qt5ct|qt6ct|yad)$",
-}, "0.80 0.80")
-opacity({ title = ".*(Spotify).*" }, "0.80 0.80")
-opacity({ class = "^(com.github.rafostar.Clapper|discord|WebCord)$" }, "0.90 0.90")
-opacity({
-	class = "^(com.github.tchx84.Flatseal|hu.kramo.Cartridges|com.obsproject.Studio|gnome-boxes|app.drey.Warp|net.davidotek.pupgui2|Signal|io.gitlab.theevilskeleton.Upscaler)$",
-}, "0.80 0.80")
-opacity({
-	class = "^(pavucontrol|org.pulseaudio.pavucontrol|blueman-manager|.blueman-manager-wrapped|nm-applet|nm-connection-editor|org.kde.polkit-kde-authentication-agent-1)$",
-}, "0.80 0.70")
+opacity({ float = true }, "0.80 override 0.70 override")
+opacity({ class = "^(kitty|code|code-url-handler)$" }, "1.00 override 0.90 override")
+opacity({ class = "^(zen)$" }, "1.00 override 1.00 override")
 
 hl.window_rule({ match = { tag = "games" }, content = "game" })
 hl.window_rule({ match = { content = "game" }, tag = "+games" })
@@ -182,7 +173,6 @@ end
 hl.on("hyprland.start", function()
 	hl.exec_cmd("waybar")
 	hl.exec_cmd("nm-applet --indicator")
-	hl.exec_cmd("wl-clipboard-history -t")
 	hl.exec_cmd("wl-paste --type text --watch cliphist store")
 	hl.exec_cmd("wl-paste --type image --watch cliphist store")
 	hl.exec_cmd('rm -f "$XDG_CACHE_HOME/cliphist/db"')
