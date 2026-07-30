@@ -32,11 +32,7 @@
     pamixer
     pavucontrol
     playerctl
-    waybar
-    wtype
     wl-clipboard
-    xdotool
-    yad
   ];
 
   xdg.enable = true;
@@ -51,10 +47,6 @@
 
   gtk = {
     enable = true;
-    theme = {
-      name = lib.mkForce "adw-gtk3-dark";
-      package = lib.mkForce pkgs.adw-gtk3;
-    };
     gtk2.extraConfig = "gtk-application-prefer-dark-theme = true";
     gtk3.extraConfig.gtk-application-prefer-dark-theme = true;
     gtk4.extraConfig.gtk-application-prefer-dark-theme = true;
