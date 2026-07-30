@@ -43,7 +43,7 @@ in {
         "notifications"
         "mpris"
         "volume"
-        "backlight"
+        "slider#backlight"
         "buttons-grid"
       ];
       widget-config = {
@@ -63,8 +63,14 @@ in {
           show-per-app-icon = true;
           show-per-app-label = true;
         };
-        backlight = {
+        "slider#backlight" = {
           label = "󰃟";
+          cmd_getter = "${pkgs.brightnessctl}/bin/brightnessctl -c backlight -m | ${pkgs.coreutils}/bin/cut -d, -f4 | ${pkgs.coreutils}/bin/tr -d '%'";
+          cmd_setter = "${pkgs.brightnessctl}/bin/brightnessctl -c backlight set $value%";
+          min = 1;
+          min_limit = 1;
+          max = 100;
+          max_limit = 100;
         };
         dnd = {
           text = " Do Not Disturb";

@@ -333,7 +333,7 @@ blankwindow,
 }
 
 .widget-volume,
-.widget-backlight {
+.widget-slider {
   padding: 0;
   background: alpha(@surface, 0.86);
   border: 1px solid alpha(@border, 0.68);
@@ -365,19 +365,19 @@ blankwindow,
   background: @surface-raised;
 }
 
-.widget-backlight {
+.widget-slider {
   min-height: 46px;
   padding: 0 8px;
 }
 
-.widget-backlight > label {
+.widget-slider > label {
   min-width: 30px;
   color: @text-muted;
   font-family: "JetBrainsMono Nerd Font";
   font-size: 15px;
 }
 
-.widget-backlight > scale {
+.widget-slider > scale {
   margin-right: 30px;
 }
 
