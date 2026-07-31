@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  hostname,
   ...
 }: let
   palette = import ../../palette.nix {inherit lib;};
@@ -223,12 +224,15 @@ in {
           tooltip-format = " {used:.1f}GB/{total:.1f}GB";
         };
 
-        "backlight" = {
-          format = "{icon}  {percent}%";
-          format-icons = ["" "" "" "" "" "" "" "" ""];
-          on-scroll-up = "${pkgs.swayosd}/bin/swayosd-client --brightness +2";
-          on-scroll-down = "${pkgs.swayosd}/bin/swayosd-client --brightness -2";
-        };
+        "backlight" =
+          {
+            format = "{icon}  {percent}%";
+            format-icons = ["" "" "" "" "" "" "" "" ""];
+            on-scroll-up = "${pkgs.swayosd}/bin/swayosd-client --brightness +2";
+            on-scroll-down = "${pkgs.swayosd}/bin/swayosd-client --brightness -2";
+          }
+          # omen's panel follows nvidia_0 via omen-backlight
+          // lib.optionalAttrs (hostname == "omen") {device = "nvidia_0";};
 
         "network" = {
           # on-click = "nm-connection-editor";

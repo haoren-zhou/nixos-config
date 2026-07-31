@@ -12,10 +12,15 @@
     # inputs.nixos-hardware.nixosModules.common-cpu-intel-cpu-only
     inputs.nixos-hardware.nixosModules.common-cpu-intel
     inputs.nixos-hardware.nixosModules.common-gpu-nvidia
+
+    ./omen-backlight
   ];
 
   boot.kernelModules = ["hp-wmi"];
+
   boot.kernelParams = ["acpi_backlight=native"];
+
+  hardware.omenBacklight.enable = true;
 
   services.xserver.videoDrivers = [
     "modesetting"

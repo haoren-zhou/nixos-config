@@ -118,7 +118,7 @@
         pkgs = nixpkgs.legacyPackages.${system};
         extraSpecialArgs = {
           inherit inputs pkgs-unstable user homeStateVersion;
-          inherit (host) profile;
+          inherit (host) profile hostname;
         };
         modules =
           [
