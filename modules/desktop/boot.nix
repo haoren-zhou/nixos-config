@@ -15,7 +15,7 @@
       maxGenerations = 8;
       style = {
         wallpapers = [../../wallpapers/basement.png];
-        wallpaperStyle = "centered";
+        wallpaperStyle = "stretched";
       };
       secureBoot = {
         enable = true;
