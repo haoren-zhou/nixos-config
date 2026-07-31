@@ -1,11 +1,5 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    bibata-cursors
-    pavucontrol
-    wl-clipboard
-    xclip
-
-    feh # image viewer
     file-roller
 
     anki-bin

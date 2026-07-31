@@ -1,0 +1,110 @@
+/* Colour variables (c-*) are prepended from palette.nix. */
+
+window {
+    transparency:      "real";
+    location:          center;
+    anchor:            center;
+    width:             640px;
+    padding:           0px;
+    border:            1px solid;
+    border-color:      @c-border;
+    border-radius:     14px;
+    background-color:  @c-background-blur;
+    cursor:            "default";
+    children:          [ mainbox ];
+}
+
+mainbox {
+    padding:           14px;
+    spacing:           12px;
+    background-color:  transparent;
+    children:          [ inputbar, listview ];
+}
+
+inputbar {
+    padding:           10px 12px;
+    spacing:           10px;
+    border-radius:     10px;
+    background-color:  @c-surface;
+    text-color:        @c-text;
+    children:          [ prompt, entry ];
+}
+
+prompt {
+    background-color:  transparent;
+    text-color:        @c-accent;
+    vertical-align:    0.5;
+}
+
+entry {
+    background-color:  transparent;
+    text-color:        @c-text;
+    placeholder:       "Search";
+    placeholder-color: @c-text-muted;
+    vertical-align:    0.5;
+    cursor:            text;
+}
+
+listview {
+    lines:             9;
+    columns:           1;
+    spacing:           4px;
+    scrollbar:         false;
+    fixed-height:      false;
+    dynamic:           true;
+    background-color:  transparent;
+}
+
+element {
+    padding:           8px 10px;
+    spacing:           10px;
+    border-radius:     10px;
+    background-color:  transparent;
+    text-color:        @c-text-muted;
+    cursor:            pointer;
+}
+
+element selected.normal {
+    background-color:  @c-accent;
+    text-color:        @c-background;
+}
+
+element urgent.normal {
+    text-color:        @c-critical;
+}
+
+element active.normal {
+    text-color:        @c-accent-strong;
+}
+
+element-icon {
+    size:              24px;
+    background-color:  transparent;
+    text-color:        inherit;
+    cursor:            inherit;
+}
+
+element-text {
+    background-color:  transparent;
+    text-color:        inherit;
+    vertical-align:    0.5;
+    cursor:            inherit;
+}
+
+message {
+    background-color:  transparent;
+}
+
+textbox {
+    padding:           10px 12px;
+    border-radius:     10px;
+    background-color:  @c-surface;
+    text-color:        @c-text;
+}
+
+error-message {
+    padding:           14px;
+    border-radius:     12px;
+    background-color:  @c-background-blur;
+    text-color:        @c-critical;
+}

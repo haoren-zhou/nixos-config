@@ -2,35 +2,37 @@
   pkgs,
   lib,
   ...
-}: {
-  programs.rofi = let
-    inherit (lib) getExe;
-  in {
+}: let
+  palette = import ../../palette.nix {inherit lib;};
+in {
+  programs.rofi = {
     enable = true;
     package = pkgs.rofi;
-    terminal = "${getExe pkgs.kitty}";
+    terminal = lib.getExe pkgs.kitty;
+    font = "Inter 11";
     plugins = with pkgs; [
       rofi-emoji # https://github.com/Mange/rofi-emoji 🤯
       rofi-games # https://github.com/Rolv-Apneseth/rofi-games 🎮
     ];
+    theme = "theme";
+    extraConfig = {
+      modi = "drun,run,filebrowser,window";
+      show-icons = true;
+      icon-theme = "Papirus-Dark";
+      drun-display-format = "{name}";
+      window-format = "{w} · {c} · {t}";
+      display-drun = "";
+      display-run = "";
+      display-window = "󱂬";
+      display-filebrowser = "";
+      display-emoji = "🤠";
+      display-games = "";
+      hover-select = true;
+      me-select-entry = "MouseSecondary";
+      me-accept-entry = "MousePrimary";
+    };
   };
-  xdg.configFile."rofi/config-music.rasi".source = ./config-music.rasi;
-  xdg.configFile."rofi/config-long.rasi".source = ./config-long.rasi;
-  xdg.configFile."rofi/config-wallpaper.rasi".source = ./config-wallpaper.rasi;
-  xdg.configFile."rofi/launchers" = {
-    source = ./launchers;
-    recursive = true;
-  };
-  xdg.configFile."rofi/colors" = {
-    source = ./colors;
-    recursive = true;
-  };
-  xdg.configFile."rofi/assets" = {
-    source = ./assets;
-    recursive = true;
-  };
-  xdg.configFile."rofi/resolution" = {
-    source = ./resolution;
-    recursive = true;
-  };
+
+  xdg.dataFile."rofi/themes/theme.rasi".text =
+    palette.rasiColors + builtins.readFile ./theme.rasi;
 }

@@ -45,7 +45,7 @@ notification() {
 main() {
   # TODO: increase this value if adding more playlists
   r_override="entry{placeholder:'Search Music...';}listview{lines:4;}"
-  choice=$(printf "%s\n" "${!menu_options[@]}" | rofi -dmenu -theme-str "$r_override" -theme ~/.config/rofi/launchers/type-2/style-2.rasi -i -p "")
+  choice=$(printf "%s\n" "${!menu_options[@]}" | rofi -dmenu -theme-str "$r_override" -i -p "")
 
   if [ -z "$choice" ]; then
     exit 1

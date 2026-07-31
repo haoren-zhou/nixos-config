@@ -1,4 +1,11 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  hostname,
+  ...
+}: let
+  palette = import ../../palette.nix {inherit lib;};
+in {
   # fonts.packages = with pkgs.nerd-fonts; [jetbrains-mono];
   programs.waybar = {
     enable = true;
@@ -25,19 +32,19 @@
         modules-left = ["hyprland/workspaces"];
         # modules-center = ["clock" "custom/notification"];
         modules-center = ["idle_inhibitor" "clock"];
-        modules-right = ["group/hardware" "backlight" "pulseaudio" "bluetooth" "network" "tray" "battery" "custom/power"];
+        modules-right = ["group/hardware" "backlight" "pulseaudio" "bluetooth" "network" "custom/notification" "tray" "battery" "custom/power"];
 
         "custom/notification" = {
           tooltip = false;
           format = "{icon}";
           format-icons = {
-            notification = "<span foreground='red'><sup></sup></span>";
+            notification = "<span foreground='#d67b7b'><sup></sup></span>";
             none = "";
-            dnd-notification = "<span foreground='red'><sup></sup></span>";
+            dnd-notification = "<span foreground='#d67b7b'><sup></sup></span>";
             dnd-none = "";
-            inhibited-notification = "<span foreground='red'><sup></sup></span>";
+            inhibited-notification = "<span foreground='#d67b7b'><sup></sup></span>";
             inhibited-none = "";
-            dnd-inhibited-notification = "<span foreground='red'><sup></sup></span>";
+            dnd-inhibited-notification = "<span foreground='#d67b7b'><sup></sup></span>";
             dnd-inhibited-none = "";
           };
           return-type = "json";
@@ -117,8 +124,8 @@
           disable-scroll = false;
           all-outputs = true;
           active-only = false;
-          on-scroll-up = "hyprctl dispatch workspace e+1";
-          on-scroll-down = "hyprctl dispatch workspace e-1";
+          on-scroll-up = "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e+1\" })'";
+          on-scroll-down = "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e-1\" })'";
           sort-by = "number";
           unique-icons = false;
           max-windows = 4;
@@ -136,6 +143,11 @@
             "class<(github-desktop|GitHub Desktop|GitHubDesktop)>" = "";
             "class<(org.telegram.desktop|Telegram|telegram)>" = "";
             "class<(org.pwmt.zathura|zathura)>" = "";
+            "class<mpv>" = "";
+            "class<swayimg>" = "";
+            "class<(pavucontrol|org.pulseaudio.pavucontrol|.pavucontrol-wrapped)>" = "";
+            "class<(blueman-manager|.blueman-manager-wrapped)>" = "";
+            "class<(nm-connection-editor|.nm-connection-editor-wrapped)>" = "󱚾";
           };
           tooltips = {
             default = "{name}: {windows}";
@@ -212,12 +224,15 @@
           tooltip-format = " {used:.1f}GB/{total:.1f}GB";
         };
 
-        "backlight" = {
-          format = "{icon}  {percent}%";
-          format-icons = ["" "" "" "" "" "" "" "" ""];
-          on-scroll-up = "${pkgs.swayosd}/bin/swayosd-client --brightness +2";
-          on-scroll-down = "${pkgs.swayosd}/bin/swayosd-client --brightness -2";
-        };
+        "backlight" =
+          {
+            format = "{icon}  {percent}%";
+            format-icons = ["" "" "" "" "" "" "" "" ""];
+            on-scroll-up = "${pkgs.swayosd}/bin/swayosd-client --brightness +2";
+            on-scroll-down = "${pkgs.swayosd}/bin/swayosd-client --brightness -2";
+          }
+          # omen's panel follows nvidia_0 via omen-backlight
+          // lib.optionalAttrs (hostname == "omen") {device = "nvidia_0";};
 
         "network" = {
           # on-click = "nm-connection-editor";
@@ -312,17 +327,7 @@
         min-height: 0;
       }
 
-      @define-color background #111318;
-      @define-color surface #1d2026;
-      @define-color surface-raised #252a32;
-      @define-color border #3d4550;
-      @define-color text #e2e7ee;
-      @define-color text-muted #a4abb5;
-      @define-color accent #77a8d5;
-      @define-color accent-strong #a5c8ed;
-      @define-color warning #d5a15e;
-      @define-color critical #d67b7b;
-
+      ${palette.defineColors}
       window#waybar {
         background: transparent;
         transition: background-color 0.2s ease;
@@ -480,16 +485,26 @@
 
       /* Compact empty pills expand only as windows or focus demand more room. */
       #workspaces {
+        font-size: 14px;
         background: transparent;
         border: 0;
         box-shadow: none;
+        padding: 1px 0;
+      }
+
+      #workspaces button:first-child {
+        margin-left: 0;
+      }
+
+      #workspaces button:last-child {
+        margin-right: 0;
       }
 
       #workspaces button {
         background: transparent;
         border: 0;
         border-bottom: 0;
-        border-radius: 8px;
+        border-radius: 10px;
         box-shadow: none;
         color: @text-muted;
         margin: 0 2px;

@@ -5,12 +5,11 @@ pkill yad || true
 
 # check if rofi is already running
 if pidof rofi > /dev/null; then
-  pkill rofi
+  pkill -x rofi
 fi
 
 # define the config files
 keybinds_conf="${XDG_CONFIG_HOME:-$HOME/.config}/hypr/hyprland.conf"
-rofi_theme="${XDG_CONFIG_HOME:-$HOME/.config}/rofi/launchers/type-4/style-4.rasi"
 r_override="entry{placeholder:'Search KeyBinds...';}"
 msg='☣️ NOTE ☣️: Clicking with Mouse or Pressing ENTER will have NO function'
 
@@ -28,4 +27,4 @@ fi
 display_keybinds=$(echo "$keybinds" | sed 's/\$mainMod/SUPER/g')
 
 # use rofi to display the keybinds with the modified content
-echo "$display_keybinds" | rofi -dmenu -i -theme-str "$r_override" -config "$rofi_theme" -mesg "$msg"
+echo "$display_keybinds" | rofi -dmenu -i -theme-str "$r_override" -mesg "$msg"

@@ -58,7 +58,7 @@ exec(main_mod .. " + E", "pkill -x rofi || " .. scripts .. "/rofi.sh emoji")
 exec(main_mod .. " + CTRL + Space", "fcitx5-remote -t")
 exec(main_mod .. " + I", "fcitx5-remote -t")
 exec(main_mod .. " + N", "swaync-client -t -sw")
-exec(main_mod .. " + V", scripts .. "/ClipManager.sh")
+exec(main_mod .. " + V", "pkill -x rofi || " .. scripts .. "/ClipManager.sh")
 exec(main_mod .. " + M", "pkill -x rofi || " .. scripts .. "/rofimusic.sh")
 
 exec(main_mod .. " + SHIFT + S", scripts .. "/screenshot.sh s")
@@ -127,6 +127,9 @@ for workspace = 1, 10 do
 	bind(main_mod .. " + CTRL + " .. key, hl.dsp.window.move({ workspace = workspace }))
 	bind(main_mod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = workspace, follow = false }))
 end
+
+bind(main_mod .. " + grave", hl.dsp.workspace.toggle_special("magic"))
+bind(main_mod .. " + SHIFT + grave", hl.dsp.window.move({ workspace = "special:magic", follow = false }))
 
 bind(main_mod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
 bind(main_mod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
