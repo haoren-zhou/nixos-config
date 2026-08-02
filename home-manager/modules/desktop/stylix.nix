@@ -15,6 +15,7 @@
       swaync.enable = false;
       vscode.enable = false;
       yazi.enable = false;
+      zen-browser.enable = false;
     };
 
     polarity = "dark";

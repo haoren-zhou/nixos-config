@@ -35,7 +35,7 @@
       "launch-zen" = {
         name = "Launch Zen Browser";
         key = "Meta+B";
-        command = "zen";
+        command = "zen-beta";
       };
       "screenshot-region" = {
         name = "Capture a rectangular region of the screen";

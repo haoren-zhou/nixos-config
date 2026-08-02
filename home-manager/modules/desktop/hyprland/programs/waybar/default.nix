@@ -134,7 +134,7 @@ in {
           format-window-separator = " ";
           window-rewrite = {
             "class<(kitty|Alacritty|alacritty)>" = "󰆍";
-            "class<zen>" = "󰈹";
+            "class<zen|zen-beta>" = "󰈹";
             "class<(code|Code|code-url-handler)>" = "󰨞";
             "class<thunar>" = "󰝰";
             "class<(discord|Discord)>" = "";
