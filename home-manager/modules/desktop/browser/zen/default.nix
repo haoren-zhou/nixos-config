@@ -91,14 +91,21 @@ in {
         };
       };
 
-      # Alt+1..Alt+10 to switch to workspace N
+      # Alt+1..Alt+9 to switch to workspace N
       keyboardShortcuts =
         (map (n: {
           id = "zen-workspace-switch-${toString n}";
           key = toString n;
           modifiers.alt = true;
-        }) (builtins.genList (n: n + 1) 10))
+        }) (builtins.genList (n: n + 1) 9))
         ++ [
+          # key "10" would match the "1" character (XUL keys match key[0]) and,
+          # sitting first in Zen's key order, steal Alt+1. 10 workspaces don't
+          # exist anyway (index 9 is out of bounds with 6 spaces).
+          {
+            id = "zen-workspace-switch-10";
+            disabled = true;
+          }
           # Swapped vs Zen defaults: floating sidebar Ctrl+S, compact mode Ctrl+Alt+S
           {
             id = "zen-compact-mode-show-sidebar";
