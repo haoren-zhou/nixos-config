@@ -15,6 +15,7 @@
 
     ./misc/nix-index
 
+    ./shell/direnv
     ./shell/zsh
   ];
 }
