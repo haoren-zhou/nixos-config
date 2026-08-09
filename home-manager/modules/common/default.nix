@@ -3,6 +3,7 @@
     ./cli/bat
     ./cli/btop
     ./cli/gh
+    ./cli/tmux
     ./cli/yazi
     ./git.nix
     ./ssh.nix
