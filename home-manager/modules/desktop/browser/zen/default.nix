@@ -39,6 +39,8 @@ in {
       presets.betterfox.enable = true;
 
       settings = {
+        "extensions.autoDisableScopes" = 0;
+
         browser.cache.disk.enable = true;
         network.dns.disablePrefetch = false;
         network.dns.disablePrefetchFromHTTPS = false;
@@ -98,13 +100,16 @@ in {
           key = toString n;
           modifiers.alt = true;
         }) (builtins.genList (n: n + 1) 9))
+        ++ (map (n: {
+          id = "key_selectTab${toString n}";
+          disabled = true;
+        }) (builtins.genList (n: n + 1) 8))
         ++ [
-          # key "10" would match the "1" character (XUL keys match key[0]) and,
-          # sitting first in Zen's key order, steal Alt+1. 10 workspaces don't
-          # exist anyway (index 9 is out of bounds with 6 spaces).
           {
-            id = "zen-workspace-switch-10";
-            disabled = true;
+            id = "key_savePage";
+            key = "s";
+            modifiers.accel = true;
+            modifiers.shift = true;
           }
           # Swapped vs Zen defaults: floating sidebar Ctrl+S, compact mode Ctrl+Alt+S
           {

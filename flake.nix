@@ -153,5 +153,7 @@
         value = makeHome h;
       })
       hosts);
+
+    formatter.${system} = nixpkgs.legacyPackages.${system}.alejandra;
   };
 }
