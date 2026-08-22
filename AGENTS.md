@@ -8,7 +8,8 @@ NixOS modules live in `modules/common/`, `modules/desktop/`, and `modules/hardwa
 
 ## Build, Test, and Development Commands
 
-- `nix flake check` evaluates the flake and its declared configurations; run it before submitting Nix changes.
+- `nix flake check` evaluates the flake, its declared configurations, and the alejandra formatting check; run it before submitting Nix changes.
+- `nix fmt .` formats the whole flake with alejandra (the repository formatter); `nix fmt <paths>` formats specific files.
 - `nix build '.#nixosConfigurations.<host>.config.system.build.toplevel'` builds one system without switching it.
 - `nix build '.#homeConfigurations."hr@<host>".activationPackage'` builds a Home Manager activation package.
 - `nh os switch` and `nh home switch` apply the current machine's configuration. Use these only on the intended host after validation.
@@ -17,7 +18,7 @@ NixOS modules live in `modules/common/`, `modules/desktop/`, and `modules/hardwa
 
 Follow the existing Nix style: two-space indentation, one attribute per line when lists are non-trivial, and relative imports grouped in `imports = [ ... ];`. Use lowercase, hyphenated filenames where appropriate (for example, `hardware-configuration.nix`); use a directory with `default.nix` for a multi-file module. Keep common settings independent of desktop-only dependencies, and register every new module in the relevant `default.nix` or profile.
 
-No repository-wide formatter is configured. Preserve surrounding formatting and run an available Nix formatter consistently over files you edit rather than making unrelated formatting changes.
+Alejandra is the repository formatter (see `nix fmt .` above). Run `nix fmt` consistently over files you edit rather than making unrelated formatting changes.
 
 ## Testing Guidelines
 

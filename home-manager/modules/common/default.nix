@@ -1,11 +1,12 @@
 {
   imports = [
-    ./bat.nix
-    ./btop.nix
-    ./gh.nix
+    ./cli/bat
+    ./cli/btop
+    ./cli/gh
+    ./cli/tmux
+    ./cli/yazi
     ./git.nix
     ./ssh.nix
-    ./yazi.nix
 
     ./editor/micro
     ./editor/nvchad
@@ -15,6 +16,7 @@
 
     ./misc/nix-index
 
+    ./shell/direnv
     ./shell/zsh
   ];
 }

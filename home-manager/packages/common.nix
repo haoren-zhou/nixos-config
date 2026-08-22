@@ -69,5 +69,6 @@ in {
     llm-agents.claude-code
     llm-agents.codex
     llm-agents.antigravity-cli
+    llm-agents.opencode
   ];
 }

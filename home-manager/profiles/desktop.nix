@@ -5,7 +5,7 @@
   ];
 
   home.sessionVariables = {
-    BROWSER = "zen";
+    BROWSER = "zen-beta";
     TERMINAL = "kitty";
   };
 

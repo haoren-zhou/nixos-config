@@ -14,6 +14,7 @@
     inputs.nixos-hardware.nixosModules.common-gpu-nvidia
 
     ./omen-backlight
+    ./mouse
   ];
 
   boot.kernelModules = ["hp-wmi"];
