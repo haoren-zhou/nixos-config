@@ -1,0 +1,37 @@
+{
+  "defaultThinkingLevel": "medium",
+  "defaultProjectTrust": "ask",
+  "enableSkillCommands": true,
+  "npmCommand": [
+    "npm",
+    "--ignore-scripts"
+  ],
+  "packages": [
+    "npm:@narumitw/pi-btw@0.55.1",
+    "npm:pi-hermes-memory@0.9.6",
+    "npm:pi-reasonix@1.1.0",
+    "npm:pi-rewind-hook@1.8.5",
+    "npm:pi-web-access@0.24.2",
+    "npm:@gotgenes/pi-subagents@19.3.5",
+    "npm:@gotgenes/pi-permission-system@27.0.0"
+  ],
+  "rewind": {
+    "retention": {
+      "maxSnapshots": 500,
+      "maxAgeDays": 30,
+      "pinLabeledEntries": true
+    }
+  },
+  "compaction": {
+    "enabled": true,
+    "reserveTokens": 16384,
+    "keepRecentTokens": 20000
+  },
+  "retry": {
+    "enabled": true,
+    "maxRetries": 3
+  },
+  "theme": "dark",
+  "defaultProvider": "openai-codex",
+  "defaultModel": "gpt-5.6-luna"
+}

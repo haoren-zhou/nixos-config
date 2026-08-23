@@ -1,0 +1,13 @@
+# Machine-local Pi state and credentials
+auth.json
+models-store.json
+trust.json
+web-search.json
+web-search-cache/
+.pi-hermes-locks.sqlite*
+missions/
+npm/
+pi-hermes-memory/
+projects-memory/
+sessions/
+extensions/pi-permission-system/logs/

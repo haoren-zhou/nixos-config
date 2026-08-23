@@ -16,6 +16,8 @@
 
     ./misc/nix-index
 
+    ./cli/pi-coding-agent
+
     ./shell/direnv
     ./shell/zsh
   ];

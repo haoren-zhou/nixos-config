@@ -16,6 +16,8 @@
       set -g set-clipboard on
       # Pass truecolor through to kitty
       set -g terminal-features "xterm-kitty:RGB"
+      set -g extended-keys on
+      set -g extended-keys-format csi-u
 
       set -g status-right '#[dim](#S) %a %d %b %H:%M'
 
