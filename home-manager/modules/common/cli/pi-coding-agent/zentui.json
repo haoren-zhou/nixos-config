@@ -1,0 +1,175 @@
+{
+  "components": {
+    "editor": {
+      "enabled": true,
+      "style": "opencode",
+      "colorSource": "theme",
+      "borderColorMode": "adaptive",
+      "modelLabel": "name",
+      "viewportIndicators": true,
+      "styles": {
+        "opencode": {
+          "metadataFormat": "$model  $provider(  $thinking)"
+        },
+        "opencode-copy-friendly": {
+          "metadataFormat": "$model  $provider(  $thinking)"
+        },
+        "minimalist": {
+          "pathDisplay": "compact",
+          "contextFormat": "percent",
+          "contextGauge": false,
+          "showSessionName": true,
+          "showTimer": true,
+          "showCost": true,
+          "showGit": true,
+          "contextThresholds": {
+            "warning": 70,
+            "error": 90
+          }
+        }
+      }
+    },
+    "userMessages": {
+      "enabled": true,
+      "style": "framed-copy-friendly",
+      "colorSource": "theme",
+      "styles": {
+        "framed": {},
+        "framed-copy-friendly": {},
+        "compact": {},
+        "labeled": {}
+      }
+    },
+    "workingLine": {
+      "enabled": false,
+      "turnSummary": true,
+      "spinner": "star-bloom",
+      "spinnerIntervalMs": 100,
+      "animateSpinnerColor": false,
+      "textIntervalMs": 60,
+      "textAnimation": "classic",
+      "colorSource": "terminal",
+      "messages": {
+        "custom": true,
+        "values": [
+          "Sautéing…",
+          "Cooking…",
+          "Ionizing…",
+          "Zigzagging…",
+          "Razzle-dazzling…",
+          "Photosynthesizing…",
+          "Nucleating…",
+          "Brewing…",
+          "Combobulating…",
+          "Boogieing…",
+          "Befuddling…",
+          "Alchemizing…",
+          "Conjuring…",
+          "Baking…",
+          "Simmering…",
+          "Blanching…"
+        ]
+      },
+      "segments": {
+        "tool": true,
+        "elapsed": true,
+        "thought": true,
+        "tokens": true
+      }
+    },
+    "selectorBorders": {
+      "enabled": false,
+      "style": "zentui",
+      "colorSource": "terminal"
+    },
+    "footer": {
+      "style": "starship",
+      "colorSource": "terminal",
+      "modelLabel": "id",
+      "styles": {
+        "starship": {
+          "format": "$cwd$wrap( on $git_branch) $git_status$fill$context$sep$tokens$sep$cost( $subscription)",
+          "responsive": true,
+          "compactFormat": "$cwd$wrap( on $git_branch) $git_status$wrap $context$sep$tokens$sep$cost( $subscription)",
+          "compactMaxLines": 2,
+          "separator": "pipe",
+          "contextStyle": "text+gauge",
+          "contextThresholds": {
+            "warning": 70,
+            "error": 90
+          },
+          "pathDisplay": {
+            "mode": "full",
+            "depth": 0
+          },
+          "segments": {
+            "cwd": true,
+            "sessionName": false,
+            "gitBranch": true,
+            "gitStatus": true,
+            "gitCounts": true,
+            "gitCommit": false,
+            "gitMetrics": false,
+            "runtime": true,
+            "modelInfo": false,
+            "context": true,
+            "tokens": true,
+            "cost": true,
+            "sessionDuration": false,
+            "username": false,
+            "time": false,
+            "os": false,
+            "packageVersion": false
+          },
+          "gitBranch": {
+            "maxLength": "full"
+          },
+          "gitCommit": {
+            "hashLength": 7,
+            "onlyDetached": true,
+            "showTag": true
+          },
+          "gitMetrics": {
+            "onlyNonzero": true,
+            "ignoreSubmodules": false
+          },
+          "extensionStatuses": {
+            "defaultPlacement": "right",
+            "placements": {
+              "permissions": "right",
+              "pi-permission-system": "off",
+              "rewind": "off"
+            },
+            "colorModes": {
+              "permissions": "original",
+              "pi-permission-system": "zentui"
+            }
+          }
+        }
+      }
+    }
+  },
+  "colors": {
+    "cwd": "bold #83a598",
+    "sessionName": "bold #b8bb26",
+    "gitBranch": "bold #d3869b",
+    "gitStatus": "bold #fb4934",
+    "contextNormal": "#8ec07c",
+    "contextWarning": "bold #fabd2f",
+    "contextError": "bold #fb4934",
+    "tokens": "#83a598",
+    "cost": "bold #fabd2f",
+    "extensionStatus": "bold #8ec07c",
+    "separator": "#665c54",
+    "runtimePrefix": "#928374",
+    "sessionDuration": "#fabd2f",
+    "packageVersion": "#458588",
+    "gitCommit": "bold #b8bb26",
+    "gitMetricsAdded": "bold #b8bb26",
+    "gitMetricsDeleted": "bold #fb4934"
+  },
+  "icons": {
+    "mode": "nerd",
+    "git": ""
+  }
+}

@@ -13,7 +13,11 @@
     "npm:pi-rewind-hook@1.8.5",
     "npm:pi-web-access@0.24.2",
     "npm:@gotgenes/pi-subagents@19.3.5",
-    "npm:@gotgenes/pi-permission-system@27.0.0"
+    "npm:@gotgenes/pi-permission-system@27.0.0",
+    "npm:pi-provider-litellm",
+    "npm:@juicesharp/rpiv-ask-user-question@2.7.1",
+    "npm:@juicesharp/rpiv-todo@2.7.1",
+    "npm:pi-zentui@0.20.2"
   ],
   "rewind": {
     "retention": {

@@ -1,8 +1,8 @@
 # Pi Coding Agent configuration
 
 Home Manager installs Pi from `llm-agents.nix`, deploys this directory's
-`settings.json`, `extensions/`, and `skills/` under `~/.config/pi/agent`, and
-sets `PI_CODING_AGENT_DIR` to that location.
+`settings.json`, `zentui.json`, `extensions/`, and `skills/` under
+`~/.config/pi/agent`, and sets `PI_CODING_AGENT_DIR` to that location.
 
 The versioned `packages` entries in `settings.json` declare Pi packages that
 Pi installs into its per-user npm directory when missing. Nix provides
@@ -20,13 +20,19 @@ Currently declared packages:
 - `pi-web-access`: web search, URL/content fetching, and source checking
 - `@gotgenes/pi-subagents`: foreground and background child-agent delegation
 - `@gotgenes/pi-permission-system`: deterministic allow, ask, and deny gates
+- `@juicesharp/rpiv-ask-user-question`: structured multi-question questionnaires
+- `@juicesharp/rpiv-todo`: persistent live todo overlay and `/todos` command
+- `pi-zentui`: OpenCode-inspired editor, messages, working line, and footer
 
 The permission policy allows read-only tools, asks before file mutations, shell
 commands, and access outside the working directory, and denies selected secret
-paths plus `rm -rf` and `sudo`. The custom footer shows the working directory,
-Git branch, model and full thinking level, context use, cumulative input/output
-tokens, latest cache-hit rate, and permission mode. It wraps at segment
-boundaries when the terminal is too narrow.
+paths plus `rm -rf` and `sudo`. Zentui owns the editor, user-message styling,
+working line, and footer. The local permission-status extension keeps a colored
+`🔒 permissions` badge visible in Zentui's footer even when yolo mode is off;
+Zentui's built-in status integration otherwise receives no value from the
+permission package outside yolo mode. The memory display extension adds a
+TUI-only transcript card containing the exact memory content after successful
+memory writes, without adding that display-only copy to the model context.
 
 `/btw <question>` opens a temporary side thread using the current model and
 conversation context. Its messages stay out of the main conversation unless
@@ -51,11 +57,11 @@ configuration directory:
 
 ```sh
 cp settings.json ~/.pi/agent/settings.json
+cp zentui.json ~/.pi/agent/zentui.json
 cp -R extensions skills ~/.pi/agent/
 ```
 
-The `ask-user-question.ts` and `context.ts` extensions and the `stop-slop`
-skill were vendored from
+The `context.ts` extension and the `stop-slop` skill were vendored from
 [`amosblomqvist/pi-config`](https://github.com/amosblomqvist/pi-config) commit
 `575a0a5261ada93cf09189ebd59a508040f866f9`. Their Pi package imports were
 updated from the former `@mariozechner` namespace to `@earendil-works`.

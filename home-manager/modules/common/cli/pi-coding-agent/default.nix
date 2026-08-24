@@ -13,6 +13,7 @@
 
   xdg.configFile = {
     "pi/agent/settings.json".source = ./settings.json;
+    "pi/agent/zentui.json".source = ./zentui.json;
 
     "pi/agent/extensions" = {
       source = ./extensions;
