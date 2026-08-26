@@ -62,7 +62,7 @@ in {
     ocamlPackages.odoc
     ocamlPackages.utop
     opam
-    (python312.withPackages (p: with p; [uv]))
+    uv
 
     zathura
 

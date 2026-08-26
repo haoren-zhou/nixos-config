@@ -138,11 +138,11 @@
             "placements": {
               "permissions": "right",
               "pi-permission-system": "off",
-              "rewind": "off"
+              "rewind": "off",
+              "usage": "off"
             },
             "colorModes": {
-              "permissions": "original",
-              "pi-permission-system": "zentui"
+              "permissions": "original"
             }
           }
         }

@@ -1,5 +1,5 @@
 {
-  "defaultThinkingLevel": "medium",
+  "defaultThinkingLevel": "high",
   "defaultProjectTrust": "ask",
   "enableSkillCommands": true,
   "npmCommand": [
@@ -12,12 +12,15 @@
     "npm:pi-reasonix@1.1.0",
     "npm:pi-rewind-hook@1.8.5",
     "npm:pi-web-access@0.24.2",
-    "npm:@gotgenes/pi-subagents@19.3.5",
-    "npm:@gotgenes/pi-permission-system@27.0.0",
-    "npm:pi-provider-litellm",
+    "npm:pi-provider-litellm@2.2.1",
     "npm:@juicesharp/rpiv-ask-user-question@2.7.1",
     "npm:@juicesharp/rpiv-todo@2.7.1",
-    "npm:pi-zentui@0.20.2"
+    "npm:pi-zentui@0.20.2",
+    "npm:@narumitw/pi-plan-mode@0.55.0",
+    "npm:@narumitw/pi-goal@0.54.0",
+    "npm:pi-subagents@0.56.0",
+    "npm:@gotgenes/pi-permission-system@27.0.0",
+    "npm:@narumitw/pi-usage@0.52.2"
   ],
   "rewind": {
     "retention": {

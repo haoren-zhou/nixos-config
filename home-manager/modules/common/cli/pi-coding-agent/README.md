@@ -1,8 +1,13 @@
 # Pi Coding Agent configuration
 
-Home Manager installs Pi from `llm-agents.nix`, deploys this directory's
-`settings.json`, `zentui.json`, `extensions/`, and `skills/` under
-`~/.config/pi/agent`, and sets `PI_CODING_AGENT_DIR` to that location.
+Home Manager installs Pi from `llm-agents.nix`, deploys `extensions/` and
+`skills/` under `~/.config/pi/agent`, and sets `PI_CODING_AGENT_DIR` to that
+location.
+
+The JSON configs in this directory (`settings.json`, `zentui.json`,
+`hermes-memory-config.json`, `pi-plan-mode.json`) are
+bootstrapped on activation as real, user-editable files rather than read-only
+store symlinks.
 
 The versioned `packages` entries in `settings.json` declare Pi packages that
 Pi installs into its per-user npm directory when missing. Nix provides
@@ -18,11 +23,20 @@ Currently declared packages:
 - `pi-reasonix`: DeepSeek prefix caching, tool-call repair, and result compaction
 - `pi-rewind-hook`: conversation and worktree checkpoint restoration
 - `pi-web-access`: web search, URL/content fetching, and source checking
-- `@gotgenes/pi-subagents`: foreground and background child-agent delegation
 - `@gotgenes/pi-permission-system`: deterministic allow, ask, and deny gates
+- `pi-subagents`: single-agent delegation and scripted multi-agent workflows
+  (replaces `@gotgenes/pi-subagents`)
 - `@juicesharp/rpiv-ask-user-question`: structured multi-question questionnaires
 - `@juicesharp/rpiv-todo`: persistent live todo overlay and `/todos` command
 - `pi-zentui`: OpenCode-inspired editor, messages, working line, and footer
+- `@narumitw/pi-plan-mode`: Codex-like read-only `/plan` collaboration mode
+- `@narumitw/pi-goal`: autonomous single-objective `/goal` completion
+- `@narumitw/pi-usage`: account usage for Codex/Copilot/OpenRouter and `/fast`
+
+`pi-subagent-permission-forwarding` keeps permission approvals from
+`@gotgenes/pi-permission-system` attached to the interactive session that
+launched a `pi-subagents` child (including nested and background children) via
+the `PI_SUBAGENT_PI_BINARY` launcher wrapper.
 
 The permission policy allows read-only tools, asks before file mutations, shell
 commands, and access outside the working directory, and denies selected secret
@@ -52,12 +66,12 @@ real Git branch and index are left unchanged. Snapshot objects are retained in
 the repository-local `refs/pi-rewind/store` ref for at most 30 days or 500
 snapshots; labeled points are exempt from pruning.
 
-For a non-Nix installation, copy those three resources to Pi's default global
+For a non-Nix installation, copy the managed resources to Pi's default global
 configuration directory:
 
 ```sh
-cp settings.json ~/.pi/agent/settings.json
-cp zentui.json ~/.pi/agent/zentui.json
+cp settings.json zentui.json hermes-memory-config.json ~/.pi/agent/
+cp pi-plan-mode.json ~/.pi/agent/pi-plan-mode.json
 cp -R extensions skills ~/.pi/agent/
 ```
 

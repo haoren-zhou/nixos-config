@@ -1,0 +1,19 @@
+{
+  "thinkingLevel": "high",
+  "defaultPlanTools": [
+    "bash",
+    "find",
+    "grep",
+    "ls",
+    "read",
+    "ask_user_question",
+    "fetch_content",
+    "get_search_content",
+    "memory_search",
+    "session_search",
+    "source_check",
+    "web_search"
+  ],
+  "implementationPlanRetention": "clear-on-start",
+  "toolVisibility": "after-first-plan"
+}
