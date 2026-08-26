@@ -6,6 +6,10 @@ At interactive session start, the extension records the session ID in the parent
 
 The bridge does not approve tools and does not use `contact_supervisor`. Permission rules and human decisions remain inside `@gotgenes/pi-permission-system`.
 
+## Standalone binaries
+
+The released Pi is a Bun-compiled binary. Inside it, `process.argv[1]` is the synthesized archive entry (`/$bunfs/root/pi`), not an on-disk CLI script, so the interpreter recipe (node + cli script) cannot drive it. `index.ts` detects standalone executables (basename `pi`/`pi.exe`, matching `pi-subagents`' heuristic), uses `process.execPath` as the child binary, and routes it through the launcher's delegate branch, which spawns it directly with no prefix arguments. The interpreter recipe remains in use for node-installed Pi CLI scripts.
+
 ## Safety behavior
 
 - Headless roots remove inherited bridge variables and do not install the bridge.
@@ -14,6 +18,7 @@ The bridge does not approve tools and does not use `contact_supervisor`. Permiss
 - Existing `PI_SUBAGENT_PI_BINARY` wrappers are chained.
 - Multiple Pi processes keep separate environment anchors.
 - Session shutdown restores the environment values that the extension replaced.
+- Standalone `pi` binaries are spawned directly (delegate branch); the interpreter recipe is only used for node-installed Pi CLI scripts.
 
 ## Files
 

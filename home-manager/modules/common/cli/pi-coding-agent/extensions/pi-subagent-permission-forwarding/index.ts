@@ -6,6 +6,7 @@ import {
   deactivateInheritedBridgeEnvironment,
   installBridgeEnvironment,
   isChildProcess,
+  isStandalonePiExecutable,
   type BridgeInstallation,
 } from "./bridge.ts";
 
@@ -39,24 +40,29 @@ export default function piSubagentPermissionForwarding(pi: ExtensionAPI): void {
     }
 
     const sessionId = ctx.sessionManager.getSessionId();
-    const cliPath = process.argv[1];
+    const execPath = process.execPath;
+    const standalone = isStandalonePiExecutable(execPath);
+    const cliPath = standalone ? execPath : process.argv[1];
     try {
       if (!fs.existsSync(WRAPPER_PATH)) {
         throw new Error(`Bridge launcher is missing at ${WRAPPER_PATH}.`);
       }
       if (!cliPath || !fs.existsSync(cliPath)) {
-        throw new Error("The running Pi CLI entry point could not be resolved.");
+        throw new Error(
+          "The running Pi CLI entry point could not be resolved.",
+        );
       }
-      if (!fs.existsSync(process.execPath)) {
-        throw new Error(`The Node executable is missing at ${process.execPath}.`);
+      if (!fs.existsSync(execPath)) {
+        throw new Error(`The Node executable is missing at ${execPath}.`);
       }
 
       installation = installBridgeEnvironment({
         env: process.env,
         sessionId,
         wrapperPath: WRAPPER_PATH,
-        nodePath: process.execPath,
+        nodePath: execPath,
         cliPath,
+        ...(standalone ? { delegateBinary: execPath } : {}),
       });
       // Let every session_start handler finish first. pi-subagents sets the
       // parent-session variable during its own handler even in the UI root.
@@ -67,7 +73,10 @@ export default function piSubagentPermissionForwarding(pi: ExtensionAPI): void {
     } catch (error) {
       restore();
       const message = error instanceof Error ? error.message : String(error);
-      ctx.ui.notify(`Subagent permission forwarding bridge disabled: ${message}`, "error");
+      ctx.ui.notify(
+        `Subagent permission forwarding bridge disabled: ${message}`,
+        "error",
+      );
     }
   });
 
