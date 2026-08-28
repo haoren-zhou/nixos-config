@@ -1,6 +1,7 @@
 {
   imports = [
     ./docker.nix
+    ./env.nix
     ./home-manager.nix
     ./kernel.nix
     ./networking.nix

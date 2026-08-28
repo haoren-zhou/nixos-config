@@ -1,10 +1,6 @@
 {
-  environment.sessionVariables = rec {
-    TERMINAL = "kitty";
-    EDITOR = "nvim";
-    XDG_BIN_HOME = "$HOME/.local/bin";
-    PATH = [
-      "${XDG_BIN_HOME}"
-    ];
-  };
+  # Keep the runtime directory override scoped to graphical sessions.
+  environment.variables.XDG_RUNTIME_DIR = "/run/user/$UID";
+
+  environment.sessionVariables.TERMINAL = "kitty";
 }
