@@ -10,8 +10,18 @@
     "zentui.json"
     "hermes-memory-config.json"
     "pi-plan-mode.json"
+    "extensions/pi-permission-system/config.json"
   ];
 in {
+  imports = [
+    ./pi-safe
+  ];
+
+  programs.pi-safe = {
+    enable = true;
+    extraWritablePaths = ["${config.home.homeDirectory}/nixos"];
+  };
+
   home.packages = [
     inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.pi
     pkgs.nodejs
@@ -23,7 +33,11 @@ in {
 
   xdg.configFile = {
     "pi/agent/extensions" = {
-      source = ./extensions;
+      # exclude pi-permission-system config file
+      source = lib.cleanSourceWith {
+        src = ./extensions;
+        filter = path: _type: path != toString ./extensions/pi-permission-system/config.json;
+      };
       recursive = true;
     };
     "pi/agent/skills" = {
@@ -43,6 +57,7 @@ in {
         rm -f "$target"
       fi
       if [ ! -e "$target" ]; then
+        mkdir -p "$(dirname "$target")"
         install -m 0644 ${./.}/"$f" "$target"
       fi
     done
