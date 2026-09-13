@@ -7,20 +7,23 @@
     "--ignore-scripts"
   ],
   "packages": [
-    "npm:@narumitw/pi-btw@0.55.1",
-    "npm:pi-hermes-memory@0.9.6",
+    "npm:@narumitw/pi-btw@0.61.1",
+    "npm:pi-hermes-memory@0.9.9",
     "npm:pi-reasonix@1.1.0",
-    "npm:pi-rewind-hook@1.8.5",
-    "npm:pi-web-access@0.24.2",
-    "npm:pi-provider-litellm@2.2.1",
-    "npm:@juicesharp/rpiv-ask-user-question@2.7.1",
-    "npm:@juicesharp/rpiv-todo@2.7.1",
-    "npm:pi-zentui@0.20.2",
-    "npm:@narumitw/pi-plan-mode@0.55.0",
-    "npm:@narumitw/pi-goal@0.54.0",
-    "npm:pi-subagents@0.56.0",
-    "npm:@gotgenes/pi-permission-system@27.0.0",
-    "npm:@narumitw/pi-usage@0.52.2"
+    "npm:pi-rewind-hook@1.8.7",
+    "npm:pi-web-access@0.35.0",
+    "npm:pi-provider-litellm@2.3.0",
+    "npm:@juicesharp/rpiv-ask-user-question@2.12.0",
+    "npm:@juicesharp/rpiv-todo@2.12.0",
+    "npm:pi-zentui@0.27.1",
+    "npm:@narumitw/pi-plan-mode@0.58.3",
+    "npm:@narumitw/pi-goal@0.54.8",
+    {
+      "source": "npm:pi-subagents@0.74.0",
+      "extensions": []
+    },
+    "npm:@gotgenes/pi-permission-system@36.2.1",
+    "npm:@narumitw/pi-usage@0.61.1"
   ],
   "rewind": {
     "retention": {

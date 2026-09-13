@@ -5,7 +5,7 @@
   "yoloMode": false,
   "doublePressToConfirm": true,
   "permission": {
-    "*": "allow",
+    "*": "ask",
     "path": {
       "*": "allow",
       "*.env": "deny",

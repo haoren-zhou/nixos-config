@@ -19,7 +19,14 @@ in {
 
   programs.pi-safe = {
     enable = true;
-    extraWritablePaths = ["${config.home.homeDirectory}/nixos"];
+    extraWritablePaths = [
+      "${config.home.homeDirectory}/nixos"
+      config.xdg.cacheHome
+      "${config.xdg.dataHome}/pnpm"
+      "${config.xdg.dataHome}/uv/python"
+      "${config.xdg.dataHome}/uv/tools"
+      "${config.xdg.dataHome}/direnv"
+    ];
   };
 
   home.packages = [
@@ -45,6 +52,11 @@ in {
       recursive = true;
     };
   };
+
+  # pi-safe requires bind sources to exist, including on fresh installations.
+  home.activation.createPiSafeWritableDirectories = lib.hm.dag.entryAfter ["writeBoundary"] ''
+    run mkdir -p -- ${lib.escapeShellArgs config.programs.pi-safe.extraWritablePaths}
+  '';
 
   # install config files as editable copies, not symlinks
   # WARN: deletes existing symlinks

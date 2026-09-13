@@ -33,15 +33,19 @@ Currently declared packages:
 - `@narumitw/pi-goal`: autonomous single-objective `/goal` completion
 - `@narumitw/pi-usage`: account usage for Codex/Copilot/OpenRouter and `/fast`
 
-`pi-subagent-permission-forwarding` keeps permission approvals from
-`@gotgenes/pi-permission-system` attached to the interactive session that
-launched a `pi-subagents` child (including nested and background children) via
-the `PI_SUBAGENT_PI_BINARY` launcher wrapper.
+`pi-guard` applies `@gotgenes/pi-permission-system` to native `pi-subagents`
+children, including foreground, background, resumed, and authorized nested
+runs. It co-loads the subagent dispatcher with a guarded child-session factory,
+so the `pi-subagents` package entry must set `"extensions": []` rather than load
+a second standalone dispatcher. The bridge preserves stock tool selection and
+extension loading, evaluates child permission gates through the parent, and
+forwards human approval requests to its UI. Extension tools such as Hermes
+`memory_search` work when the child loads their provider and permits their name.
 
 The permission policy allows read-only tools, asks before file mutations, shell
 commands, and access outside the working directory, and denies selected secret
-paths plus `rm -rf` and `sudo`. Zentui owns the editor, user-message styling,
-working line, and footer. The local permission-status extension keeps a colored
+paths, recursive removal of root or home, and `sudo`. Zentui owns the editor,
+user-message styling, working line, and footer. The local permission-status extension keeps a colored
 `🔒 permissions` badge visible in Zentui's footer even when yolo mode is off;
 Zentui's built-in status integration otherwise receives no value from the
 permission package outside yolo mode. The memory display extension adds a
