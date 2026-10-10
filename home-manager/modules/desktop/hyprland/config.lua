@@ -133,8 +133,8 @@ hl.window_rule({ match = { class = "fcitx" }, pseudo = true })
 hl.window_rule({ match = { title = ".*(Godot).*" }, tile = true })
 
 opacity({ float = true }, "0.80 override 0.70 override")
-opacity({ class = "^(kitty|code|code-url-handler|swayimg)$" }, "1.00 override 0.90 override")
-opacity({ class = "^(zen|zen-beta)$" }, "1.00 override 1.00 override")
+opacity({ class = "^(kitty|code|code-url-handler|swayimg|obsidian)$" }, "1.00 override 0.90 override")
+opacity({ class = "^(zen|zen-beta|org.pwmt.zathura)$" }, "1.00 override 1.00 override")
 
 hl.window_rule({ match = { tag = "games" }, content = "game" })
 hl.window_rule({ match = { content = "game" }, tag = "+games" })

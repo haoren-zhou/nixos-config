@@ -64,6 +64,8 @@ in {
     opam
     uv
 
+    python3
+
     zathura
 
     llm-agents.claude-code
